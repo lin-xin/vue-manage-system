@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>h5works</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      /**
+       * 获取当前环境,返回请求的域名
+       */
+      function getENV() {
+        var url = window.location.href;
+        if (url.indexOf("localhost") > 0) {
+          return "";
+        } else if (url.indexOf("omwteam.") > 0) {
+          return "http://api.omwteam.com";
+        } else {
+          return "";
+        }
+      }
+      let server = getENV();
+    </script>
+  </body>
+</html>
