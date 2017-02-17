@@ -16,6 +16,10 @@ export default new Router({
         {
             path: '/baseform',
             component: resolve => require(['../components/page/BaseForm.vue'], resolve)
+        },
+        {
+            path: '/vueeditor',
+            component: resolve => require(['../components/page/VueEditor.vue'], resolve)
         }
     ]
 })

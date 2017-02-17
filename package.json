@@ -11,6 +11,7 @@
   "dependencies": {
     "element-ui": "^1.1.6",
     "vue": "^2.1.10",
+    "vue-quill-editor": "^1.1.1",
     "vue-router": "^2.2.0",
     "vue-tables-2": "^0.4.33"
   },
