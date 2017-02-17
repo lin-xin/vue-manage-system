@@ -27,40 +27,15 @@ a{text-decoration: none}
     margin: 20px 0;
     text-align: right;
 }
-.widget-box{
-    max-width: 1200px;
-    background: none repeat scroll 0 0 #F9F9F9;
-    border-left: 1px solid #F0F8FF;
-    border-top: 2px solid #27a9e3;
-    border-right: 2px solid #cdcdcd;
-    clear: both;
-    margin:0 auto 30px;
-    position: relative;
+.plugins-tips{
+    padding:10px;
+    margin-bottom: 20px;
+    background: #eef1f6;
 }
-.widget-box:hover{
-    box-shadow: 0 2px 7px rgba(0,0,0,.15);
+.plugins-tips a{
+    color: #20a0ff;
 }
-.widget-title{
-    background: #efefef;
-    border-bottom: 1px solid #F0F8FF;
-    height: 40px;
-}
-.widget-title h5 {
-    color: #666;
-    padding: 12px;
-    margin: 0;
-    font-weight: normal;
-}
-.widget-content {
-    padding:25px;
-    border-bottom: 2px solid #cdcdcd;
-}
-.widget-box .el-select,
-.widget-box .el-input,
-.widget-box .el-upload,
-.widget-box .el-tooltip{
-    display: inline-block;
-}
+
 .el-button+.el-tooltip {
     margin-left: 10px;
 }
@@ -70,15 +45,9 @@ a{text-decoration: none}
 .el-table tr:hover{
     background: #f6faff;
 }
-.page-box{
-    margin-top: 20px;
-    text-align: right;
-}
-.page-box .el-pagination{
-    background: #f9f9f9;
-}
+
 .mgb20{
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 .mgb5{
     margin-bottom: 5px;

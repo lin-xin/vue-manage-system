@@ -55,12 +55,4 @@
     .editor-btn{
         margin-top: 20px;
     }
-    .plugins-tips{
-        padding:10px;
-        margin-bottom: 20px;
-        background: #eef1f6;
-    }
-    .plugins-tips a{
-        color: #20a0ff;
-    }
 </style>

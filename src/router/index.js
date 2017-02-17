@@ -20,6 +20,10 @@ export default new Router({
         {
             path: '/vueeditor',
             component: resolve => require(['../components/page/VueEditor.vue'], resolve)
+        },
+        {
+            path: '/markdown',
+            component: resolve => require(['../components/page/Markdown.vue'], resolve)
         }
     ]
 })
