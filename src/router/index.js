@@ -8,6 +8,14 @@ export default new Router({
         {
             path: '/basetable',
             component: resolve => require(['../components/page/BaseTable.vue'], resolve)
+        },
+        {
+            path: '/vuetable',
+            component: resolve => require(['../components/page/VueTable.vue'], resolve)
+        },
+        {
+            path: '/baseform',
+            component: resolve => require(['../components/page/BaseForm.vue'], resolve)
         }
     ]
 })
