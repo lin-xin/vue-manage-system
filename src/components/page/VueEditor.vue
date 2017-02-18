@@ -20,7 +20,7 @@
     export default {
         data: function(){
             return {
-                content: '<p>编辑器...</p>',
+                content: '<p>Hello BBK</p>',
                 editorOption: {
                     // something config
                 }
