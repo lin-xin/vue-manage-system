@@ -18,40 +18,14 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import Datasource from 'vue-datasource';
     export default {
         data: function(){
             return {
                 information: {
-                    pagination: {
-                        total: 25, // Number of total rows (default 0)
-                        per_page: 15, // Number of rows to show (default 15)
-                        current_page: 1, // Actual page
-                        last_page: 2, // Last page
-                        from: 1, // Beginning of visible rows
-                        to: 15 // End of visible rows
-                    },
-                    data: [{
-                        "id": 1,
-                        "name": "Jaylen Schmidt",
-                        "email": "aheaney@example.org",
-                        "city": "Conroyburgh",
-                        "company": "Kunde, Gerhold and Runte"
-                        },
-                        {
-                            "id": 2,
-                            "name": "Ms. Desiree Franecki III",
-                            "email": "pweissnat@example.net",
-                            "city": "New Mathew",
-                            "company": "Davis Ltd"
-                        },
-                        {
-                            "id": 3,
-                            "name": "Clyde Corwin",
-                            "email": "rolfson.lexus@example.com",
-                            "city": "East Ron",
-                            "company": "Zieme and Sons"
-                        }]
+                    pagination:{},
+                    data:[]
                 },
                 columns: [
                     {
@@ -73,11 +47,10 @@
                 ],
                 actions: [
                     {
-                        text: 'Click me', // Button label
-                        icon: 'glyphicon glyphicon-check', // Button icon
-                        class: 'btn-primary', // Button class (background color)
-                        event(e, row) { // Event handler callback. Gets event instace and selected row
-                            console.log('Click row: ', row); // If no row is selected, row will be NULL
+                        text: 'Click',
+                        class: 'btn-primary',
+                        event(e, row) {
+                            alert('Click row: ' + row.row.id);
                         }
                     }
                 ],
@@ -105,6 +78,12 @@
                     }
                 })
             }
+        },
+        beforeMount(){
+            axios.get('../../../static/data.json').then( (res) => {
+                console.log(res.data)
+                this.information = res.data;
+            })
         }
     }
 </script>

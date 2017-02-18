@@ -9,6 +9,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "element-ui": "^1.1.6",
     "vue": "^2.1.10",
     "vue-datasource": "^1.0.4",

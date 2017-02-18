@@ -100,6 +100,9 @@
 .vue-datasource .table-striped > tbody > tr:nth-of-type(odd) {
     background-color: #f9f9f9;
 }
+.vue-datasource .success th ,.vue-datasource .success td{
+    background-color: #dff0d8;
+}
 .vue-datasource .pagination {
     display: inline-block;
     padding-left: 0;
