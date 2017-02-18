@@ -7,39 +7,33 @@
             </el-breadcrumb>
         </div>
         <div class="plugins-tips">
-            vue-markdown：一个基于vue.js的markdown语法解析插件。
-            访问地址：<a href="https://github.com/miaolz123/vue-markdown" target="_blank">vue-markdown</a>
+            Vue-SimpleMDE：Vue.js的Markdown Editor组件。
+            访问地址：<a href="https://github.com/F-loat/vue-simplemde" target="_blank">Vue-SimpleMDE</a>
         </div>
-        <textarea class="markdown-left" v-model="content"></textarea>
-        <vue-markdown class="markdown-right" :source="content"></vue-markdown>
+        <markdown-editor v-model="content" :configs="configs" ref="markdownEditor"></markdown-editor>
     </div>
 </template>
 
 <script>
-    import VueMarkdown from 'vue-markdown';
+    import { markdownEditor } from 'vue-simplemde';
     export default {
         data: function(){
             return {
-                content:'# Hello BBK'
+                content:'',
+                configs: {
+                    status: false,
+                    initialValue: 'Hello BBK',
+                    renderingConfig: {
+                        codeSyntaxHighlighting: true,
+                        highlightingTheme: 'atom-one-light'
+                    }
+                }
             }
         },
         components: {
-            VueMarkdown
+            markdownEditor
         }
     }
 </script>
 
-<style scoped>
-    .markdown-left,.markdown-right{
-        width:48%;
-        height: 700px;
-        float: left;
-        padding:10px;
-        box-sizing: border-box;
-        border: 1px solid #ddd;
-        overflow-y: scroll;
-    }
-    .markdown-right{
-        margin-left: 3%;
-    }
-</style>
+<style></style>
