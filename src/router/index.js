@@ -28,6 +28,10 @@ export default new Router({
         {
             path: '/upload',
             component: resolve => require(['../components/page/Upload.vue'], resolve)
+        },
+        {
+            path: '/vuecharts',
+            component: resolve => require(['../components/page/VueCharts.vue'], resolve)
         }
     ]
 })

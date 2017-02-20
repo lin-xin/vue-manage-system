@@ -14,11 +14,8 @@
                 <el-menu-item index="upload">文件上传</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
-                <template slot="title"><i class="el-icon-star-on"></i>UI元素</template>
-                <el-menu-item index="3-1">弹出框alert</el-menu-item>
-                <el-menu-item index="3-2">确认框confirm</el-menu-item>
-                <el-menu-item index="3-3">提示框</el-menu-item>
-                <el-menu-item index="3-4">树形图</el-menu-item>
+                <template slot="title"><i class="el-icon-star-on"></i>图表</template>
+                <el-menu-item index="vuecharts">VueCharts</el-menu-item>
             </el-submenu>
         </el-menu>
     </div>
