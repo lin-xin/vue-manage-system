@@ -81,7 +81,6 @@
         },
         beforeMount(){
             axios.get('../../../static/data.json').then( (res) => {
-                console.log(res.data)
                 this.information = res.data;
             })
         }

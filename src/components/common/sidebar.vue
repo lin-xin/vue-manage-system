@@ -11,7 +11,7 @@
                 <el-menu-item index="baseform">基本表单</el-menu-item>
                 <el-menu-item index="vueeditor">编辑器</el-menu-item>
                 <el-menu-item index="markdown">markdown</el-menu-item>
-                <el-menu-item index="2-3">文件上传</el-menu-item>
+                <el-menu-item index="upload">文件上传</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title"><i class="el-icon-star-on"></i>UI元素</template>

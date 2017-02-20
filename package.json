@@ -12,6 +12,7 @@
     "axios": "^0.15.3",
     "element-ui": "^1.1.6",
     "vue": "^2.1.10",
+    "vue-core-image-upload": "^2.0.5",
     "vue-datasource": "^1.0.4",
     "vue-quill-editor": "^1.1.1",
     "vue-router": "^2.2.0",
