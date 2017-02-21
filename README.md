@@ -1,46 +1,24 @@
-前言
+# manage-system #
+基于Vue.js 2.x系列 + Element UI 的后台管理系统解决方案
 
-这个解决方案适合什么场景，为什么采用这个解决方案，有什么有点与缺点，后续扩展与维护，自己想说点什么就说什么。
+## 前言 ##
+该方案作为一套多功能的后台框架模板，适用于绝大部分的后台管理系统（Web Management System）开发。基于vue.js,使用vue-cli脚手架快速生成项目目录，引用Element UI组件库，方便开发快速简洁好看的组件。
 
-1、目录结构介绍
+模板现包括了表格、表单、富文本编辑器、markdown编辑器、图片拖拽/裁剪上传、图表等功能。
 
-2、安装步骤
 
-3、组件使用说明与演示
 
-4、调试部署上传
+## 目录结构介绍 ##
 
-5、单元测试（可选）
+## 安装步骤 ##
 
-6、其他注意事项
+	git clone https://github.com/lin-xin/manage-system.git		// 把模板下载到本地
+	cd manage-system											// 进入模板目录
+	npm install													// 安装项目依赖，等待安装完成之后
+	npm run dev													// 开启服务器打开项目
 
-表格
+## 组件使用说明与演示 ##
 
-基础表格
+## 调试部署上传 ##
 
-Datatable
-
-参考 Datatable中文网
-
-表单
-
-基本表单
-
-编辑器
-
-可以参考富文本编辑器markdow支持组件 Laverna https://laverna.cc/index.html
-
-文件上传
-
-上传组件使用webuploader http://fex.baidu.com/webuploader/getting-started.html
-
-图片裁剪
-
-日期控件
-
-UI元素
-
-弹出框alert
-确认框confirm
-提示框
-树形图
+## 其他注意事项 ##

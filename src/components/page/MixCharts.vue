@@ -41,7 +41,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .mix-charts{
         width:100%;
         max-width: 900px;
