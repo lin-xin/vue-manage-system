@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i> 图表</el-breadcrumb-item>
-                <el-breadcrumb-item>VueCharts</el-breadcrumb-item>
+                <el-breadcrumb-item>基础图表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="plugins-tips">
@@ -15,7 +15,10 @@
                       :linetension="0"></chartjs-line>
         <chartjs-bar class="chart-box"
                      :datalabel="mylabel" :labels="mylabels" :data="mydata"></chartjs-bar>
-
+        <chartjs-pie class="chart-box"
+                     :datalabel="mylabel" :labels="mylabels" :data="mydata"></chartjs-pie>
+        <chartjs-doughnut class="chart-box"
+                     :datalabel="mylabel" :labels="mylabels" :data="mydata"></chartjs-doughnut>
     </div>
 </template>
 

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+// import VueCharts from 'vue-chartjs';
 require('chart.js/dist/Chart.bundle.min.js')
 require('hchs-vue-charts/dist/vue-charts.js')
 import ElementUI from 'element-ui';

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "chart.js": "^2.5.0",
+    "chart.js": "^2.3.0",
     "element-ui": "^1.1.6",
     "hchs-vue-charts": "^1.2.7",
     "vue": "^2.1.10",

@@ -15,7 +15,8 @@
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title"><i class="el-icon-star-on"></i>图表</template>
-                <el-menu-item index="vuecharts">VueCharts</el-menu-item>
+                <el-menu-item index="basecharts">基础图表</el-menu-item>
+                <el-menu-item index="mixcharts">混合图表</el-menu-item>
             </el-submenu>
         </el-menu>
     </div>

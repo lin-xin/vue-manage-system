@@ -30,8 +30,12 @@ export default new Router({
             component: resolve => require(['../components/page/Upload.vue'], resolve)
         },
         {
-            path: '/vuecharts',
-            component: resolve => require(['../components/page/VueCharts.vue'], resolve)
+            path: '/basecharts',
+            component: resolve => require(['../components/page/BaseCharts.vue'], resolve)
+        },
+        {
+            path: '/mixcharts',
+            component: resolve => require(['../components/page/MixCharts.vue'], resolve)
         }
     ]
 })
