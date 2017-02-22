@@ -1,69 +1,76 @@
 <template>
     <div class="header">
-        内容管理系统
-        <div class="m-logbar">
-            <span class="logInfo" admin="admin">username </span>您好 |
-            <span class="logout" @click="handleLogout">退出</span>
+        后台管理系统
+        <div class="user-info">
+            <el-dropdown trigger="click" @command="handleCommand">
+                <span class="el-dropdown-link">
+                    <img class="user-logo" src="../../../static/img/img.jpg">
+                    linxin
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="loginout">退出</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
         </div>
     </div>
 </template>
 
 <script>
-export default {
-    data() {
-       return {
-        sName: 'abcd'
-       }
-    },
-    created() {
-       let arr = document.cookie.split('; ');
-       let bArr = arr[arr.length - 1];
-       let sArr = bArr.split('=');
-       let sUserName = sArr[0];
-       this.sName = sUserName;
-    },
-    methods: {
-        handleLogout() {
-            let self = this,param = {
-                username: 'admin',
-                password: 'admin'
+    export default {
+        data() {
+            return {
+                sName: 'abcd'
             }
-            self.$http.post(server + '/user/logout',param).then((res) => {
-                if(res.ok){
-                    let response = res.data;
-                    if(response.code == '200') {
-                        location.href = '#/login';
-                        this.removeCookie(this.sName)
-                    }else {
-                        location.href = '#/login';
-                    }
-                }
-            })
         },
-        removeCookie(name) {
-            setCookie(name, '1', -1);
+        methods:{
+            handleCommand(command) {
+                if(command == 'loginout'){
+                    console.log(1)
+                    this.$router.push('/login');
+                }
+            },
+            loginOut(){
+
+            }
         }
     }
-}
 </script>
 <style scoped>
-.header {
-    position: relative;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-    padding-left: 50px;
-    width: 100%;
-    height: 70px;
-    font-size: 22px;
-    line-height: 70px;
-    color: #fff;
-    background-color: #242f42;
-}
-.m-logbar {
-    float: right;
-    padding-right: 20px;
-    font-size: 16px;
-    color: #fff;
-}
+    .header {
+        position: relative;
+        box-sizing: border-box;
+        padding-left: 50px;
+        width: 100%;
+        height: 70px;
+        font-size: 22px;
+        line-height: 70px;
+        color: #fff;
+        background-color: #242f42;
+    }
+
+    .user-info {
+        float: right;
+        padding-right: 50px;
+        font-size: 16px;
+        color: #fff;
+    }
+    .user-info .el-dropdown-link{
+        position: relative;
+        display: inline-block;
+        padding-left: 50px;
+        color: #fff;
+        cursor: pointer;
+        vertical-align: middle;
+    }
+    .user-info .user-logo{
+        position: absolute;
+        left:0;
+        top:15px;
+        width:40px;
+        height:40px;
+        border-radius: 50%;
+    }
+    .el-dropdown-menu__item{
+        text-align: center;
+    }
 </style>
