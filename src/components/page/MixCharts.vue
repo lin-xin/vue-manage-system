@@ -7,43 +7,58 @@
             </el-breadcrumb>
         </div>
         <div class="plugins-tips">
-            vue-charts：基于vue2和chart.js的图表组件。
-            访问地址：<a href="https://github.com/hchstera/vue-charts" target="_blank">vue-charts</a>
+            vue-echarts-v3：基于vue2和eCharts.js3的图表组件。
+            访问地址：<a href="https://github.com/xlsdg/vue-echarts-v3" target="_blank">vue-echarts-v3</a>
         </div>
-        <div class="mix-charts">
-            <canvas id="mix" count="3"></canvas>
-            <chartjs-line target="mix" bordercolor="#FF6384" :bind="true"
-                          :datalabel="mylabel" :labels="mylabels" :data="mydata"
-                          :linetension="0"></chartjs-line>
-            <chartjs-bar target="mix" backgroundcolor="#36A2EB" :bind="true"
-                         :datalabel="mylabel1" :labels="mylabels1" :data="mydata1"></chartjs-bar>
-            <chartjs-bar target="mix" backgroundcolor="#FFCE56" :bind="true"
-                         :datalabel="mylabel2" :labels="mylabels2" :data="mydata2"></chartjs-bar>
+        <div class="mix-echarts">
+            <IEcharts :option="mix" ></IEcharts>
         </div>
     </div>
 </template>
 
 <script>
+    import IEcharts from 'vue-echarts-v3';
     export default {
         data: function(){
             return {
-                mylabel : '2013-2017年价格趋势',
-                mylabels : ['2013','2014','2015', '2016', '2017'],
-                mydata : [15,30, 20, 50, 40],
-                mylabel1 : '2013-2017年价格趋势',
-                mylabels1 : ['2013','2014','2015', '2016', '2017'],
-                mydata1 : [20,25, 50, 90, 70],
-                mylabel2 : '2013-2017年价格趋势',
-                mylabels2 : ['2013','2014','2015', '2016', '2017'],
-                mydata2 : [40,50, 15, 60, 10]
+                mix:{
+                    color:["#20a0ff","#13CE66","#F7BA2A","#FF4949","#61a0a8"],
+                    legend: {
+                        data:['步步高','小天才','imoo']
+                    },
+                    xAxis: {
+                        data: ['周一','周二','周三','周四','周五','周末']
+                    },
+                    yAxis:{},
+                    series: [
+                        {
+                            name: "步步高",
+                            type: "line",
+                            data: [15, 20, 26, 30, 40, 27]
+                        },
+                        {
+                            name: "小天才",
+                            type: "bar",
+                            data: [5, 30, 36, 10, 34, 20]
+                        },
+                        {
+                            name: "imoo",
+                            type: "bar",
+                            data: [35, 40, 30, 50, 60, 40]
+                        }
+                    ]
+                }
             }
+        },
+        components: {
+            IEcharts
         }
     }
 </script>
 
 <style scoped>
-    .mix-charts{
-        width:100%;
-        max-width: 900px;
+    .mix-echarts{
+        width:900px;
+        height:600px;
     }
 </style>

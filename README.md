@@ -1,6 +1,7 @@
 # manage-system #
 基于Vue.js 2.x系列 + Element UI 的后台管理系统解决方案
 
+
 ## 前言 ##
 该方案作为一套多功能的后台框架模板，适用于绝大部分的后台管理系统（Web Management System）开发。基于vue.js,使用vue-cli脚手架快速生成项目目录，引用Element UI组件库，方便开发快速简洁好看的组件。
 

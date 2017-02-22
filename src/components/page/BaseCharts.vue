@@ -7,37 +7,148 @@
             </el-breadcrumb>
         </div>
         <div class="plugins-tips">
-            vue-charts：基于vue2和chart.js的图表组件。
-            访问地址：<a href="https://github.com/hchstera/vue-charts" target="_blank">vue-charts</a>
+            vue-echarts-v3：基于vue2和eCharts.js3的图表组件。
+            访问地址：<a href="https://github.com/xlsdg/vue-echarts-v3" target="_blank">vue-echarts-v3</a>
         </div>
-        <chartjs-line class="chart-box"
-                      :datalabel="mylabel" :labels="mylabels" :data="mydata"
-                      :linetension="0"></chartjs-line>
-        <chartjs-bar class="chart-box"
-                     :datalabel="mylabel" :labels="mylabels" :data="mydata"></chartjs-bar>
-        <chartjs-pie class="chart-box"
-                     :datalabel="mylabel" :labels="mylabels" :data="mydata"></chartjs-pie>
-        <chartjs-doughnut class="chart-box"
-                     :datalabel="mylabel" :labels="mylabels" :data="mydata"></chartjs-doughnut>
+        <div class="echarts">
+            <IEcharts :option="line" ></IEcharts>
+        </div>
+        <div class="echarts">
+            <IEcharts :option="bar" ></IEcharts>
+        </div>
+        <div class="echarts">
+            <IEcharts :option="pie" ></IEcharts>
+        </div>
+        <div class="echarts">
+            <IEcharts :option="pie_radius" ></IEcharts>
+        </div>
     </div>
 </template>
 
 <script>
+    import IEcharts from 'vue-echarts-v3';
     export default {
-        data: function(){
-            return {
-                mylabel : '2013-2017年走势',
-                mylabels : ['2013','2014','2015', '2016', '2017'],
-                mydata : [15,30, 20, 80, 100]
+        components: {
+            IEcharts
+        },
+        data: () => ({
+            line: {
+                color:["#20a0ff","#13CE66","#F7BA2A","#FF4949"],
+                title: {
+                    text: '曲线图'
+                },
+                xAxis: {
+                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+                },
+                yAxis:{},
+                series: [
+                    {
+                        name: "销量",
+                        type: "line",
+                        data: [5, 20, 36, 10, 10, 20]
+                    }
+                ]
+            },
+            bar: {
+                color:["#20a0ff","#13CE66","#F7BA2A","#FF4949"],
+                title: {
+                    text: '柱状图'
+                },
+                xAxis: {
+                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+                },
+                yAxis:{},
+                series: [
+                    {
+                        name: "销量",
+                        type: "bar",
+                        data: [5, 20, 36, 10, 10, 20]
+                    }
+                ]
+            },
+            pie: {
+                color:["#20a0ff","#13CE66","#F7BA2A","#FF4949","#61a0a8"],
+                title : {
+                    text: '饼状图',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋"]
+                },
+                series : [
+                    {
+                        name: '销量',
+                        type: 'pie',
+                        radius : '55%',
+                        center: ['50%', '50%'],
+                        data:[
+                            {value:335, name:'衬衫'},
+                            {value:310, name:'羊毛衫'},
+                            {value:234, name:'雪纺衫'},
+                            {value:135, name:'裤子'},
+                            {value:548, name:'高跟鞋'}
+                        ],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            },
+            pie_radius:{
+                color:["#20a0ff","#13CE66","#F7BA2A","#FF4949","#61a0a8"],
+                title : {
+                    text: '环形图',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋"]
+                },
+                series : [
+                    {
+                        name: '销量',
+                        type: 'pie',
+                        radius : ['40%','60%'],
+                        data:[
+                            {value:335, name:'衬衫'},
+                            {value:310, name:'羊毛衫'},
+                            {value:234, name:'雪纺衫'},
+                            {value:135, name:'裤子'},
+                            {value:548, name:'高跟鞋'}
+                        ],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
             }
-        }
+        })
     }
 </script>
 
-<style>
-    .chart-box{
+<style scoped>
+    .echarts {
         float: left;
-        width:500px;
-        margin: 20px 30px;
+        width: 500px;
+        height: 400px;
     }
 </style>
