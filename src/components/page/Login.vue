@@ -41,7 +41,7 @@
                 const self = this;
                 self.$refs[formName].validate((valid) => {
                     if (valid) {
-                        self.$router.push('/admin');
+                        self.$router.push('/readme');
                     } else {
                         console.log('error submit!!');
                         return false;
