@@ -25,7 +25,6 @@
         methods:{
             handleCommand(command) {
                 if(command == 'loginout'){
-                    console.log(1)
                     this.$router.push('/login');
                 }
             },

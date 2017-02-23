@@ -6,6 +6,10 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {
+            path: '/',
+            redirect: '/login'
+        },
+        {
             path: '/readme',
             component: resolve => require(['../components/common/Home.vue'], resolve),
             children:[
