@@ -44,15 +44,3 @@
         }
     }
 </script>
-
-<style>
-    .ql-container{
-        min-height: 400px;
-    }
-    .ql-snow .ql-tooltip{
-        transform: translateX(117.5px) translateY(10px) !important;
-    }
-    .editor-btn{
-        margin-top: 20px;
-    }
-</style>

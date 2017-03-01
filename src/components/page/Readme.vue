@@ -91,9 +91,3 @@
         margin-bottom: 5px;
     }
 </style>
-<style>
-    .ms-doc .el-checkbox__input.is-disabled+.el-checkbox__label{
-        color: #333;
-        cursor: pointer;
-    }
-</style>

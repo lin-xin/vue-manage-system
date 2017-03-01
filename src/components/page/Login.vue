@@ -52,7 +52,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .login-wrap{
         position: relative;
         width:100%;

@@ -80,15 +80,3 @@
         }
     }
 </script>
-
-<style>
-    .form-box{
-        width:600px;
-    }
-    .form-box .line{
-        text-align: center;
-    }
-    .el-time-panel__content::after, .el-time-panel__content::before {
-        margin-top: -7px;
-    }
-</style>

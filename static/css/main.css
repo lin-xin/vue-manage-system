@@ -35,7 +35,6 @@ a{text-decoration: none}
 .plugins-tips a{
     color: #20a0ff;
 }
-
 .el-button+.el-tooltip {
     margin-left: 10px;
 }
@@ -45,73 +44,78 @@ a{text-decoration: none}
 .el-table tr:hover{
     background: #f6faff;
 }
-
 .mgb20{
     margin-bottom: 20px;
 }
-.mgb5{
-    margin-bottom: 5px;
-}
-.dialog{
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: auto;
-    background: rgba(0,0,0,.4);
-    z-index:-1;
-    opacity: 0;
-    transition: all .5s ease;
-}
-.dialog.dialog-show{
-    opacity: 1;
-    z-index: 1000;
-}
-.dialog .dialog-wrapper{
-    position: absolute;
-    left: 50%;
-    top: 15%;
-    width: 50%;
-    transform: translateX(-50%);
-    background: #fff;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.3);
-    box-sizing: border-box;
-    transition: top .5s ease;
-}
-.dialog.dialog-show .dialog-wrapper{
-    top: 17%;
-}
-.dialog .dialog-header{
-    padding: 20px 20px 0;
-}
-.dialog .dialog-content{
-    padding: 30px 20px;
-    color: #475669;
-    font-size: 14px;
-}
-.dialog .dialog-close{
-    float: right;
-    cursor: pointer;
-    color: #c0ccda;
-}
-.dialog .dialog-close:hover{
-    color: #20a0ff;
-    animation: close-rotate .3s ease;
 
-}
-@keyframes close-rotate {
-    from{
-        transform: rotate(-360deg);
-    }
-}
-.el-upload__files{
-    display: none;
-}
 .move-enter-active,.move-leave-active{
     transition: opacity .5s;
 }
 .move-enter,.move-leave{
     opacity: 0;
+}
+/*BaseForm*/
+.form-box{
+    width:600px;
+}
+.form-box .line{
+    text-align: center;
+}
+.el-time-panel__content::after, .el-time-panel__content::before {
+    margin-top: -7px;
+}
+/*Readme*/
+.ms-doc .el-checkbox__input.is-disabled+.el-checkbox__label{
+    color: #333;
+    cursor: pointer;
+}
+/*Upload*/
+.pure-button{
+    width:150px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    background: #00a2ff;
+    color: #fff;
+    border-radius: 3px;
+}
+.g-core-image-corp-container .info-aside{
+    height:45px;
+}
+.el-upload--text {
+    background-color: #fff;
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 360px;
+    height: 180px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.el-upload--text .el-icon-upload {
+    font-size: 67px;
+    color: #97a8be;
+    margin: 40px 0 16px;
+    line-height: 50px;
+}
+.el-upload--text {
+    color: #97a8be;
+    font-size: 14px;
+    text-align: center;
+}
+.el-upload--text em {
+    color: #20a0ff;
+    font-style: normal;
+}
+/*VueEditor*/
+.ql-container{
+    min-height: 400px;
+}
+.ql-snow .ql-tooltip{
+    transform: translateX(117.5px) translateY(10px) !important;
+}
+.editor-btn{
+    margin-top: 20px;
 }
