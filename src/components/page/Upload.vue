@@ -41,6 +41,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import VueCoreImageUpload  from 'vue-core-image-upload';
     export default {
         data: function(){
