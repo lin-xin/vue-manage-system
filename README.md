@@ -250,3 +250,29 @@ Vue.js的Markdown Editor组件。访问地址：[Vue-SimpleMDE](https://github.c
 ```
 
 ## 其他注意事项 ##
+如果我不想用到上面的某些组件呢，那我怎么在模板中删除掉不影响到其他功能呢？
+
+举个栗子，我不想用 vue-datasource 这个组件，那我需要分四步走。
+
+第一步：删除该组件的路由，在目录 src/router/index.js 中，找到引入改组件的路由，删除下面这段代码。
+
+```JavaScript
+{
+    path: '/vuetable',
+    component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
+},
+```
+
+第二步：删除引入该组件的文件。在目录 src/components/page/ 删除 VueTable.vue 文件。
+
+第三步：删除该页面的入口。在目录 src/components/common/Sidebar.vue 中，找到该入口，删除下面这段代码。
+	
+```HTML
+<el-menu-item index="vuetable">Vue表格组件</el-menu-item>
+```
+
+第四步：卸载该组件。执行以下命令：
+	
+	npm un vue-datasource -S
+
+完成。

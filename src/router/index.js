@@ -23,7 +23,7 @@ export default new Router({
                 },
                 {
                     path: '/vuetable',
-                    component: resolve => require(['../components/page/VueTable.vue'], resolve)
+                    component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
                 },
                 {
                     path: '/baseform',
@@ -31,23 +31,23 @@ export default new Router({
                 },
                 {
                     path: '/vueeditor',
-                    component: resolve => require(['../components/page/VueEditor.vue'], resolve)
+                    component: resolve => require(['../components/page/VueEditor.vue'], resolve)    // Vue-Quill-Editor组件
                 },
                 {
                     path: '/markdown',
-                    component: resolve => require(['../components/page/Markdown.vue'], resolve)
+                    component: resolve => require(['../components/page/Markdown.vue'], resolve)     // Vue-Quill-Editor组件
                 },
                 {
                     path: '/upload',
-                    component: resolve => require(['../components/page/Upload.vue'], resolve)
+                    component: resolve => require(['../components/page/Upload.vue'], resolve)       // Vue-Core-Image-Upload组件
                 },
                 {
                     path: '/basecharts',
-                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve)
+                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   // vue-echarts-v3组件
                 },
                 {
                     path: '/mixcharts',
-                    component: resolve => require(['../components/page/MixCharts.vue'], resolve)
+                    component: resolve => require(['../components/page/MixCharts.vue'], resolve)    // vue-echarts-v3组件
                 }
             ]
         },
