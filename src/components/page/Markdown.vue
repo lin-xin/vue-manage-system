@@ -21,7 +21,7 @@
             return {
                 content:'',
                 configs: {
-                    status: false,
+                    status: true,
                     initialValue: 'Hello BBK',
                     renderingConfig: {
                         codeSyntaxHighlighting: true,

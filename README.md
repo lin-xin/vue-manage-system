@@ -66,6 +66,110 @@
 	npm run build
 
 ## 组件使用说明与演示 ##
+### Vue-Quill-Editor ###
+基于Quill、适用于Vue2的富文本编辑器。访问地址：[vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
+
+	<template>
+		<div>
+			<quill-editor ref="myTextEditor" v-model="content" :config="editorOption"></quill-editor>
+		</div>
+	</template>
+
+	<script>
+		import { quillEditor } from 'vue-quill-editor';			// 导入quillEditor组件
+	    export default {
+	        data: function(){
+	            return {
+	                content: '',								// 编辑器的内容
+	                editorOption: {								// 编辑器的配置
+	                    // something config
+	                }
+	            }
+	        },
+	        components: {
+	            quillEditor										// 声明组件quillEditor
+	        }
+		}
+	</script>
+
+### Vue-SimpleMDE ###
+Vue.js的Markdown Editor组件。访问地址：[Vue-SimpleMDE](https://github.com/F-loat/vue-simplemde)
+
+	<template>
+	    <div>
+	        <markdown-editor v-model="content" :configs="configs" ref="markdownEditor"></markdown-editor>
+	    </div>
+	</template>
+
+	<script>
+	    import { markdownEditor } from 'vue-simplemde';			// 导入markdownEditor组件
+	    export default {
+	        data: function(){
+	            return {
+	                content:'',									// markdown编辑器内容
+	                configs: {									// markdown编辑器配置参数
+	                    status: false,							// 禁用底部状态栏
+	                    initialValue: 'Hello BBK',				// 设置初始值
+	                    renderingConfig: {
+	                        codeSyntaxHighlighting: true,		// 开启代码高亮
+	                        highlightingTheme: 'atom-one-light' // 自定义代码高亮主题
+	                    }
+	                }
+	            }
+	        },
+	        components: {
+	            markdownEditor									// 声明组件markdownEditor
+	        }
+	    }
+	</script>
+
+### Vue-Core-Image-Upload ###
+一款轻量级的vue上传插件，支持裁剪。访问地址：[Vue-Core-Image-Upload](https://github.com/Vanthink-UED/vue-core-image-upload)
+
+```JavaScript
+
+	<template>
+	    <div>
+			<img :src="src">									// 用于显示上传的图片
+	        <vue-core-image-upload :class="['pure-button','pure-button-primary','js-btn-crop']"
+	           :crop="true"										// 是否裁剪
+	           text="上传图片"
+	           url=""											// 上传路径
+	           extensions="png,gif,jpeg,jpg"					// 限制文件类型
+	           @:imageuploaded="imageuploaded">					// 监听图片上传完成事件
+			</vue-core-image-upload>
+	    </div>
+	</template>
+	
+	<script>
+	    import VueCoreImageUpload  from 'vue-core-image-upload';	// 导入VueCoreImageUpload组件
+	    export default {
+	        data: function(){
+	            return {
+	                src:'../img/1.jpg'							// 默认显示图片地址
+	            }
+	        },
+	        components: {
+	            VueCoreImageUpload								// 声明组件VueCoreImageUpload
+	        },
+	        methods:{
+	            imageuploaded(res) {							// 定义上传完成执行的方法
+	                console.log(res)
+	            }
+	        }
+	    }
+	</script>
+
+```
+
+### vue-echarts-v3 ###
+基于vue2和eCharts.js3的图表组件。访问地址：[vue-echarts-v3](https://github.com/xlsdg/vue-echarts-v3)
+
+	<template>
+	    <div>
+	        <markdown-editor v-model="content" :configs="configs" ref="markdownEditor"></markdown-editor>
+	    </div>
+	</template>
 
 
 ## 其他注意事项 ##
