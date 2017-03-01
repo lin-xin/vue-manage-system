@@ -32,7 +32,9 @@
             </el-table-column>
         </el-table>
         <div class="pagination">
-            <el-pagination @current-change="handleCurrentChange" :current-page="1" :page-size="10" layout="total, prev, pager, next" :total="100">
+            <el-pagination
+                    layout="prev, pager, next"
+                    :total="1000">
             </el-pagination>
         </div>
     </div>
@@ -73,14 +75,10 @@
                 return row.tag === value;
             },
             handleEdit(index, row) {
-                console.log(index, row);
+                this.$message('编辑第'+(index+1)+'行');
             },
             handleDelete(index, row) {
-                console.log(index, row);
-            },
-            handleCurrentChange(val) {
-                this.currentPage = val;
-                console.log(`当前页: ${val}`);
+                this.$message.error('删除第'+(index+1)+'行');
             }
         }
     }
