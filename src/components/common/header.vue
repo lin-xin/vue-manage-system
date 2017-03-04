@@ -42,19 +42,16 @@
     .header {
         position: relative;
         box-sizing: border-box;
-        /*padding-left: 50px;*/
         width: 100%;
         height: 70px;
         font-size: 22px;
         line-height: 70px;
         color: #fff;
-        background-color: #242f42;
     }
     .header .logo{
         float: left;
         width:250px;
         text-align: center;
-        background: #00ADF2;
     }
     .user-info {
         float: right;
@@ -66,7 +63,7 @@
         position: relative;
         display: inline-block;
         padding-left: 50px;
-        color: #03A9F4;
+        color: #fff;
         cursor: pointer;
         vertical-align: middle;
     }

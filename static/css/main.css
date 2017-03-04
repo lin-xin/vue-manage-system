@@ -28,12 +28,8 @@ a{text-decoration: none}
     text-align: right;
 }
 .plugins-tips{
-    padding:10px;
+    padding:20px 10px;
     margin-bottom: 20px;
-    background: #eef1f6;
-}
-.plugins-tips a{
-    color: #20a0ff;
 }
 .el-button+.el-tooltip {
     margin-left: 10px;
@@ -75,7 +71,6 @@ a{text-decoration: none}
     height:40px;
     line-height: 40px;
     text-align: center;
-    background: #00a2ff;
     color: #fff;
     border-radius: 3px;
 }
@@ -106,7 +101,6 @@ a{text-decoration: none}
     text-align: center;
 }
 .el-upload--text em {
-    color: #20a0ff;
     font-style: normal;
 }
 /*VueEditor*/
