@@ -75,7 +75,7 @@
         },
         methods: {
             onSubmit() {
-                console.log('submit!');
+                this.$message.success('提交成功！');
             }
         }
     }

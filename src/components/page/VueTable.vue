@@ -22,6 +22,7 @@
     import Datasource from 'vue-datasource';
     export default {
         data: function(){
+            const self = this;
             return {
                 information: {
                     pagination:{},
@@ -50,7 +51,7 @@
                         text: 'Click',
                         class: 'btn-primary',
                         event(e, row) {
-                            alert('Click row: ' + row.row.id);
+                            self.$message('选中的行数： ' + row.row.id);
                         }
                     }
                 ],
@@ -80,7 +81,7 @@
             }
         },
         beforeMount(){
-            axios.get('../../../static/data.json').then( (res) => {
+            axios.get('/static/data.json').then( (res) => {
                 this.information = res.data;
             })
         }

@@ -35,6 +35,7 @@
             },
             submit(){
                 console.log(this.content);
+                this.$message.success('提交成功！');
             }
         },
         computed: {
@@ -44,3 +45,8 @@
         }
     }
 </script>
+<style scoped>
+    .editor-btn{
+        margin-top: 20px;
+    }
+</style>
