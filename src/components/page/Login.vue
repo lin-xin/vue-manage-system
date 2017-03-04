@@ -41,6 +41,7 @@
                 const self = this;
                 self.$refs[formName].validate((valid) => {
                     if (valid) {
+                        localStorage.setItem('ms_username',self.ruleForm.username);
                         self.$router.push('/readme');
                     } else {
                         console.log('error submit!!');

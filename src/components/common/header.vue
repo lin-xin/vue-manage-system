@@ -5,7 +5,7 @@
             <el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
                     <img class="user-logo" src="../../../static/img/img.jpg">
-                    linxin
+                    {{username}}
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="loginout">退出</el-dropdown-item>
@@ -19,17 +19,21 @@
     export default {
         data() {
             return {
-                sName: 'abcd'
+                name: 'linxin'
+            }
+        },
+        computed:{
+            username(){
+                let username = localStorage.getItem('ms_username');
+                return username ? username : this.name;
             }
         },
         methods:{
             handleCommand(command) {
                 if(command == 'loginout'){
+                    localStorage.removeItem('ms_username')
                     this.$router.push('/login');
                 }
-            },
-            loginOut(){
-
             }
         }
     }
