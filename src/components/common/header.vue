@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        后台管理系统
+        <div class="logo">后台管理系统</div>
         <div class="user-info">
             <el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
@@ -38,7 +38,7 @@
     .header {
         position: relative;
         box-sizing: border-box;
-        padding-left: 50px;
+        /*padding-left: 50px;*/
         width: 100%;
         height: 70px;
         font-size: 22px;
@@ -46,7 +46,12 @@
         color: #fff;
         background-color: #242f42;
     }
-
+    .header .logo{
+        float: left;
+        width:250px;
+        text-align: center;
+        background: #00ADF2;
+    }
     .user-info {
         float: right;
         padding-right: 50px;
@@ -57,7 +62,7 @@
         position: relative;
         display: inline-block;
         padding-left: 50px;
-        color: #fff;
+        color: #03A9F4;
         cursor: pointer;
         vertical-align: middle;
     }

@@ -37,7 +37,7 @@
     .sidebar{
         display: block;
         position: absolute;
-        width: 220px;
+        width: 250px;
         left: 0;
         top: 70px;
         bottom:0;
