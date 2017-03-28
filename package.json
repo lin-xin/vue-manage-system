@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "babel-polyfill": "^6.23.0",
     "element-ui": "^1.2.2",
     "vue": "^2.1.10",
     "vue-core-image-upload": "^2.0.5",
