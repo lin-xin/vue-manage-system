@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "build:dll": "webpack --config build/webpack.dll.conf.js"
   },
   "dependencies": {
     "axios": "^0.15.3",
