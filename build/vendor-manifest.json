@@ -501,9 +501,14 @@
       "id": 124,
       "meta": {}
     },
-    "./node_modules/vue-router/dist/vue-router.common.js": {
+    "./node_modules/vue-router/dist/vue-router.esm.js": {
       "id": 125,
-      "meta": {}
+      "meta": {
+        "harmonyModule": true
+      },
+      "exports": [
+        "default"
+      ]
     },
     "./node_modules/vue/dist/vue.common.js": {
       "id": 126,
