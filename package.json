@@ -13,6 +13,7 @@
     "axios": "^0.15.3",
     "babel-polyfill": "^6.23.0",
     "element-ui": "^1.2.2",
+    "mockjs": "^1.0.1-beta3",
     "vue": "^2.1.10",
     "vue-core-image-upload": "^2.0.5",
     "vue-datasource": "^1.0.4",

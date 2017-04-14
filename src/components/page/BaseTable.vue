@@ -14,13 +14,11 @@
             </el-table-column>
             <el-table-column prop="address" label="地址" :formatter="formatter">
             </el-table-column>
-            <el-table-column prop="tag" label="标签" width="120"
-                    :filters="[{ text: '家', value: '家' }, { text: '公司', value: '公司' }]"
-                    :filter-method="filterTag">
+            <el-table-column  label="头像">
                 <template scope="scope">
-                    <el-tag :type="scope.row.tag === '家' ? 'primary' : 'success'" close-transition>{{scope.row.tag}}
-                    </el-tag>
+                    <img :src="scope.row.logo">
                 </template>
+                
             </el-table-column>
             <el-table-column label="操作" width="180">
                 <template scope="scope">
@@ -33,6 +31,7 @@
         </el-table>
         <div class="pagination">
             <el-pagination
+                    @current-change ="handleCurrentChange"
                     layout="prev, pager, next"
                     :total="1000">
             </el-pagination>
@@ -44,30 +43,24 @@
     export default {
         data() {
             return {
-                tableData: [{
-                    date: '2017-02-02',
-                    name: '小天才',
-                    address: '东莞市长安镇步步高大道18号',
-                    tag: '家'
-                }, {
-                    date: '2017-02-04',
-                    name: '小天才',
-                    address: '东莞市长安镇步步高大道17号',
-                    tag: '公司'
-                }, {
-                    date: '2017-02-01',
-                    name: '小天才',
-                    address: '东莞市长安镇步步高大道19号',
-                    tag: '家'
-                }, {
-                    date: '2017-02-03',
-                    name: '小天才',
-                    address: '东莞市长安镇步步高大道16号',
-                    tag: '公司'
-                }]
+                tableData: [],
+                cur_page: 1
             }
         },
+        created(){
+            this.getData();
+        },
         methods: {
+            handleCurrentChange(val){
+                this.cur_page = val;
+                this.getData();
+            },
+            getData(){
+                let self = this;
+                this.$axios.post('/api/table',{page:self.cur_page}).then((res) => {
+                    self.tableData = res.data.data;
+                })
+            },
             formatter(row, column) {
                 return row.address;
             },

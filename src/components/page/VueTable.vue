@@ -42,8 +42,8 @@
                         key: 'email',
                     },
                     {
-                        name: 'company',
-                        key: 'company',
+                        name: 'ip',
+                        key: 'ip',
                     }
                 ],
                 actions: [
@@ -81,7 +81,7 @@
             }
         },
         beforeMount(){
-            axios.get('/static/data.json').then( (res) => {
+            axios.get('/api/source').then( (res) => {
                 this.information = res.data;
             })
         }
