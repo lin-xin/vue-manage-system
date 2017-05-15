@@ -1,5 +1,6 @@
 var path = require('path')
 var utils = require('./utils')
+var webpack = require('webpack')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 
@@ -9,7 +10,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: ['babel-polyfill','./src/main.js']
   },
   output: {
     path: config.build.assetsRoot,
@@ -59,5 +60,11 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+    // plugins: [
+    //     new webpack.DllReferencePlugin({
+    //       context: path.resolve(__dirname, '..'),
+    //       manifest: require('./vendor-manifest.json')
+    //     })
+    // ]
 }

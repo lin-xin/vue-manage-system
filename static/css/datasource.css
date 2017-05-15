@@ -86,6 +86,7 @@
     margin-bottom: 22px;
     border-collapse: collapse;
     border-spacing: 0;
+    text-align: center;
 }
 .vue-datasource .table > thead > tr > th {
     vertical-align: bottom;
