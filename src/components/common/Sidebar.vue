@@ -1,32 +1,96 @@
 <template>
     <div class="sidebar">
         <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" theme="dark" unique-opened router>
-            <el-menu-item index="readme">
-                <i class="el-icon-setting"></i>自述
-            </el-menu-item>
-            <el-submenu index="2">
-                <template slot="title"><i class="el-icon-menu"></i>表格</template>
-                <el-menu-item index="basetable">基础表格</el-menu-item>
-                <el-menu-item index="vuetable">Vue表格组件</el-menu-item>
-            </el-submenu>
-            <el-submenu index="3">
-                <template slot="title"><i class="el-icon-date"></i>表单</template>
-                <el-menu-item index="baseform">基本表单</el-menu-item>
-                <el-menu-item index="vueeditor">编辑器</el-menu-item>
-                <el-menu-item index="markdown">markdown</el-menu-item>
-                <el-menu-item index="upload">文件上传</el-menu-item>
-            </el-submenu>
-            <el-submenu index="4">
-                <template slot="title"><i class="el-icon-star-on"></i>图表</template>
-                <el-menu-item index="basecharts">基础图表</el-menu-item>
-                <el-menu-item index="mixcharts">混合图表</el-menu-item>
-            </el-submenu>
+            <template v-for="item in items">
+                <template v-if="item.subs">
+                    <el-submenu :index="item.index">
+                        <template slot="title"><i class="el-icon-menu"></i>{{ item.title }}</template>
+                        <el-menu-item v-for="subItem in item.subs" :index="subItem.index">{{ subItem.title }}
+                        </el-menu-item>
+                    </el-submenu>
+                </template>
+                <template v-else>
+                    <el-menu-item :index="item.index">
+                        <i class="el-icon-setting"></i>{{ item.title }}
+                    </el-menu-item>
+                </template>
+            </template>
         </el-menu>
     </div>
 </template>
 
 <script>
     export default {
+        data() {
+            return {
+                items: [
+                    {
+                        index: 'readme',
+                        title: '自述'
+                    },
+                    {
+                        index: '2',
+                        title: '表格',
+                        subs: [
+                            {
+                                index: 'basetable',
+                                title: '基础表格'
+                            },
+                            {
+                                index: 'vuetable',
+                                title: 'Vue表格组件'
+                            }
+                        ]
+                    },
+                    {
+                        index: '3',
+                        title: '表单',
+                        subs: [
+                            {
+                                index: 'baseform',
+                                title: '基本表单'
+                            },
+                            {
+                                index: 'vueeditor',
+                                title: '编辑器'
+                            },
+                            {
+                                index: 'markdown',
+                                title: 'markdown'
+                            },
+                            {
+                                index: 'upload',
+                                title: '文件上传'
+                            }
+                        ]
+                    },
+                    {
+                        index: '4',
+                        title: '图表',
+                        subs: [
+                            {
+                                index: 'basecharts',
+                                title: '基础图表'
+                            },
+                            {
+                                index: 'mixcharts',
+                                title: '混合图表'
+                            }
+                        ]
+                    },
+                    {
+                        index: '5',
+                        title: '系统管理',
+                        subs: [
+                            {
+                                index: 'users',
+                                title: '用户管理'
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
         computed:{
             onRoutes(){
                 return this.$route.path.replace('/','');
