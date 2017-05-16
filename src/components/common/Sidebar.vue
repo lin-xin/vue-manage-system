@@ -5,7 +5,7 @@
                 <template v-if="item.subs">
                     <el-submenu :index="item.index">
                         <template slot="title"><i class="el-icon-menu"></i>{{ item.title }}</template>
-                        <el-menu-item v-for="subItem in item.subs" :index="subItem.index">{{ subItem.title }}
+                        <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">{{ subItem.title }}
                         </el-menu-item>
                     </el-submenu>
                 </template>
