@@ -77,16 +77,6 @@
                                 title: '混合图表'
                             }
                         ]
-                    },
-                    {
-                        index: '5',
-                        title: '系统管理',
-                        subs: [
-                            {
-                                index: 'users',
-                                title: '用户管理'
-                            }
-                        ]
                     }
                 ]
             }
