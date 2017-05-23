@@ -20,7 +20,8 @@
     "vue-echarts-v3": "1.0.3",
     "vue-quill-editor": "2.1.6",
     "vue-router": "^2.3.1",
-    "vue-simplemde": "0.3.8"
+    "vue-simplemde": "0.3.8",
+    "vuex": "^2.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

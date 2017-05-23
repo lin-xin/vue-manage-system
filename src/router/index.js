@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     routes: [
         {
             path: '/',
@@ -12,7 +12,7 @@ export default new Router({
         {
             path: '/readme',
             component: resolve => require(['../components/common/Home.vue'], resolve),
-            children:[
+            children: [
                 {
                     path: '/',
                     component: resolve => require(['../components/page/Readme.vue'], resolve)
@@ -57,3 +57,27 @@ export default new Router({
         },
     ]
 })
+
+router.beforeEach((to, from, next) => {
+
+    if (to.path === '/login' || to.name === 'login') {
+        next()
+    } else {
+        var user = router.app.$store.state.user
+        // 通过state获取权限，登录成功时，获取列表
+        if (!user.id) {
+            return next({path: '/login'})
+        }
+        var auth = user.auth.some(auth => to.path == auth);
+
+        if (!auth) {
+            router.app.$alert('没有权限', '错误', {
+                confirmButtonText: '确定'
+            })
+        }
+        next(auth)
+    }
+
+})
+
+export default router
