@@ -14,12 +14,6 @@
             </el-table-column>
             <el-table-column prop="address" label="地址" :formatter="formatter">
             </el-table-column>
-            <el-table-column  label="头像">
-                <template scope="scope">
-                    <img :src="scope.row.logo">
-                </template>
-                
-            </el-table-column>
             <el-table-column label="操作" width="180">
                 <template scope="scope">
                     <el-button size="small"
@@ -43,6 +37,7 @@
     export default {
         data() {
             return {
+                url: '../../../static/vuetable.json',
                 tableData: [],
                 cur_page: 1
             }
@@ -57,8 +52,11 @@
             },
             getData(){
                 let self = this;
-                this.$axios.post('/api/table',{page:self.cur_page}).then((res) => {
-                    self.tableData = res.data.data;
+                if(process.env.NODE_ENV === 'development'){
+                    self.url = '/ms/table/list';
+                };
+                self.$axios.post(self.url, {page:self.cur_page}).then((res) => {
+                    self.tableData = res.data.list;
                 })
             },
             formatter(row, column) {

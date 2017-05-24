@@ -24,6 +24,7 @@
         data: function(){
             const self = this;
             return {
+                url: '../../../static/datasource.json',
                 information: {
                     pagination:{},
                     data:[]
@@ -81,7 +82,10 @@
             }
         },
         beforeMount(){
-            axios.get('/api/source').then( (res) => {
+            if(process.env.NODE_ENV === 'development'){
+                this.url = '/ms/table/source';
+            };
+            axios.get(this.url).then( (res) => {
                 this.information = res.data;
             })
         }
