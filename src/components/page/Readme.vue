@@ -32,6 +32,8 @@
                 <br>
                 <el-checkbox disabled checked>支持切换主题色</el-checkbox>
                 <br>
+                <el-checkbox disabled checked>列表拖拽排序</el-checkbox>
+                <br>
             </article>
         </div>
 

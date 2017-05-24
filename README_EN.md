@@ -15,6 +15,7 @@ The scheme as a set of multi-function background frame templates, suitable for m
 - [x] Markdown
 - [x] Upload pictures by clipping or dragging
 - [x] Support manual switch themes :sparkles:
+- [x] List drag sort
 
 
 ## Directory structure ##
