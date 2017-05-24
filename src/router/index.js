@@ -46,8 +46,8 @@ export default new Router({
                     component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   // vue-echarts-v3组件
                 },
                 {
-                    path: '/mixcharts',
-                    component: resolve => require(['../components/page/MixCharts.vue'], resolve)    // vue-echarts-v3组件
+                    path: '/drag',
+                    component: resolve => require(['../components/page/DragList.vue'], resolve)    // 拖拽列表组件
                 }
             ]
         },

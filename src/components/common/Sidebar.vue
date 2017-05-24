@@ -1,17 +1,17 @@
 <template>
     <div class="sidebar">
-        <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" theme="dark" unique-opened router>
+        <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" unique-opened router>
             <template v-for="item in items">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index">
-                        <template slot="title"><i class="el-icon-menu"></i>{{ item.title }}</template>
+                        <template slot="title"><i :class="item.icon"></i>{{ item.title }}</template>
                         <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">{{ subItem.title }}
                         </el-menu-item>
                     </el-submenu>
                 </template>
                 <template v-else>
                     <el-menu-item :index="item.index">
-                        <i class="el-icon-setting"></i>{{ item.title }}
+                        <i :class="item.icon"></i>{{ item.title }}
                     </el-menu-item>
                 </template>
             </template>
@@ -25,10 +25,12 @@
             return {
                 items: [
                     {
+                        icon: 'el-icon-setting',
                         index: 'readme',
                         title: '自述'
                     },
                     {
+                        icon: 'el-icon-menu',
                         index: '2',
                         title: '表格',
                         subs: [
@@ -43,6 +45,7 @@
                         ]
                     },
                     {
+                        icon: 'el-icon-date',
                         index: '3',
                         title: '表单',
                         subs: [
@@ -65,18 +68,14 @@
                         ]
                     },
                     {
-                        index: '4',
-                        title: '图表',
-                        subs: [
-                            {
-                                index: 'basecharts',
-                                title: '基础图表'
-                            },
-                            {
-                                index: 'mixcharts',
-                                title: '混合图表'
-                            }
-                        ]
+                        icon: 'el-icon-star-on',
+                        index: 'basecharts',
+                        title: '图表'
+                    },
+                    {
+                        icon: 'el-icon-upload2',
+                        index: 'drag',
+                        title: '拖拽'
                     }
                 ]
             }

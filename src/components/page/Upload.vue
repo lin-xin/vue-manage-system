@@ -12,16 +12,12 @@
             访问地址：<a href="http://element.eleme.io/#/zh-CN/component/upload" target="_blank">Element UI Upload</a>
         </div>
         <el-upload
-                action="/api/posts/"
-                type="drag"
-                :thumbnail-mode="true"
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :on-error="handleError"
-                :default-file-list="fileList"
-        >
+            class="upload-demo"
+            drag
+            action="/api/posts/"
+            multiple>
             <i class="el-icon-upload"></i>
-            <div class="el-dragger__text">将文件拖到此处，或<em>点击上传</em></div>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
             <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
         <div class="content-title">支持裁剪</div>
@@ -55,12 +51,6 @@
         methods:{
             imageuploaded(res) {
                 console.log(res)
-            },
-            handleRemove(file, fileList) {
-                console.log(file, fileList);
-            },
-            handlePreview(file) {
-                console.log(file);
             },
             handleError(){
                 this.$notify.error({
