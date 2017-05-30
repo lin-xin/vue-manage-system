@@ -1,6 +1,6 @@
 {
   "name": "manage-system",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "基于Vue.js 2.x系列 + element-ui 内容管理系统解决方案",
   "author": "lin-xin <2981207131@qq.com>",
   "private": true,
@@ -16,7 +16,7 @@
     "vue": "^2.3.2",
     "vue-core-image-upload": "2.1.11",
     "vue-datasource": "1.0.9",
-    "vue-echarts-v3": "1.0.3",
+    "vue-schart": "^0.1.2",
     "vue-quill-editor": "2.1.6",
     "vue-router": "^2.3.1",
     "vue-simplemde": "0.3.8"
