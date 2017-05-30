@@ -68,10 +68,10 @@ The scheme as a set of multi-function background frame templates, suitable for m
 ## Component description and presentation ##
 
 ### element-ui ###
-A desktop component library based on vue.js2.0 . live demo：[element](http://element.eleme.io/#/zh-CN/component/layout)
+A desktop component library based on vue.js2.0 . Github : [element](http://element.eleme.io/#/zh-CN/component/layout)
 
 ### vue-datasource ###
-A Vue.js server side component to create dynamic tables. live demo：[vue-datasource](https://github.com/coderdiaz/vue-datasource)
+A Vue.js server side component to create dynamic tables. Github : [vue-datasource](https://github.com/coderdiaz/vue-datasource)
 
 ```JavaScript
 <template>
@@ -86,16 +86,16 @@ A Vue.js server side component to create dynamic tables. live demo：[vue-dataso
 </template>
 
 <script>
-	import Datasource from 'vue-datasource';					// import Datasource component
+	import Datasource from 'vue-datasource';        // import Datasource component
     export default {
         data: function(){
             return {
                 information: {
-	                pagination: {...},						// pagination config
+	                pagination: {...},              // pagination config
 	                data: [...]
 	            },
-	            columns: [...],								// col config
-	            actions: [...]								// function config
+	            columns: [...],                     // col config
+	            actions: [...]                      // function config
             }
         },
         components: {
@@ -111,7 +111,7 @@ A Vue.js server side component to create dynamic tables. live demo：[vue-dataso
 
 
 ### Vue-Quill-Editor ###
-Quill editor component for Vue2. live demo：[vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
+Quill editor component for Vue2. Github : [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
 
 ```JavaScript
 <template>
@@ -121,7 +121,7 @@ Quill editor component for Vue2. live demo：[vue-quill-editor](https://github.c
 </template>
 
 <script>
-	import { quillEditor } from 'vue-quill-editor';			// import quillEditor component
+	import { quillEditor } from 'vue-quill-editor';     // import quillEditor component
     export default {
         data: function(){
             return {
@@ -139,7 +139,7 @@ Quill editor component for Vue2. live demo：[vue-quill-editor](https://github.c
 ```
 
 ### Vue-SimpleMDE ###
-Markdown Editor component for Vue.js. live demo：[Vue-SimpleMDE](https://github.com/F-loat/vue-simplemde)
+Markdown Editor component for Vue.js. Github : [Vue-SimpleMDE](https://github.com/F-loat/vue-simplemde)
 
 ```JavaScript
 <template>
@@ -172,7 +172,7 @@ Markdown Editor component for Vue.js. live demo：[Vue-SimpleMDE](https://github
 ```
 
 ### Vue-Core-Image-Upload ###
-a vue plugin for image upload and crop. live demo：[Vue-Core-Image-Upload](https://github.com/Vanthink-UED/vue-core-image-upload)
+a vue plugin for image upload and crop. Github : [Vue-Core-Image-Upload](https://github.com/Vanthink-UED/vue-core-image-upload)
 
 ```JavaScript
 
@@ -210,40 +210,44 @@ a vue plugin for image upload and crop. live demo：[Vue-Core-Image-Upload](http
 
 ```
 
-### vue-echarts-v3 ###
-Vue.js v2.x+ component wrap for ECharts.js v3.x+. live demo：[vue-echarts-v3](https://github.com/xlsdg/vue-echarts-v3)
+### vue-schart ###
+Vue.js wrapper for sChart.js. Github : [vue-schart](https://github.com/linxin/vue-schart)
 
 ```JavaScript
 <template>
     <div>
-        <IEcharts :option="bar"></IEcharts>
+        <schart :canvasId="canvasId"
+				:type="type"
+				:width="width"
+				:height="height"
+				:data="data"
+				:options="options"
+		></schart>
     </div>
 </template>
 	
 <script>
-    import IEcharts from 'vue-echarts-v3';					
+    import Schart from 'vue-schart';
     export default {
         data: function(){
             return {
-                bar: {
-			        title: {
-			          text: '柱状图'							
-			        },
-			        tooltip: {},	
-			        xAxis: {								
-			          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-			        },
-			        yAxis: {},								
-			        series: [{
-			          name: '销量',
-			          type: 'bar',							
-			          data: [5, 20, 36, 10, 10, 20]
-			        }]
-			   	}
+                canvasId: 'myCanvas',
+                type: 'bar',
+                width: 500,
+                height: 400,
+                data: [
+                    {name: '2014', value: 1342},
+                    {name: '2015', value: 2123},
+                    {name: '2016', value: 1654},
+                    {name: '2017', value: 1795},
+                ],
+                options: {
+                    title: 'Total sales of stores in recent years'
+                }
             }
         },
         components: {
-            IEcharts								
+            Schart
         }
     }
 </script>

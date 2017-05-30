@@ -37,7 +37,6 @@
 	|           |-- BaseTable.vue        // 基础表格
 	|           |-- Login.vue          	 // 登录
 	|           |-- Markdown.vue         // markdown组件
-	|           |-- MixCharts.vue        // 混合图表
 	|           |-- Readme.vue           // 自述组件
 	|           |-- Upload.vue           // 图片上传
 	|           |-- VueEditor.vue        // 富文本编辑器
@@ -54,9 +53,9 @@
 
 ## 安装步骤 ##
 
-	git clone https://github.com/lin-xin/manage-system.git		// 把模板下载到本地
-	cd manage-system											// 进入模板目录
-	npm install													// 安装项目依赖，等待安装完成之后
+	git clone https://github.com/lin-xin/manage-system.git      // 把模板下载到本地
+	cd manage-system    // 进入模板目录
+	npm install         // 安装项目依赖，等待安装完成之后
 
 ## 本地开发 ##
 
@@ -89,20 +88,20 @@
 </template>
 
 <script>
-	import Datasource from 'vue-datasource';					// 导入quillEditor组件
+	import Datasource from 'vue-datasource';    // 导入quillEditor组件
     export default {
         data: function(){
             return {
                 information: {
-	                pagination: {...},						// 页码配置
+	                pagination: {...},  // 页码配置
 	                data: [...]
 	            },
-	            columns: [...],								// 列名配置
-	            actions: [...]								// 功能配置
+	            columns: [...],     // 列名配置
+	            actions: [...]      // 功能配置
             }
         },
         components: {
-            Datasource										// 声明组件Datasource
+            Datasource
         },
 	    methods: {
 	        changePage(values) {...},
@@ -124,18 +123,18 @@
 </template>
 
 <script>
-	import { quillEditor } from 'vue-quill-editor';			// 导入quillEditor组件
+	import { quillEditor } from 'vue-quill-editor';     // 导入quillEditor组件
     export default {
         data: function(){
             return {
-                content: '',								// 编辑器的内容
-                editorOption: {								// 编辑器的配置
+                content: '',        // 编辑器的内容
+                editorOption: {     // 编辑器的配置
                     // something config
                 }
             }
         },
         components: {
-            quillEditor										// 声明组件quillEditor
+            quillEditor
         }
 	}
 </script>
@@ -152,17 +151,17 @@ Vue.js的Markdown Editor组件。访问地址：[Vue-SimpleMDE](https://github.c
 </template>
 
 <script>
-    import { markdownEditor } from 'vue-simplemde';			// 导入markdownEditor组件
+    import { markdownEditor } from 'vue-simplemde';     // 导入markdownEditor组件
     export default {
         data: function(){
             return {
-                content:'',									// markdown编辑器内容
-                configs: {									// markdown编辑器配置参数
-                    status: false,							// 禁用底部状态栏
-                    initialValue: 'Hello BBK',				// 设置初始值
+                content:'',             // markdown编辑器内容
+                configs: {              // markdown编辑器配置参数
+                    status: false,      // 禁用底部状态栏
+                    initialValue: 'Hello BBK',      // 设置初始值
                     renderingConfig: {
-                        codeSyntaxHighlighting: true,		// 开启代码高亮
-                        highlightingTheme: 'atom-one-light' // 自定义代码高亮主题
+                        codeSyntaxHighlighting: true,       // 开启代码高亮
+                        highlightingTheme: 'atom-one-light'     // 自定义代码高亮主题
                     }
                 }
             }
@@ -181,30 +180,30 @@ Vue.js的Markdown Editor组件。访问地址：[Vue-SimpleMDE](https://github.c
 
 <template>
     <div>
-		<img :src="src">									// 用于显示上传的图片
+		<img :src="src">                // 用于显示上传的图片
         <vue-core-image-upload :class="['pure-button','pure-button-primary','js-btn-crop']"
-           :crop="true"										// 是否裁剪
+           :crop="true"	                // 是否裁剪
            text="上传图片"
-           url=""											// 上传路径
-           extensions="png,gif,jpeg,jpg"					// 限制文件类型
-           @:imageuploaded="imageuploaded">					// 监听图片上传完成事件
+           url=""                       // 上传路径
+           extensions="png,gif,jpeg,jpg"        // 限制文件类型
+           @:imageuploaded="imageuploaded">     // 监听图片上传完成事件
 		</vue-core-image-upload>
     </div>
 </template>
 
 <script>
-    import VueCoreImageUpload  from 'vue-core-image-upload';	// 导入VueCoreImageUpload组件
+    import VueCoreImageUpload  from 'vue-core-image-upload';    // 导入VueCoreImageUpload组件
     export default {
         data: function(){
             return {
-                src:'../img/1.jpg'							// 默认显示图片地址
+                src:'../img/1.jpg'      // 默认显示图片地址
             }
         },
         components: {
-            VueCoreImageUpload								// 声明组件VueCoreImageUpload
+            VueCoreImageUpload          // 声明组件VueCoreImageUpload
         },
         methods:{
-            imageuploaded(res) {							// 定义上传完成执行的方法
+            imageuploaded(res) {        // 定义上传完成执行的方法
                 console.log(res)
             }
         }
@@ -213,40 +212,44 @@ Vue.js的Markdown Editor组件。访问地址：[Vue-SimpleMDE](https://github.c
 
 ```
 
-### vue-echarts-v3 ###
-基于vue2和eCharts.js3的图表组件。访问地址：[vue-echarts-v3](https://github.com/xlsdg/vue-echarts-v3)
+### vue-schart ###
+vue.js封装sChart.js的图表组件。访问地址：[vue-schart](https://github.com/linxin/vue-schart)
 
 ```JavaScript
 <template>
     <div>
-        <IEcharts :option="bar"></IEcharts>
+        <schart :canvasId="canvasId"
+				:type="type"
+				:width="width"
+				:height="height"
+				:data="data"
+				:options="options"
+		></schart>
     </div>
 </template>
 	
 <script>
-    import IEcharts from 'vue-echarts-v3';					// 导入IEcharts组件
+    import Schart from 'vue-schart';        // 导入Schart组件
     export default {
         data: function(){
             return {
-                bar: {
-			        title: {
-			          text: '柱状图'							// 图标标题文本
-			        },
-			        tooltip: {},	
-			        xAxis: {								// 横坐标
-			          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-			        },
-			        yAxis: {},								// 纵坐标
-			        series: [{
-			          name: '销量',
-			          type: 'bar',							// 图标类型
-			          data: [5, 20, 36, 10, 10, 20]
-			        }]
-			   	}
+                canvasId: 'myCanvas',       // canvas的id
+                type: 'bar',                // 图表类型
+                width: 500,
+                height: 400,
+                data: [
+                    {name: '2014', value: 1342},
+                    {name: '2015', value: 2123},
+                    {name: '2016', value: 1654},
+                    {name: '2017', value: 1795},
+                ],
+                options: {                  // 图表可选参数
+                    title: 'Total sales of stores in recent years'
+                }
             }
         },
         components: {
-            IEcharts								// 声明组件VueCoreImageUpload
+            Schart
         }
     }
 </script>
