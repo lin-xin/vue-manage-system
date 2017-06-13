@@ -6,8 +6,17 @@
                 <el-breadcrumb-item>基础表格</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-
-        <el-table :data="tableData" border style="width: 100%">
+        <div class="handle-box">
+            <el-button class="handle-del mr10">批量删除</el-button>
+            <el-select v-model="select_cate" placeholder="筛选省份" class="handle-select mr10">
+                <el-option key="1" label="广东省" value="1"></el-option>
+                <el-option key="2" label="湖南省" value="2"></el-option>
+            </el-select>
+            <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+            <el-button type="primary" icon="search">搜索</el-button>
+        </div>
+        <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column prop="date" label="日期" sortable width="150">
             </el-table-column>
             <el-table-column prop="name" label="姓名" width="120">
@@ -39,7 +48,10 @@
             return {
                 url: '../../../static/vuetable.json',
                 tableData: [],
-                cur_page: 1
+                cur_page: 1,
+                multipleSelection: [],
+                select_cate: '',
+                select_word: ''
             }
         },
         created(){
@@ -70,7 +82,27 @@
             },
             handleDelete(index, row) {
                 this.$message.error('删除第'+(index+1)+'行');
+            },
+            handleSelectionChange: function(val) {
+                this.multipleSelection = val;
             }
         }
     }
 </script>
+
+<style scoped>
+.handle-box{
+    margin-bottom: 20px;
+}
+.handle-del{
+    border-color: #bfcbd9;
+    color: #999;
+}
+.handle-select{
+    width: 120px;
+}
+.handle-input{
+    width: 300px;
+    display: inline-block;
+}
+</style>
