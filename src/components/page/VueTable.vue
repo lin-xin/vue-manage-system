@@ -24,7 +24,7 @@
         data: function(){
             const self = this;
             return {
-                url: '../../../static/datasource.json',
+                url: './static/datasource.json',
                 information: {
                     pagination:{},
                     data:[]

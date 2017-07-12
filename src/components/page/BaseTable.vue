@@ -7,15 +7,15 @@
             </el-breadcrumb>
         </div>
         <div class="handle-box">
-            <el-button class="handle-del mr10">批量删除</el-button>
+            <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
             <el-select v-model="select_cate" placeholder="筛选省份" class="handle-select mr10">
-                <el-option key="1" label="广东省" value="1"></el-option>
-                <el-option key="2" label="湖南省" value="2"></el-option>
+                <el-option key="1" label="广东省" value="广东省"></el-option>
+                <el-option key="2" label="湖南省" value="湖南省"></el-option>
             </el-select>
             <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
-            <el-button type="primary" icon="search">搜索</el-button>
+            <el-button type="primary" icon="search" @click="search">搜索</el-button>
         </div>
-        <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+        <el-table :data="data" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column prop="date" label="日期" sortable width="150">
             </el-table-column>
@@ -46,16 +46,40 @@
     export default {
         data() {
             return {
-                url: '../../../static/vuetable.json',
+                url: './static/vuetable.json',
                 tableData: [],
                 cur_page: 1,
                 multipleSelection: [],
                 select_cate: '',
-                select_word: ''
+                select_word: '',
+                del_list: [],
+                is_search: false
             }
         },
         created(){
             this.getData();
+        },
+        computed: {
+            data(){
+                const self = this;
+                return self.tableData.filter(function(d){
+                    let is_del = false;
+                    for (let i = 0; i < self.del_list.length; i++) {
+                        if(d.name === self.del_list[i].name){
+                            is_del = true;
+                            break;
+                        }
+                    }
+                    if(!is_del){
+                        if(d.address.indexOf(self.select_cate) > -1 && 
+                            (d.name.indexOf(self.select_word) > -1 ||
+                            d.address.indexOf(self.select_word) > -1)
+                        ){
+                            return d;
+                        }
+                    }
+                })
+            }
         },
         methods: {
             handleCurrentChange(val){
@@ -71,6 +95,9 @@
                     self.tableData = res.data.list;
                 })
             },
+            search(){
+                this.is_search = true;
+            },
             formatter(row, column) {
                 return row.address;
             },
@@ -83,7 +110,18 @@
             handleDelete(index, row) {
                 this.$message.error('删除第'+(index+1)+'行');
             },
-            handleSelectionChange: function(val) {
+            delAll(){
+                const self = this,
+                    length = self.multipleSelection.length;
+                let str = '';
+                self.del_list = self.del_list.concat(self.multipleSelection);
+                for (let i = 0; i < length; i++) {
+                    str += self.multipleSelection[i].name + ' ';
+                }
+                self.$message.error('删除了'+str);
+                self.multipleSelection = [];
+            },
+            handleSelectionChange(val) {
                 this.multipleSelection = val;
             }
         }
@@ -93,10 +131,6 @@
 <style scoped>
 .handle-box{
     margin-bottom: 20px;
-}
-.handle-del{
-    border-color: #bfcbd9;
-    color: #999;
 }
 .handle-select{
     width: 120px;

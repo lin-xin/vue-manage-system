@@ -41,7 +41,7 @@
     export default {
         data: function(){
             return {
-                src: '../../../static/img/img.jpg',
+                src: './static/img/img.jpg',
                 fileList: []
             }
         },
