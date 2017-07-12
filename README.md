@@ -69,151 +69,9 @@
 
 ## 组件使用说明与演示 ##
 
-### element-ui ###
-一套基于vue.js2.0的桌面组件库。访问地址：[element](http://element.eleme.io/#/zh-CN/component/layout)
-
-### vue-datasource ###
-一个用于动态创建表格的vue.js服务端组件。访问地址：[vue-datasource](https://github.com/coderdiaz/vue-datasource)
-
-```JavaScript
-<template>
-	<div>
-		<datasource language="en" :table-data="information.data"
-	        :columns="columns"
-	        :pagination="information.pagination"
-	        :actions="actions"
-	        v-on:change="changePage"
-	        v-on:searching="onSearch"></datasource>
-	</div>
-</template>
-
-<script>
-	import Datasource from 'vue-datasource';    // 导入quillEditor组件
-    export default {
-        data: function(){
-            return {
-                information: {
-	                pagination: {...},  // 页码配置
-	                data: [...]
-	            },
-	            columns: [...],     // 列名配置
-	            actions: [...]      // 功能配置
-            }
-        },
-        components: {
-            Datasource
-        },
-	    methods: {
-	        changePage(values) {...},
-	        onSearch(searchQuery) {...}
-	    }
-	}
-</script>
-```
-
-
-### Vue-Quill-Editor ###
-基于Quill、适用于Vue2的富文本编辑器。访问地址：[vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
-
-```JavaScript
-<template>
-	<div>
-		<quill-editor ref="myTextEditor" v-model="content" :config="editorOption"></quill-editor>
-	</div>
-</template>
-
-<script>
-	import { quillEditor } from 'vue-quill-editor';     // 导入quillEditor组件
-    export default {
-        data: function(){
-            return {
-                content: '',        // 编辑器的内容
-                editorOption: {     // 编辑器的配置
-                    // something config
-                }
-            }
-        },
-        components: {
-            quillEditor
-        }
-	}
-</script>
-```
-
-### Vue-SimpleMDE ###
-Vue.js的Markdown Editor组件。访问地址：[Vue-SimpleMDE](https://github.com/F-loat/vue-simplemde)
-
-```JavaScript
-<template>
-    <div>
-        <markdown-editor v-model="content" :configs="configs" ref="markdownEditor"></markdown-editor>
-    </div>
-</template>
-
-<script>
-    import { markdownEditor } from 'vue-simplemde';     // 导入markdownEditor组件
-    export default {
-        data: function(){
-            return {
-                content:'',             // markdown编辑器内容
-                configs: {              // markdown编辑器配置参数
-                    status: false,      // 禁用底部状态栏
-                    initialValue: 'Hello BBK',      // 设置初始值
-                    renderingConfig: {
-                        codeSyntaxHighlighting: true,       // 开启代码高亮
-                        highlightingTheme: 'atom-one-light'     // 自定义代码高亮主题
-                    }
-                }
-            }
-        },
-        components: {
-            markdownEditor									// 声明组件markdownEditor
-        }
-    }
-</script>
-```
-
-### Vue-Core-Image-Upload ###
-一款轻量级的vue上传插件，支持裁剪。访问地址：[Vue-Core-Image-Upload](https://github.com/Vanthink-UED/vue-core-image-upload)
-
-```JavaScript
-
-<template>
-    <div>
-		<img :src="src">                // 用于显示上传的图片
-        <vue-core-image-upload :class="['pure-button','pure-button-primary','js-btn-crop']"
-           :crop="true"	                // 是否裁剪
-           text="上传图片"
-           url=""                       // 上传路径
-           extensions="png,gif,jpeg,jpg"        // 限制文件类型
-           @:imageuploaded="imageuploaded">     // 监听图片上传完成事件
-		</vue-core-image-upload>
-    </div>
-</template>
-
-<script>
-    import VueCoreImageUpload  from 'vue-core-image-upload';    // 导入VueCoreImageUpload组件
-    export default {
-        data: function(){
-            return {
-                src:'../img/1.jpg'      // 默认显示图片地址
-            }
-        },
-        components: {
-            VueCoreImageUpload          // 声明组件VueCoreImageUpload
-        },
-        methods:{
-            imageuploaded(res) {        // 定义上传完成执行的方法
-                console.log(res)
-            }
-        }
-    }
-</script>
-
-```
-
 ### vue-schart ###
 vue.js封装sChart.js的图表组件。访问地址：[vue-schart](https://github.com/linxin/vue-schart)
+<p><a href="https://www.npmjs.com/package/vue-schart"><img src="https://img.shields.io/npm/dm/vue-schart.svg" alt="Downloads"></a></p>
 
 ```JavaScript
 <template>
@@ -254,6 +112,28 @@ vue.js封装sChart.js的图表组件。访问地址：[vue-schart](https://githu
     }
 </script>
 ```
+
+### element-ui ###
+一套基于vue.js2.0的桌面组件库。访问地址：[element](http://element.eleme.io/#/zh-CN/component/layout)
+
+### vue-datasource ###
+一个用于动态创建表格的vue.js服务端组件。访问地址：[vue-datasource](https://github.com/coderdiaz/vue-datasource)
+
+
+
+### Vue-Quill-Editor ###
+基于Quill、适用于Vue2的富文本编辑器。访问地址：[vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
+
+### Vue-SimpleMDE ###
+Vue.js的Markdown Editor组件。访问地址：[Vue-SimpleMDE](https://github.com/F-loat/vue-simplemde)
+
+
+
+### Vue-Core-Image-Upload ###
+一款轻量级的vue上传插件，支持裁剪。访问地址：[Vue-Core-Image-Upload](https://github.com/Vanthink-UED/vue-core-image-upload)
+
+
+
 
 ## 其他注意事项 ##
 ### 一、如果我不想用到上面的某些组件呢，那我怎么在模板中删除掉不影响到其他功能呢？ ###
