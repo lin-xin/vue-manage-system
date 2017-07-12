@@ -6,7 +6,7 @@
             </el-breadcrumb>
         </div>
         <div class="drag-box-left">
-            <div class="drag-title">未完成</div>
+            <div class="drag-title">拖动排序</div>
             <div class="drag-list" draggable="true" 
                 v-for="list in data1" 
                 :data-id="list.id" 
@@ -17,19 +17,6 @@
                 @dragover="dragoverEvent"
             >{{list.title}}</div>
         </div>
-        <div class="drag-box-right">
-            <div class="drag-title">已完成</div>
-            <div class="drag-list" draggable="true"
-                v-for="list in data2"
-                :data-id="list.id"
-                @dragstart="dragstartEvent"
-                @dragend="dragendEvent"
-                @dragenter="dragenterEvent"
-                @dragleave="dragleaveEvent"
-                @dragover="dragoverEvent"
-            >{{list.title}}</div>
-        </div>
-        
     </section>
 </template>
 
@@ -101,7 +88,7 @@
     }
     .drag-list{
         border: 1px solid #ddd;
-        padding:20px;
+        padding:10px;
         margin-bottom: 20px;
         transition: border .3s;
     }
@@ -110,7 +97,7 @@
     }
     .drag-title{
         font-weight: 400;
-        line-height: 50px;
+        line-height: 25px;
         margin: 10px 0;
         font-size: 22px;
         color: #1f2f3d;
