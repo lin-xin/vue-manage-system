@@ -53,15 +53,15 @@
             ],
             options1: {
                 title: '某商店近年营业总额',
-                bgColor: '#829dda',
+                bgColor: '#009688',
                 titleColor: '#ffffff',
-                fillColor: '#72f6ff',
-                axisColor: '#eeeeee',
-                contentColor: '#bbbbbb'
+                fillColor: '#e0f2f1',
+                axisColor: '#ffffff',
+                contentColor: '#999'
             },
             options2: {
                 title: '某商店各商品年度销量',
-                bgColor: '#829dca',
+                bgColor: '#607d8b',
                 titleColor: '#ffffff',
                 legendColor: '#ffffff'
             }

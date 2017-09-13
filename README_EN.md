@@ -1,5 +1,5 @@
 # manage-system #
-The web management system solution based on Vue2 and Element-UI。[live demo](http://work.omwteam.com/)
+The web management system solution based on Vue2 and Element-UI。[live demo](http://blog.gdfengshuo.com/example/work/)
 
 
 ## Preface ##
