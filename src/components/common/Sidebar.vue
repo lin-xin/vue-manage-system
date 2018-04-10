@@ -1,12 +1,12 @@
 <template>
     <div class="sidebar">
-        <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" background-color="#324157"
+        <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#324157"
             text-color="#bfcbd9" active-text-color="#20a0ff" unique-opened router>
             <template v-for="item in items">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index" :key="item.index">
                         <template slot="title">
-                            <i :class="item.icon"></i>{{ item.title }}
+                            <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
                         </template>
                         <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
                             {{ subItem.title }}
@@ -15,7 +15,7 @@
                 </template>
                 <template v-else>
                     <el-menu-item :index="item.index" :key="item.index">
-                        <i :class="item.icon"></i>{{ item.title }}
+                        <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
                     </el-menu-item>
                 </template>
             </template>
@@ -24,9 +24,11 @@
 </template>
 
 <script>
+    import bus from '../common/bus';
     export default {
         data() {
             return {
+                collapse: false,
                 items: [
                     {
                         icon: 'el-icon-setting',
@@ -93,6 +95,11 @@
             onRoutes(){
                 return this.$route.path.replace('/','');
             }
+        },
+        created(){
+            bus.$on('collapse', msg => {
+                this.collapse = msg;
+            })
         }
     }
 </script>
@@ -101,16 +108,14 @@
     .sidebar{
         display: block;
         position: absolute;
-        width: 250px;
         left: 0;
         top: 70px;
         bottom:0;
-        background: #2E363F;
+    }
+    .sidebar-el-menu:not(.el-menu--collapse){
+        width: 250px;
     }
     .sidebar > ul {
         height:100%;
-    }
-    .sidebar i{
-        margin-top: -4px;
     }
 </style>

@@ -19,6 +19,11 @@ a{text-decoration: none}
     padding:40px;
     box-sizing: border-box;
     overflow-y: scroll;
+    -webkit-transition: left .3s ease-in-out;
+    transition: left .3s ease-in-out;
+}
+.content-collapse{
+    left: 65px;
 }
 .container{
     padding: 30px;
