@@ -15,6 +15,7 @@
                 @dragenter="dragenterEvent"
                 @dragleave="dragleaveEvent"
                 @dragover="dragoverEvent"
+                :key="list.id"
             >{{list.title}}</div>
         </div>
     </section>
