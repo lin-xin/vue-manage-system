@@ -5,18 +5,20 @@
                 <el-breadcrumb-item><i class="el-icon-upload2"></i> 拖拽排序</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <div class="drag-box-left">
-            <div class="drag-title">拖动排序</div>
-            <div class="drag-list" draggable="true" 
-                v-for="list in data1" 
-                :data-id="list.id" 
-                @dragstart="dragstartEvent"
-                @dragend="dragendEvent"
-                @dragenter="dragenterEvent"
-                @dragleave="dragleaveEvent"
-                @dragover="dragoverEvent"
-                :key="list.id"
-            >{{list.title}}</div>
+        <div class="container">
+            <div class="drag-box-left">
+                <div class="drag-title">拖动排序</div>
+                <div class="drag-list" draggable="true" 
+                    v-for="list in data1" 
+                    :data-id="list.id" 
+                    @dragstart="dragstartEvent"
+                    @dragend="dragendEvent"
+                    @dragenter="dragenterEvent"
+                    @dragleave="dragleaveEvent"
+                    @dragover="dragoverEvent"
+                    :key="list.id"
+                >{{list.title}}</div>
+            </div>
         </div>
     </section>
 </template>
@@ -46,8 +48,7 @@
         },
         methods: {
             dragstartEvent(ev) {
-                const self = this;
-                self.dragElement = ev.target;
+                this.dragElement = ev.target;
                 ev.target.style.backgroundColor = '#f8f8f8';
             },
             dragendEvent(ev) {
@@ -55,19 +56,17 @@
                 ev.preventDefault();
             },
             dragenterEvent(ev) {
-                const self = this;
-                if(self.dragElement != ev.target){
-                    ev.target.parentNode.insertBefore(self.dragElement, ev.target);
+                if(this.dragElement != ev.target){
+                    ev.target.parentNode.insertBefore(this.dragElement, ev.target);
                 }
             },
             dragleaveEvent(ev) {
-                const self = this;
-                if(self.dragElement != ev.target){
-                    if(self.lock && (ev.target == ev.target.parentNode.lastElementChild || ev.target == ev.target.parentNode.lastChild)){
-                        ev.target.parentNode.appendChild(self.dragElement);
-                        self.lock = false;
+                if(this.dragElement != ev.target){
+                    if(this.lock && (ev.target == ev.target.parentNode.lastElementChild || ev.target == ev.target.parentNode.lastChild)){
+                        ev.target.parentNode.appendChild(this.dragElement);
+                        this.lock = false;
                     }else{
-                        self.lock = true;
+                        this.lock = true;
                     }
                 }
             },

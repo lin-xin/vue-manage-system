@@ -40,14 +40,6 @@
     </div>
 </template>
 
-<script>
-    export default {
-        data: function(){
-            return {}
-        }
-    }
-</script>
-
 <style scoped>
     .ms-doc{
         width:100%;

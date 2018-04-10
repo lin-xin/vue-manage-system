@@ -5,11 +5,11 @@ html,body,#app,.wrapper{
     overflow: hidden;
 }
 body{
-    font-family:"Helvetica Neue",Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
+    font-family:'PingFang SC', "Helvetica Neue",Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
 }
 a{text-decoration: none}
 .content{
-    background: none repeat scroll 0 0 #fff;
+    background: none repeat scroll 0 0 #f0f0f0;
     position: absolute;
     left: 250px;
     right: 0;
@@ -19,6 +19,12 @@ a{text-decoration: none}
     padding:40px;
     box-sizing: border-box;
     overflow-y: scroll;
+}
+.container{
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 .crumbs{
     margin-bottom: 20px;

@@ -31,12 +31,12 @@
                     {
                         icon: 'el-icon-setting',
                         index: 'readme',
-                        title: '自述'
+                        title: '自述文件'
                     },
                     {
                         icon: 'el-icon-menu',
                         index: '2',
-                        title: '表格',
+                        title: '常用表格',
                         subs: [
                             {
                                 index: 'basetable',
@@ -44,14 +44,14 @@
                             },
                             {
                                 index: 'vuetable',
-                                title: 'Vue表格组件'
+                                title: 'datasource表格'
                             }
                         ]
                     },
                     {
                         icon: 'el-icon-date',
                         index: '3',
-                        title: '表单',
+                        title: '表单相关',
                         subs: [
                             {
                                 index: 'baseform',
@@ -74,17 +74,17 @@
                     {
                         icon: 'el-icon-star-on',
                         index: 'basecharts',
-                        title: '图表'
+                        title: 'schart图表'
                     },
+                    // {
+                    //     icon: 'el-icon-edit',
+                    //     index: 'drag',
+                    //     title: '拖拽列表'
+                    // },
                     {
-                        icon: 'el-icon-edit',
-                        index: 'drag',
-                        title: '拖拽'
-                    },
-                    {
-                        icon: 'el-icon-edit',
+                        icon: 'el-icon-warning',
                         index: 'permission',
-                        title: '权限'
+                        title: '权限测试'
                     }
                 ]
             }
@@ -109,5 +109,8 @@
     }
     .sidebar > ul {
         height:100%;
+    }
+    .sidebar i{
+        margin-top: -4px;
     }
 </style>
