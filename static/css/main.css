@@ -64,6 +64,9 @@ a{text-decoration: none}
 .el-time-panel__content::after, .el-time-panel__content::before {
     margin-top: -7px;
 }
+.el-time-spinner__wrapper .el-scrollbar__wrap:not(.el-scrollbar__wrap--hidden-default){
+    padding-bottom: 0;
+}
 /*Readme*/
 .ms-doc .el-checkbox__input.is-disabled+.el-checkbox__label{
     color: #333;
