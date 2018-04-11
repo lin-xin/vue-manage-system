@@ -36,7 +36,7 @@
                         title: '自述文件'
                     },
                     {
-                        icon: 'el-icon-menu',
+                        icon: 'el-icon-tickets',
                         index: '2',
                         title: '常用表格',
                         subs: [
@@ -97,6 +97,7 @@
             }
         },
         created(){
+            // 通过 Event Bus 进行组件间通信，来折叠侧边栏
             bus.$on('collapse', msg => {
                 this.collapse = msg;
             })

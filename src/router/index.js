@@ -38,7 +38,7 @@ export default new Router({
                 {
                     // markdown组件
                     path: '/markdown',
-                    component: resolve => require(['../components/page/VueEditor.vue'], resolve)     
+                    component: resolve => require(['../components/page/Markdown.vue'], resolve)     
                 },
                 {
                     // Vue-Core-Image-Upload组件
