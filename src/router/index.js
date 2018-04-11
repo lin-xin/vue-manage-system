@@ -18,21 +18,21 @@ export default new Router({
                     component: resolve => require(['../components/page/Readme.vue'], resolve)
                 },
                 {
-                    path: '/basetable',
+                    path: '/table',
                     component: resolve => require(['../components/page/BaseTable.vue'], resolve)
                 },
                 {
                     // vue-datasource组件
-                    path: '/vuetable',
+                    path: '/datasource',
                     component: resolve => require(['../components/page/VueTable.vue'], resolve)     
                 },
                 {
-                    path: '/baseform',
+                    path: '/form',
                     component: resolve => require(['../components/page/BaseForm.vue'], resolve)
                 },
                 {
                     // Vue-Quill-Editor组件
-                    path: '/vueeditor',
+                    path: '/editor',
                     component: resolve => require(['../components/page/VueEditor.vue'], resolve)    
                 },
                 {
@@ -47,7 +47,7 @@ export default new Router({
                 },
                 {
                     // vue-schart组件
-                    path: '/basecharts',
+                    path: '/charts',
                     component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   
                 },
                 {

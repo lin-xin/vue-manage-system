@@ -41,11 +41,11 @@
                         title: '常用表格',
                         subs: [
                             {
-                                index: 'basetable',
+                                index: 'table',
                                 title: '基础表格'
                             },
                             {
-                                index: 'vuetable',
+                                index: 'datasource',
                                 title: 'datasource表格'
                             }
                         ]
@@ -56,11 +56,11 @@
                         title: '表单相关',
                         subs: [
                             {
-                                index: 'baseform',
+                                index: 'form',
                                 title: '基本表单'
                             },
                             {
-                                index: 'vueeditor',
+                                index: 'editor',
                                 title: '富文本编辑器'
                             },
                             {
@@ -75,14 +75,14 @@
                     },
                     {
                         icon: 'el-icon-star-on',
-                        index: 'basecharts',
+                        index: 'charts',
                         title: 'schart图表'
                     },
-                    // {
-                    //     icon: 'el-icon-edit',
-                    //     index: 'drag',
-                    //     title: '拖拽列表'
-                    // },
+                    {
+                        icon: 'el-icon-rank',
+                        index: 'drag',
+                        title: '拖拽列表'
+                    },
                     {
                         icon: 'el-icon-warning',
                         index: 'permission',

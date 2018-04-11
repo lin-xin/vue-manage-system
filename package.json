@@ -14,6 +14,7 @@
     "babel-polyfill": "^6.23.0",
     "element-ui": "2.3.3",
     "mavon-editor": "^2.5.2",
+    "sortablejs": "^1.7.0",
     "vue": "^2.5.16",
     "vue-core-image-upload": "2.1.11",
     "vue-datasource": "1.0.12",
