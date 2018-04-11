@@ -61,11 +61,11 @@
                             },
                             {
                                 index: 'vueeditor',
-                                title: '编辑器'
+                                title: '富文本编辑器'
                             },
                             {
                                 index: 'markdown',
-                                title: 'markdown'
+                                title: 'markdown编辑器'
                             },
                             {
                                 index: 'upload',
