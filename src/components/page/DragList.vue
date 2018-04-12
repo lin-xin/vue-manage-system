@@ -9,27 +9,33 @@
             <div class="drag-box">
                 <div class="drag-box-item">
                     <div class="item-title">todo</div>
-                    <ul id="todo" class="item-ul">
-                        <li v-for="(item, index) in todo" :key="index" class="drag-list" :data-index="index">
-                            {{ item.content }}
-                        </li>
-                    </ul>
+                    <draggable v-model="todo" @remove="removeHandle" :options="dragOptions">
+                        <transition-group tag="div" id="todo" class="item-ul">
+                            <div v-for="(item,index) in todo" class="drag-list" :key="index">
+                                {{item.content}}
+                            </div>
+                        </transition-group>
+                    </draggable>
                 </div>
                 <div class="drag-box-item">
                     <div class="item-title">doing</div>
-                    <ul id="doing" class="item-ul">
-                        <li v-for="(item, index) in doing" :key="index" class="drag-list" :data-index="index">
-                            {{ item.content }}
-                        </li>
-                    </ul>
+                    <draggable v-model="doing" @remove="removeHandle" :options="dragOptions">
+                        <transition-group tag="div" id="doing" class="item-ul">
+                            <div v-for="(item,index) in doing" class="drag-list" :key="index">
+                                {{item.content}}
+                            </div>
+                        </transition-group>
+                    </draggable>
                 </div>
                 <div class="drag-box-item">
                     <div class="item-title">done</div>
-                    <ul id="done" class="item-ul">
-                        <li v-for="(item, index) in done" :key="index" class="drag-list" :data-index="index">
-                            {{ item.content }}
-                        </li>
-                    </ul>
+                    <draggable v-model="done" @remove="removeHandle" :options="dragOptions">
+                        <transition-group tag="div" id="done" class="item-ul">
+                            <div v-for="(item,index) in done" class="drag-list" :key="index">
+                                {{item.content}}
+                            </div>
+                        </transition-group>
+                    </draggable>
                 </div>
             </div>
         </div>
@@ -37,10 +43,15 @@
 </template>
 
 <script>
-    import Sortable from 'sortablejs';
+    import draggable from 'vuedraggable'
     export default {
         data() {
             return {
+                dragOptions:{
+                    animation: 120,
+                    group: 'sortlist',
+                    ghostClass: 'ghost-style'
+                },
                 todo: [
                     {
                         content: '开发图表组件'
@@ -73,58 +84,17 @@
                     {
                         content: '开发项目整体框架'
                     }
-                ],
-                dragElement: null,
-                lock: true,
-
+                ]
             }
+        },
+        components:{
+            draggable
         },
         methods: {
-            initSortable(id, vm){
-                let list = document.getElementById(id);
-                Sortable.create(list, {
-                    group: {
-                        name: 'list',
-                        pull: true
-                    },
-                    ghostClass: 'placeholder-style',
-                    animation: 120,
-                    scroll: true,
-                    onRemove(event) {
-                        let content;
-                        const idx = event.item.getAttribute('data-index');
-                        if(event.from.id === 'todo'){
-                            content = vm.todo[idx];
-                        }else if(event.from.id === 'doing'){
-                            content = vm.doing[idx];
-                        }else if(event.from.id === 'done'){
-                            content = vm.done[idx];
-                        }
-                        if(event.to.id === 'todo'){
-                            vm.todo.splice(event.newIndex, 0, content);
-                        }else if(event.to.id === 'doing'){
-                            vm.doing.splice(event.newIndex, 0, content);
-                        }else if(event.to.id === 'done'){
-                            vm.done.splice(event.newIndex, 0, content);
-                        }
-                    },
-                    onEnd(event){
-                        if(event.to.id === event.from.id){
-                            event.item.removeAttribute('draggable');
-                        }
-                    }
-                });
+            removeHandle(event){
+                console.log(event);
+                this.$message.success(`从 ${event.from.id} 移动到 ${event.to.id} `);
             }
-        },
-        mounted() {
-            document.body.ondrop = function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            };
-            let vm = this;
-            this.initSortable('todo', this);
-            this.initSortable('doing', this);
-            this.initSortable('done', this);
         }
     }
 
@@ -170,9 +140,6 @@
         -webkit-transition: border .3s ease-in;
         transition: border .3s ease-in;
     }
-    .drag-list[draggable="false"]{
-        display: none;
-    }
     .drag-list:hover {
         border: 1px solid #20a0ff;
     }
@@ -182,5 +149,10 @@
         margin: 10px 0;
         font-size: 22px;
         color: #1f2f3d;
+    }
+    .ghost-style{
+        display: block;
+        color: transparent;
+        border-style: dashed
     }
 </style>

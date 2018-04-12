@@ -14,13 +14,13 @@
     "babel-polyfill": "^6.23.0",
     "element-ui": "2.3.3",
     "mavon-editor": "^2.5.2",
-    "sortablejs": "^1.7.0",
     "vue": "^2.5.16",
     "vue-core-image-upload": "2.1.11",
     "vue-datasource": "1.0.12",
     "vue-quill-editor": "3.0.6",
     "vue-router": "^3.0.1",
-    "vue-schart": "^0.1.4"
+    "vue-schart": "^0.1.4",
+    "vuedraggable": "^2.16.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
