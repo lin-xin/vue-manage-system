@@ -6,6 +6,10 @@
             </el-breadcrumb>
         </div>
         <div class="container">
+            <div class="plugins-tips">
+                Vue.Draggable：基于 Sortable.js 的 Vue 拖拽组件。
+                访问地址：<a href="https://github.com/SortableJS/Vue.Draggable" target="_blank">Vue.Draggable</a>
+            </div>
             <div class="drag-box">
                 <div class="drag-box-item">
                     <div class="item-title">todo</div>
@@ -49,6 +53,7 @@
             return {
                 dragOptions:{
                     animation: 120,
+                    scroll: true,
                     group: 'sortlist',
                     ghostClass: 'ghost-style'
                 },
@@ -123,7 +128,7 @@
     }
     .item-ul{
         padding: 0 8px 8px;
-        height: 600px;
+        height: 500px;
         overflow-y: scroll;
     }
     .item-ul::-webkit-scrollbar{
