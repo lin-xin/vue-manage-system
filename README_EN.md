@@ -1,6 +1,8 @@
 # manage-system #
 The web management system solution based on Vue2 and Element-UI。[live demo](http://blog.gdfengshuo.com/example/work/)
 
+## Donation
+![WeChat](http://blog.gdfengshuo.com/images/weixin.jpg)
 
 ## Preface ##
 The scheme as a set of multi-function background frame templates, suitable for most of the WEB management system development. Convenient development fast simple good components based on Vue2 and Element-UI. Color separation of color style, support manual switch themes, and it is convenient to use a custom theme color.
@@ -25,6 +27,7 @@ The scheme as a set of multi-function background frame templates, suitable for m
 	|-- src                              // Source directory
 	|   |-- components                   // Components
 	|       |-- common                   // Common component
+	|           |-- bus.js           	 // Event Bus
 	|           |-- Header.vue           // Header component
 	|           |-- Home.vue           	 // Home component
 	|           |-- Sidebar.vue          // Sidebar component
@@ -33,8 +36,9 @@ The scheme as a set of multi-function background frame templates, suitable for m
 	|           |-- BaseForm.vue         // BaseForm
 	|           |-- BaseTable.vue        // BaseTable
 	|           |-- Login.vue          	 // Login
+	|           |-- DragList.vue
 	|           |-- Markdown.vue         // Markdown
-	|           |-- MixCharts.vue        // MixCharts
+	|           |-- Premission.vue
 	|           |-- Readme.vue           // Readme
 	|           |-- Upload.vue           // Upload
 	|           |-- VueEditor.vue        // VueEditor
@@ -51,8 +55,8 @@ The scheme as a set of multi-function background frame templates, suitable for m
 
 ## Installation steps ##
 
-	git clone https://github.com/lin-xin/manage-system.git		// Clone templates
-	cd manage-system											// Enter template directory
+	git clone https://github.com/lin-xin/vue-manage-system.git		// Clone templates
+	cd vue-manage-system											// Enter template directory
 	npm install													// Installation dependency
 
 ## Local development ##
@@ -66,149 +70,6 @@ The scheme as a set of multi-function background frame templates, suitable for m
 	npm run build
 
 ## Component description and presentation ##
-
-### element-ui ###
-A desktop component library based on vue.js2.0 . Github : [element](http://element.eleme.io/#/zh-CN/component/layout)
-
-### vue-datasource ###
-A Vue.js server side component to create dynamic tables. Github : [vue-datasource](https://github.com/coderdiaz/vue-datasource)
-
-```JavaScript
-<template>
-	<div>
-		<datasource language="en" :table-data="information.data"
-	        :columns="columns"
-	        :pagination="information.pagination"
-	        :actions="actions"
-	        v-on:change="changePage"
-	        v-on:searching="onSearch"></datasource>
-	</div>
-</template>
-
-<script>
-	import Datasource from 'vue-datasource';        // import Datasource component
-    export default {
-        data: function(){
-            return {
-                information: {
-	                pagination: {...},              // pagination config
-	                data: [...]
-	            },
-	            columns: [...],                     // col config
-	            actions: [...]                      // function config
-            }
-        },
-        components: {
-            Datasource										
-        },
-	    methods: {
-	        changePage(values) {...},
-	        onSearch(searchQuery) {...}
-	    }
-	}
-</script>
-```
-
-
-### Vue-Quill-Editor ###
-Quill editor component for Vue2. Github : [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
-
-```JavaScript
-<template>
-	<div>
-		<quill-editor ref="myTextEditor" v-model="content" :config="editorOption"></quill-editor>
-	</div>
-</template>
-
-<script>
-	import { quillEditor } from 'vue-quill-editor';     // import quillEditor component
-    export default {
-        data: function(){
-            return {
-                content: '',								
-                editorOption: {								
-                    // something config
-                }
-            }
-        },
-        components: {
-            quillEditor										
-        }
-	}
-</script>
-```
-
-### Vue-SimpleMDE ###
-Markdown Editor component for Vue.js. Github : [Vue-SimpleMDE](https://github.com/F-loat/vue-simplemde)
-
-```JavaScript
-<template>
-    <div>
-        <markdown-editor v-model="content" :configs="configs" ref="markdownEditor"></markdown-editor>
-    </div>
-</template>
-
-<script>
-    import { markdownEditor } from 'vue-simplemde';			
-    export default {
-        data: function(){
-            return {
-                content:'',									
-                configs: {									
-                    status: false,							
-                    initialValue: 'Hello BBK',				
-                    renderingConfig: {
-                        codeSyntaxHighlighting: true,		
-                        highlightingTheme: 'atom-one-light' 
-                    }
-                }
-            }
-        },
-        components: {
-            markdownEditor									
-        }
-    }
-</script>
-```
-
-### Vue-Core-Image-Upload ###
-a vue plugin for image upload and crop. Github : [Vue-Core-Image-Upload](https://github.com/Vanthink-UED/vue-core-image-upload)
-
-```JavaScript
-
-<template>
-    <div>
-		<img :src="src">									
-        <vue-core-image-upload :class="['pure-button','pure-button-primary','js-btn-crop']"
-           :crop="true"										
-           text="上传图片"
-           url=""											
-           extensions="png,gif,jpeg,jpg"					
-           @:imageuploaded="imageuploaded">					
-		</vue-core-image-upload>
-    </div>
-</template>
-
-<script>
-    import VueCoreImageUpload  from 'vue-core-image-upload';	
-    export default {
-        data: function(){
-            return {
-                src:'../img/1.jpg'							
-            }
-        },
-        components: {
-            VueCoreImageUpload								
-        },
-        methods:{
-            imageuploaded(res) {							
-                console.log(res)
-            }
-        }
-    }
-</script>
-
-```
 
 ### vue-schart ###
 Vue.js wrapper for sChart.js. Github : [vue-schart](https://github.com/linxin/vue-schart)
@@ -252,6 +113,22 @@ Vue.js wrapper for sChart.js. Github : [vue-schart](https://github.com/linxin/vu
     }
 </script>
 ```
+
+### element-ui ###
+A desktop component library based on vue.js2.0 . Github : [element](http://element.eleme.io/#/zh-CN/component/layout)
+
+### vue-datasource ###
+A Vue.js server side component to create dynamic tables. Github : [vue-datasource](https://github.com/coderdiaz/vue-datasource)
+
+### Vue-Quill-Editor ###
+Quill editor component for Vue2. Github : [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
+
+### mavonEditor ###
+A markdown editor based on Vue that supports a variety of personalized features. Github: [mavonEditor](https://github.com/hinesboy/mavonEditor)
+
+### vue-cropperjs ###
+A Vue wrapper component for cropperjs. Github: [vue-cropperjs](https://github.com/Agontuk/vue-cropperjs)
+
 
 ## Notice ##
 ### 一、If I don't want to use some components, how can I delete it? ###
@@ -298,7 +175,7 @@ The second step to enter 'src/App.vue' and change into green theme.
 /*@import "../static/css/theme-green/color-green.css";   !*浅绿色主题*!*/
 ```
 
-Finally,enter 'src/components/common/Sidebar.vue' and find el-menu Tags,delete 'theme="dark"'。
+Finally,enter 'src/components/common/Sidebar.vue' and find el-menu Tags,delete 'background-color/text-color/active-text-color'。
 
 ## Screenshot ##
 ### Default theme ###
