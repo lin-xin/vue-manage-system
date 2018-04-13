@@ -20,6 +20,8 @@
 <script>
     import { mavonEditor } from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
+    // 重写mavon的flex样式来兼容IE
+    import 'static/css/mavon-flex.css'
     export default {
         data: function(){
             return {
