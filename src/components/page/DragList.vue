@@ -2,104 +2,162 @@
     <section class="main">
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-upload2"></i> 拖拽排序</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-rank"></i> 拖拽排序</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <div class="drag-box-left">
-            <div class="drag-title">拖动排序</div>
-            <div class="drag-list" draggable="true" 
-                v-for="list in data1" 
-                :data-id="list.id" 
-                @dragstart="dragstartEvent"
-                @dragend="dragendEvent"
-                @dragenter="dragenterEvent"
-                @dragleave="dragleaveEvent"
-                @dragover="dragoverEvent"
-            >{{list.title}}</div>
+        <div class="container">
+            <div class="plugins-tips">
+                Vue.Draggable：基于 Sortable.js 的 Vue 拖拽组件。
+                访问地址：<a href="https://github.com/SortableJS/Vue.Draggable" target="_blank">Vue.Draggable</a>
+            </div>
+            <div class="drag-box">
+                <div class="drag-box-item">
+                    <div class="item-title">todo</div>
+                    <draggable v-model="todo" @remove="removeHandle" :options="dragOptions">
+                        <transition-group tag="div" id="todo" class="item-ul">
+                            <div v-for="(item,index) in todo" class="drag-list" :key="index">
+                                {{item.content}}
+                            </div>
+                        </transition-group>
+                    </draggable>
+                </div>
+                <div class="drag-box-item">
+                    <div class="item-title">doing</div>
+                    <draggable v-model="doing" @remove="removeHandle" :options="dragOptions">
+                        <transition-group tag="div" id="doing" class="item-ul">
+                            <div v-for="(item,index) in doing" class="drag-list" :key="index">
+                                {{item.content}}
+                            </div>
+                        </transition-group>
+                    </draggable>
+                </div>
+                <div class="drag-box-item">
+                    <div class="item-title">done</div>
+                    <draggable v-model="done" @remove="removeHandle" :options="dragOptions">
+                        <transition-group tag="div" id="done" class="item-ul">
+                            <div v-for="(item,index) in done" class="drag-list" :key="index">
+                                {{item.content}}
+                            </div>
+                        </transition-group>
+                    </draggable>
+                </div>
+            </div>
         </div>
     </section>
 </template>
 
 <script>
+    import draggable from 'vuedraggable'
     export default {
         data() {
             return {
-                dragElement: null,
-                lock: true,
-                data1: [
-                    {id: 1, title: '这里是列表1的标题'},
-                    {id: 2, title: '这里是列表2的标题'},
-                    {id: 3, title: '这里是列表3的标题'},
-                    {id: 4, title: '这里是列表4的标题'},
-                    {id: 5, title: '这里是列表5的标题'},
-                    {id: 6, title: '这里是列表6的标题'},
-                    {id: 7, title: '这里是列表7的标题'}
+                dragOptions:{
+                    animation: 120,
+                    scroll: true,
+                    group: 'sortlist',
+                    ghostClass: 'ghost-style'
+                },
+                todo: [
+                    {
+                        content: '开发图表组件'
+                    },
+                    {
+                        content: '开发拖拽组件'
+                    },
+                    {
+                        content: '开发权限测试组件'
+                    }
                 ],
-                data2: [
-                    {id: 1, title: '这里是列表11的标题'},
-                    {id: 2, title: '这里是列表12的标题'},
-                    {id: 3, title: '这里是列表13的标题'},
-                    {id: 4, title: '这里是列表14的标题'}
+                doing: [
+                    {
+                        content: '开发登录注册页面'
+                    },
+                    {
+                        content: '开发头部组件'
+                    },
+                    {
+                        content: '开发表格相关组件'
+                    },
+                    {
+                        content: '开发表单相关组件'
+                    }
+                ],
+                done:[
+                    {
+                        content: '初始化项目，生成工程目录，完成相关配置'
+                    },
+                    {
+                        content: '开发项目整体框架'
+                    }
                 ]
             }
         },
+        components:{
+            draggable
+        },
         methods: {
-            dragstartEvent(ev) {
-                const self = this;
-                self.dragElement = ev.target;
-                ev.target.style.backgroundColor = '#f8f8f8';
-            },
-            dragendEvent(ev) {
-                ev.target.style.backgroundColor = '#fff';
-                ev.preventDefault();
-            },
-            dragenterEvent(ev) {
-                const self = this;
-                if(self.dragElement != ev.target){
-                    ev.target.parentNode.insertBefore(self.dragElement, ev.target);
-                }
-            },
-            dragleaveEvent(ev) {
-                const self = this;
-                if(self.dragElement != ev.target){
-                    if(self.lock && (ev.target == ev.target.parentNode.lastElementChild || ev.target == ev.target.parentNode.lastChild)){
-                        ev.target.parentNode.appendChild(self.dragElement);
-                        self.lock = false;
-                    }else{
-                        self.lock = true;
-                    }
-                }
-            },
-            dragoverEvent(ev) {
-                ev.preventDefault();
+            removeHandle(event){
+                console.log(event);
+                this.$message.success(`从 ${event.from.id} 移动到 ${event.to.id} `);
             }
         }
     }
+
 </script>
 
 <style scoped>
-    .drag-box-left{
-        float: left;
-        width: 45%;
+    .drag-box{
+        display: flex;
+        user-select: none;
     }
-    .drag-box-right{
-        float: right;
-        width: 45%;
+    .drag-box-item {
+        flex: 1;
+        max-width: 330px;
+        min-width: 300px;
+        background-color: #eff1f5;
+        margin-right: 16px;
+        border-radius: 6px;
+        border: 1px #e1e4e8 solid;
     }
-    .drag-list{
-        border: 1px solid #ddd;
-        padding:10px;
-        margin-bottom: 20px;
-        transition: border .3s;
+    .item-title{
+        padding: 8px 8px 8px 12px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #24292e;
+        font-weight: 600;
     }
-    .drag-list:hover{
+    .item-ul{
+        padding: 0 8px 8px;
+        height: 500px;
+        overflow-y: scroll;
+    }
+    .item-ul::-webkit-scrollbar{
+        width: 0;
+    }
+    .drag-list {
+        border: 1px #e1e4e8 solid;
+        padding: 10px;
+        margin: 5px 0 10px;
+        list-style: none;
+        background-color: #fff;
+        border-radius: 6px;
+        cursor: pointer;
+        -webkit-transition: border .3s ease-in;
+        transition: border .3s ease-in;
+    }
+    .drag-list:hover {
         border: 1px solid #20a0ff;
     }
-    .drag-title{
+    .drag-title {
         font-weight: 400;
         line-height: 25px;
         margin: 10px 0;
         font-size: 22px;
         color: #1f2f3d;
+    }
+    .ghost-style{
+        display: block;
+        color: transparent;
+        border-style: dashed
     }
 </style>

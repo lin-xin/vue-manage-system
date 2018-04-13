@@ -5,11 +5,11 @@ html,body,#app,.wrapper{
     overflow: hidden;
 }
 body{
-    font-family:"Helvetica Neue",Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
+    font-family:'PingFang SC', "Helvetica Neue",Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
 }
 a{text-decoration: none}
 .content{
-    background: none repeat scroll 0 0 #fff;
+    background: none repeat scroll 0 0 #f0f0f0;
     position: absolute;
     left: 250px;
     right: 0;
@@ -19,6 +19,17 @@ a{text-decoration: none}
     padding:40px;
     box-sizing: border-box;
     overflow-y: scroll;
+    -webkit-transition: left .3s ease-in-out;
+    transition: left .3s ease-in-out;
+}
+.content-collapse{
+    left: 65px;
+}
+.container{
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 .crumbs{
     margin-bottom: 20px;
@@ -57,6 +68,9 @@ a{text-decoration: none}
 }
 .el-time-panel__content::after, .el-time-panel__content::before {
     margin-top: -7px;
+}
+.el-time-spinner__wrapper .el-scrollbar__wrap:not(.el-scrollbar__wrap--hidden-default){
+    padding-bottom: 0;
 }
 /*Readme*/
 .ms-doc .el-checkbox__input.is-disabled+.el-checkbox__label{

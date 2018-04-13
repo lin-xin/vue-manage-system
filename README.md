@@ -31,6 +31,7 @@
 	|-- src                              // 源码目录
 	|   |-- components                   // 组件
 	|       |-- common                   // 公共组件
+	|           |-- bus.js           	 // Event Bus
 	|           |-- Header.vue           // 公共头部
 	|           |-- Home.vue           	 // 公共路由入口
 	|           |-- Sidebar.vue          // 公共左边栏
@@ -38,12 +39,14 @@
 	|           |-- BaseCharts.vue       // 基础图表
 	|           |-- BaseForm.vue         // 基础表单
 	|           |-- BaseTable.vue        // 基础表格
+	|           |-- DragList.vue         // 拖拽列表组件
 	|           |-- Login.vue          	 // 登录
 	|           |-- Markdown.vue         // markdown组件
+	|           |-- Premission.vue       // 权限测试组件
 	|           |-- Readme.vue           // 自述组件
 	|           |-- Upload.vue           // 图片上传
 	|           |-- VueEditor.vue        // 富文本编辑器
-	|           |-- VueTable.vue         // vue表格组件
+	|           |-- VueTable.vue         // datasource表格组件
 	|   |-- App.vue                      // 页面入口文件
 	|   |-- main.js                      // 程序入口文件，加载各种公共组件
 	|-- .babelrc                         // ES6语法编译配置
@@ -56,8 +59,8 @@
 
 ## 安装步骤 ##
 
-	git clone https://github.com/lin-xin/manage-system.git      // 把模板下载到本地
-	cd manage-system    // 进入模板目录
+	git clone https://github.com/lin-xin/vue-manage-system.git      // 把模板下载到本地
+	cd vue-manage-system    // 进入模板目录
 	npm install         // 安装项目依赖，等待安装完成之后
 
 ## 本地开发 ##
@@ -122,21 +125,16 @@ vue.js封装sChart.js的图表组件。访问地址：[vue-schart](https://githu
 ### vue-datasource ###
 一个用于动态创建表格的vue.js服务端组件。访问地址：[vue-datasource](https://github.com/coderdiaz/vue-datasource)
 
-
-
 ### Vue-Quill-Editor ###
 基于Quill、适用于Vue2的富文本编辑器。访问地址：[vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
 
-### Vue-SimpleMDE ###
-Vue.js的Markdown Editor组件。访问地址：[Vue-SimpleMDE](https://github.com/F-loat/vue-simplemde)
+（IE10及以下不支持）
 
+### mavonEditor ###
+基于Vue的markdown编辑器。访问地址：[mavonEditor](https://github.com/hinesboy/mavonEditor)
 
-
-### Vue-Core-Image-Upload ###
-一款轻量级的vue上传插件，支持裁剪。访问地址：[Vue-Core-Image-Upload](https://github.com/Vanthink-UED/vue-core-image-upload)
-
-
-
+### vue-cropperjs ###
+一个封装了 cropperjs 的 Vue 组件，用于裁剪图片。访问地址：[vue-cropperjs](https://github.com/Agontuk/vue-cropperjs)
 
 ## 其他注意事项 ##
 ### 一、如果我不想用到上面的某些组件呢，那我怎么在模板中删除掉不影响到其他功能呢？ ###
@@ -183,7 +181,7 @@ import 'element-ui/lib/theme-default/index.css';    // 默认主题
 /*@import "../static/css/theme-green/color-green.css";   !*浅绿色主题*!*/
 ```
 
-第三步：打开 src/components/common/Sidebar.vue 文件，找到 el-menu 标签，把 theme="dark" 去掉即可。
+第三步：打开 src/components/common/Sidebar.vue 文件，找到 el-menu 标签，把 background-color/text-color/active-text-color 属性去掉即可。
 
 ## 项目截图 ##
 ### 默认皮肤 ###

@@ -6,37 +6,63 @@
                 <el-breadcrumb-item>markdown</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <div class="plugins-tips">
-            Vue-SimpleMDE：Vue.js的Markdown Editor组件。
-            访问地址：<a href="https://github.com/F-loat/vue-simplemde" target="_blank">Vue-SimpleMDE</a>
-        </div>
-        <markdown-editor v-model="content" :configs="configs" ref="markdownEditor"></markdown-editor>
-        <div class="plugins-tips">
-            <p>既然用了markdown语法了，那么就有一个很实际的问题了。要怎么在前台展示数据呢？</p>
-            <br>
-            <p>这个时候就需要解析markdown语法了。可以使用 <a href="https://github.com/miaolz123/vue-markdown" target="_blank">vue-markdown</a>：一个基于vue.js的markdown语法解析插件。（这里不作展开，有需要自行了解）</p>
+        <div class="container">
+            <div class="plugins-tips">
+                mavonEditor：基于Vue的markdown编辑器。
+                访问地址：<a href="https://github.com/hinesboy/mavonEditor" target="_blank">mavonEditor</a>
+            </div>
+            <mavon-editor v-model="content" ref="md" @imgAdd="$imgAdd" @change="change" style="min-height: 600px"/>
+            <el-button class="editor-btn" type="primary" @click="submit">提交</el-button>
         </div>
     </div>
 </template>
 
 <script>
-    import { markdownEditor } from 'vue-simplemde';
+    import { mavonEditor } from 'mavon-editor'
+    import 'mavon-editor/dist/css/index.css'
+    // 重写mavon的flex样式来兼容IE
+    import 'static/css/mavon-flex.css'
     export default {
         data: function(){
             return {
                 content:'',
+                html:'',
                 configs: {
-                    status: true,
-                    initialValue: 'Hello BBK',
-                    renderingConfig: {
-                        codeSyntaxHighlighting: true,
-                        highlightingTheme: 'atom-one-light'
-                    }
                 }
             }
         },
         components: {
-            markdownEditor
+            mavonEditor
+        },
+        methods: {
+            // 将图片上传到服务器，返回地址替换到md中
+            $imgAdd(pos, $file){
+                var formdata = new FormData();
+                formdata.append('file', $file);
+                // 这里没有服务器供大家尝试，可将下面上传接口替换为你自己的服务器接口
+                this.$axios({
+                    url: '/common/upload',
+                    method: 'post',
+                    data: formdata,
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                }).then((url) => {
+                    this.$refs.md.$img2Url(pos, url);
+                })
+            },
+            change(value, render){
+                // render 为 markdown 解析后的结果
+                this.html = render;
+            },
+            submit(){
+                console.log(this.content);
+                console.log(this.html);
+                this.$message.success('提交成功！');
+            }
         }
     }
 </script>
+<style scoped>
+    .editor-btn{
+        margin-top: 20px;
+    }
+</style>

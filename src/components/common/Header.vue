@@ -1,5 +1,8 @@
 <template>
     <div class="header">
+        <div class="collapse-btn" @click="collapseChage">
+            <i class="el-icon-menu"></i>
+        </div>
         <div class="logo">后台管理系统</div>
         <div class="user-info">
             <el-dropdown trigger="click" @command="handleCommand">
@@ -8,16 +11,18 @@
                     {{username}}
                 </span>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="loginout">退出</el-dropdown-item>
+                    <el-dropdown-item command="loginout">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
     </div>
 </template>
 <script>
+    import bus from '../common/bus';
     export default {
         data() {
             return {
+                collapse: false,
                 name: 'linxin'
             }
         },
@@ -33,6 +38,10 @@
                     localStorage.removeItem('ms_username')
                     this.$router.push('/login');
                 }
+            },
+            collapseChage(){
+                this.collapse = !this.collapse;
+                bus.$emit('collapse', this.collapse);
             }
         }
     }
@@ -47,10 +56,18 @@
         line-height: 70px;
         color: #fff;
     }
+    .collapse-btn{
+        float: left;
+        padding: 0 21px;
+        cursor: pointer;
+    }
+    .collapse-btn:hover{
+        background: rgb(40,52,70);
+    }
     .header .logo{
         float: left;
         width:250px;
-        text-align: center;
+        /* text-align: center; */
     }
     .user-info {
         float: right;

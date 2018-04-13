@@ -18,36 +18,48 @@ export default new Router({
                     component: resolve => require(['../components/page/Readme.vue'], resolve)
                 },
                 {
-                    path: '/basetable',
+                    path: '/table',
                     component: resolve => require(['../components/page/BaseTable.vue'], resolve)
                 },
                 {
-                    path: '/vuetable',
-                    component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
+                    // vue-datasource组件
+                    path: '/datasource',
+                    component: resolve => require(['../components/page/VueTable.vue'], resolve)     
                 },
                 {
-                    path: '/baseform',
+                    path: '/form',
                     component: resolve => require(['../components/page/BaseForm.vue'], resolve)
                 },
                 {
-                    path: '/vueeditor',
-                    component: resolve => require(['../components/page/VueEditor.vue'], resolve)    // Vue-Quill-Editor组件
+                    // 富文本编辑器组件
+                    path: '/editor',
+                    component: resolve => require(['../components/page/VueEditor.vue'], resolve)    
                 },
                 {
+                    // markdown组件
                     path: '/markdown',
-                    component: resolve => require(['../components/page/Markdown.vue'], resolve)     // Vue-Quill-Editor组件
+                    component: resolve => require(['../components/page/Markdown.vue'], resolve)     
                 },
                 {
+                    // 图片上传组件
                     path: '/upload',
-                    component: resolve => require(['../components/page/Upload.vue'], resolve)       // Vue-Core-Image-Upload组件
+                    component: resolve => require(['../components/page/Upload.vue'], resolve)       
                 },
                 {
-                    path: '/basecharts',
-                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   // vue-schart组件
+                    // vue-schart组件
+                    path: '/charts',
+                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   
                 },
                 {
+                    // 拖拽列表组件
                     path: '/drag',
-                    component: resolve => require(['../components/page/DragList.vue'], resolve)    // 拖拽列表组件
+                    component: resolve => require(['../components/page/DragList.vue'], resolve)
+                },
+                {
+                    // 权限页面
+                    path: '/permission',
+                    component: resolve => require(['../components/page/Permission.vue'], resolve),
+                    meta: {permission: true}
                 }
             ]
         },
