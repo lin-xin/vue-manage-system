@@ -128,6 +128,8 @@ vue.js封装sChart.js的图表组件。访问地址：[vue-schart](https://githu
 ### Vue-Quill-Editor ###
 基于Quill、适用于Vue2的富文本编辑器。访问地址：[vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
 
+（IE10及以下不支持）
+
 ### mavonEditor ###
 基于Vue的markdown编辑器。访问地址：[mavonEditor](https://github.com/hinesboy/mavonEditor)
 
