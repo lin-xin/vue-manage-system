@@ -8,17 +8,19 @@ body{
     font-family:'PingFang SC', "Helvetica Neue",Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
 }
 a{text-decoration: none}
-.content{
-    background: none repeat scroll 0 0 #f0f0f0;
+.content-box{
     position: absolute;
     left: 250px;
     right: 0;
     top: 70px;
     bottom:0;
+    overflow-y: scroll;
+}
+.content{
+    background: none repeat scroll 0 0 #f0f0f0;
     width: auto;
     padding:40px;
     box-sizing: border-box;
-    overflow-y: scroll;
     -webkit-transition: left .3s ease-in-out;
     transition: left .3s ease-in-out;
 }

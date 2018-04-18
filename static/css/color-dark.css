@@ -16,3 +16,7 @@
 .pure-button{
     background: #20a0ff;
 }
+.tags-li.active {
+    border: 1px solid #409EFF;
+    background-color: #409EFF;
+}

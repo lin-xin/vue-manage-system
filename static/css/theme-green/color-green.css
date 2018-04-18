@@ -20,3 +20,7 @@
     background-color: #00d1b2 !important;
     border-color: #00d1b2 !important;
 }
+.tags-li.active {
+    border: 1px solid #00d1b2;
+    background-color: #00d1b2;
+}
