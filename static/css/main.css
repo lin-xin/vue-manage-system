@@ -127,3 +127,7 @@ a{text-decoration: none}
 .editor-btn{
     margin-top: 20px;
 }
+/*markdown*/
+.v-note-wrapper .v-note-panel {
+    min-height: 500px;
+  }
