@@ -16,7 +16,6 @@
     "mavon-editor": "^2.5.2",
     "vue": "^2.5.16",
     "vue-cropperjs": "^2.2.0",
-    "vue-datasource": "1.0.12",
     "vue-quill-editor": "3.0.6",
     "vue-router": "^3.0.1",
     "vue-schart": "^0.1.4",

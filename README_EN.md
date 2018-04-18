@@ -42,7 +42,6 @@ The scheme as a set of multi-function background frame templates, suitable for m
 	|           |-- Readme.vue           // Readme
 	|           |-- Upload.vue           // Upload
 	|           |-- VueEditor.vue        // VueEditor
-	|           |-- VueTable.vue         // VueTable
 	|   |-- App.vue                      // Main component
 	|   |-- main.js                      // Entry file
 	|-- .babelrc                         // ES6 syntax compiler configuration
@@ -117,9 +116,6 @@ Vue.js wrapper for sChart.js. Github : [vue-schart](https://github.com/linxin/vu
 ### element-ui ###
 A desktop component library based on vue.js2.0 . Github : [element](http://element.eleme.io/#/zh-CN/component/layout)
 
-### vue-datasource ###
-A Vue.js server side component to create dynamic tables. Github : [vue-datasource](https://github.com/coderdiaz/vue-datasource)
-
 ### Vue-Quill-Editor ###
 Quill editor component for Vue2. Github : [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
 
@@ -133,28 +129,31 @@ A Vue wrapper component for cropperjs. Github: [vue-cropperjs](https://github.co
 ## Notice ##
 ### 一、If I don't want to use some components, how can I delete it? ###
 
-For example, I don't want to use the vue-datasource component, I need to take four steps.
+For example, I don't want to use the Vue-Quill-Editor component, I need to take four steps.
 
 The first step to remove the component of the routing. Enter 'src/router/index.js' and delete the code below.
 
 ```JavaScript
 {
-    path: '/vuetable',
-    component: resolve => require(['../components/page/VueTable.vue'], resolve)
+    path: '/editor',
+    component: resolve => require(['../components/page/VueEditor.vue'], resolve) 
 },
 ```
 
-Second,delete the component files. Enter 'src/components/page/' and delete 'VueTable.vue' file.
+Second,delete the component files. Enter 'src/components/page/' and delete 'VueEditor.vue' file.
 
 The third step is to delete the entry. Enter 'src/components/common/Sidebar.vue' and delete the code below.
 	
-```HTML
-<el-menu-item index="vuetable">Vue表格组件</el-menu-item>
+```js
+{
+	index: 'editor',
+	title: '富文本编辑器'
+},
 ```
 
 Finally, uninstall this component.
 	
-	npm un vue-datasource -S
+	npm un vue-quill-editor -S
 
 Complete!
 
