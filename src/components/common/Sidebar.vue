@@ -41,6 +41,11 @@
                         title: '基础表格'
                     },
                     {
+                        icon: 'el-icon-message',
+                        index: 'tabs',
+                        title: 'tab选项卡'
+                    },
+                    {
                         icon: 'el-icon-date',
                         index: '3',
                         title: '表单相关',
