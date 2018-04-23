@@ -40,14 +40,13 @@
                 if (item) {
                     delItem.path === this.$route.path && this.$router.push(item.path);
                 }else{
-                    this.$router.push('/readme');
+                    this.$router.push('/');
                 }
             },
             // 关闭全部标签
             closeAll(){
-                console.log(1111);
                 this.tagsList = [];
-                this.$router.push('/readme');
+                this.$router.push('/');
             },
             // 关闭其他标签
             closeOther(){

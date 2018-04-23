@@ -32,8 +32,8 @@
                 items: [
                     {
                         icon: 'el-icon-setting',
-                        index: 'readme',
-                        title: '自述文件'
+                        index: 'dashboard',
+                        title: '系统首页'
                     },
                     {
                         icon: 'el-icon-tickets',

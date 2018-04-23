@@ -103,13 +103,6 @@ a {
     padding-bottom: 0;
 }
 
-/*Readme*/
-
-.ms-doc .el-checkbox__input.is-disabled+.el-checkbox__label {
-    color: #333;
-    cursor: pointer;
-}
-
 /*Upload*/
 
 .pure-button {

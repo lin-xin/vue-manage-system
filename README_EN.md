@@ -31,15 +31,18 @@ The scheme as a set of multi-function background frame templates, suitable for m
 	|           |-- Header.vue           // Header component
 	|           |-- Home.vue           	 // Home component
 	|           |-- Sidebar.vue          // Sidebar component
+	|           |-- Tags.vue
 	|		|-- page                   	 // Router page
+	|           |-- 403.vue
+	|           |-- 404.vue
 	|           |-- BaseCharts.vue       // BaseCharts
 	|           |-- BaseForm.vue         // BaseForm
 	|           |-- BaseTable.vue        // BaseTable
 	|           |-- Login.vue          	 // Login
+	|           |-- Dashboard.vue
 	|           |-- DragList.vue
 	|           |-- Markdown.vue         // Markdown
 	|           |-- Premission.vue
-	|           |-- Readme.vue           // Readme
 	|           |-- Upload.vue           // Upload
 	|           |-- VueEditor.vue        // VueEditor
 	|   |-- App.vue                      // Main component

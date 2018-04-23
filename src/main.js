@@ -12,8 +12,10 @@ Vue.prototype.$axios = axios;
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
-    if(to.meta.permission){
-        const role = localStorage.getItem('ms_username');
+    const role = localStorage.getItem('ms_username');
+    if(!role){
+        next('/login');
+    }else if(to.meta.permission){
         // 如果是管理员权限则可进入，这里只是简单的模拟管理员权限而已
         role === 'admin' ? next() : next('/403');
     }else{
