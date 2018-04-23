@@ -32,23 +32,18 @@
                 items: [
                     {
                         icon: 'el-icon-setting',
-                        index: 'readme',
-                        title: '自述文件'
+                        index: 'dashboard',
+                        title: '系统首页'
                     },
                     {
                         icon: 'el-icon-tickets',
-                        index: '2',
-                        title: '常用表格',
-                        subs: [
-                            {
-                                index: 'table',
-                                title: '基础表格'
-                            },
-                            {
-                                index: 'datasource',
-                                title: 'datasource表格'
-                            }
-                        ]
+                        index: 'table',
+                        title: '基础表格'
+                    },
+                    {
+                        icon: 'el-icon-message',
+                        index: 'tabs',
+                        title: 'tab选项卡'
                     },
                     {
                         icon: 'el-icon-date',
@@ -87,6 +82,11 @@
                         icon: 'el-icon-warning',
                         index: 'permission',
                         title: '权限测试'
+                    },
+                    {
+                        icon: 'el-icon-error',
+                        index: '404',
+                        title: '404页面'
                     }
                 ]
             }

@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i> 表单</el-breadcrumb-item>
-                <el-breadcrumb-item>markdown</el-breadcrumb-item>
+                <el-breadcrumb-item>markdown编辑器</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
@@ -20,8 +20,6 @@
 <script>
     import { mavonEditor } from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
-    // 重写mavon的flex样式来兼容IE
-    import 'static/css/mavon-flex.css'
     export default {
         data: function(){
             return {

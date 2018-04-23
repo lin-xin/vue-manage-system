@@ -1,94 +1,123 @@
-*{margin:0;padding:0;}
-html,body,#app,.wrapper{
-    width:100%;
-    height:100%;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#app,
+.wrapper {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
-body{
-    font-family:'PingFang SC', "Helvetica Neue",Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
+
+body {
+    font-family: 'PingFang SC', "Helvetica Neue", Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
 }
-a{text-decoration: none}
-.content{
-    background: none repeat scroll 0 0 #f0f0f0;
+
+a {
+    text-decoration: none
+}
+
+.content-box {
     position: absolute;
     left: 250px;
     right: 0;
     top: 70px;
-    bottom:0;
-    width: auto;
-    padding:40px;
-    box-sizing: border-box;
+    bottom: 0;
     overflow-y: scroll;
     -webkit-transition: left .3s ease-in-out;
     transition: left .3s ease-in-out;
+    background: #f0f0f0;
 }
-.content-collapse{
+
+.content {
+    width: auto;
+    padding: 40px;
+}
+
+.content-collapse {
     left: 65px;
 }
-.container{
+
+.container {
     padding: 30px;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
-.crumbs{
+
+.crumbs {
     margin-bottom: 20px;
 }
-.pagination{
+
+.pagination {
     margin: 20px 0;
     text-align: right;
 }
-.plugins-tips{
-    padding:20px 10px;
+
+.plugins-tips {
+    padding: 20px 10px;
     margin-bottom: 20px;
 }
+
 .el-button+.el-tooltip {
     margin-left: 10px;
 }
 
-.el-table tr:hover{
+.el-table tr:hover {
     background: #f6faff;
 }
-.mgb20{
+
+.mgb20 {
     margin-bottom: 20px;
 }
 
-.move-enter-active,.move-leave-active{
+.move-enter-active,
+.move-leave-active {
     transition: opacity .5s;
 }
-.move-enter,.move-leave{
+
+.move-enter,
+.move-leave {
     opacity: 0;
 }
+
 /*BaseForm*/
-.form-box{
-    width:600px;
+
+.form-box {
+    width: 600px;
 }
-.form-box .line{
+
+.form-box .line {
     text-align: center;
 }
-.el-time-panel__content::after, .el-time-panel__content::before {
+
+.el-time-panel__content::after,
+.el-time-panel__content::before {
     margin-top: -7px;
 }
-.el-time-spinner__wrapper .el-scrollbar__wrap:not(.el-scrollbar__wrap--hidden-default){
+
+.el-time-spinner__wrapper .el-scrollbar__wrap:not(.el-scrollbar__wrap--hidden-default) {
     padding-bottom: 0;
 }
-/*Readme*/
-.ms-doc .el-checkbox__input.is-disabled+.el-checkbox__label{
-    color: #333;
-    cursor: pointer;
-}
+
 /*Upload*/
-.pure-button{
-    width:150px;
-    height:40px;
+
+.pure-button {
+    width: 150px;
+    height: 40px;
     line-height: 40px;
     text-align: center;
     color: #fff;
     border-radius: 3px;
 }
-.g-core-image-corp-container .info-aside{
-    height:45px;
+
+.g-core-image-corp-container .info-aside {
+    height: 45px;
 }
+
 .el-upload--text {
     background-color: #fff;
     border: 1px dashed #d9d9d9;
@@ -101,27 +130,40 @@ a{text-decoration: none}
     position: relative;
     overflow: hidden;
 }
+
 .el-upload--text .el-icon-upload {
     font-size: 67px;
     color: #97a8be;
     margin: 40px 0 16px;
     line-height: 50px;
 }
+
 .el-upload--text {
     color: #97a8be;
     font-size: 14px;
     text-align: center;
 }
+
 .el-upload--text em {
     font-style: normal;
 }
+
 /*VueEditor*/
-.ql-container{
+
+.ql-container {
     min-height: 400px;
 }
-.ql-snow .ql-tooltip{
+
+.ql-snow .ql-tooltip {
     transform: translateX(117.5px) translateY(10px) !important;
 }
-.editor-btn{
+
+.editor-btn {
     margin-top: 20px;
+}
+
+/*markdown*/
+
+.v-note-wrapper .v-note-panel {
+    min-height: 500px;
 }
