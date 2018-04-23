@@ -10,7 +10,9 @@ The scheme as a set of multi-function background frame templates, suitable for m
 ## Function ##
 - [x] Element-UI
 - [x] Login/Logout
+- [x] Dashboard
 - [x] Table
+- [x] Tabs
 - [x] From
 - [x] Chart :bar_chart:
 - [x] Editor
@@ -18,6 +20,8 @@ The scheme as a set of multi-function background frame templates, suitable for m
 - [x] Upload pictures by clipping or dragging
 - [x] Support manual switch themes :sparkles:
 - [x] List drag sort
+- [x] Permission
+- [x] 404 / 403
 
 
 ## Directory structure ##
