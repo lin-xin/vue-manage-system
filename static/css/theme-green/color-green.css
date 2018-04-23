@@ -1,5 +1,5 @@
 .header{
-    background-color: #00d1b2;
+    background-color: #07c4a8;
 }
 .login-wrap{
     background: rgba(56, 157, 170, 0.82);;
@@ -23,4 +23,7 @@
 .tags-li.active {
     border: 1px solid #00d1b2;
     background-color: #00d1b2;
+}
+.collapse-btn:hover{
+    background: #00d1b2;
 }

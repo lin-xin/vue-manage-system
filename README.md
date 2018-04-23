@@ -38,7 +38,7 @@
 	|           |-- Home.vue           	 // 公共路由入口
 	|           |-- Sidebar.vue          // 公共左边栏
 	|           |-- Tags.vue           	 // 页面切换标签组件
-	|		|-- page                   	 // 主要路由页面
+	|       |-- page                   	 // 主要路由页面
 	|           |-- 403.vue
 	|           |-- 404.vue
 	|           |-- BaseCharts.vue       // 基础图表

@@ -110,7 +110,6 @@
         width: 100%;
         height: 70px;
         font-size: 22px;
-        
         color: #fff;
     }
     .collapse-btn{
@@ -118,9 +117,6 @@
         padding: 0 21px;
         cursor: pointer;
         line-height: 70px;
-    }
-    .collapse-btn:hover{
-        background: rgb(40,52,70);
     }
     .header .logo{
         float: left;

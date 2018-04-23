@@ -32,7 +32,7 @@ The scheme as a set of multi-function background frame templates, suitable for m
 	|           |-- Home.vue           	 // Home component
 	|           |-- Sidebar.vue          // Sidebar component
 	|           |-- Tags.vue
-	|		|-- page                   	 // Router page
+	|       |-- page                   	 // Router page
 	|           |-- 403.vue
 	|           |-- 404.vue
 	|           |-- BaseCharts.vue       // BaseCharts
