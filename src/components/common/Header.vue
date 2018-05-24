@@ -100,6 +100,11 @@
                 }
                 this.fullscreen = !this.fullscreen;
             }
+        },
+        mounted(){
+            if(document.body.clientWidth < 1500){
+                this.collapseChage();
+            }
         }
     }
 </script>
