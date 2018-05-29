@@ -58,11 +58,11 @@
             // 设置标签
             setTags(route){
                 const isExist = this.tagsList.some(item => {
-                    return item.path === route.path;
+                    return item.path === route.fullpath;
                 })
                 !isExist && this.tagsList.push({
                     title: route.meta.title,
-                    path: route.path
+                    path: route.fullpath
                 })
             },
             handleTags(command){
