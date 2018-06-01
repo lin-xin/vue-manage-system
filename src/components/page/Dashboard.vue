@@ -99,6 +99,7 @@
 
 <script>
     export default {
+        name: 'dashboard',
         data() {
             return {
                 name: localStorage.getItem('ms_username'),

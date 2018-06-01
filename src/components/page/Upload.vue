@@ -47,6 +47,7 @@
 <script>
     import VueCropper  from 'vue-cropperjs';
     export default {
+        name: 'upload',
         data: function(){
             return {
                 defaultSrc: './static/img/img.jpg',

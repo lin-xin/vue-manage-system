@@ -23,6 +23,7 @@
 </template>
 
 <script>
+    import bus from './bus';
     export default {
         data() {
             return {
@@ -31,14 +32,14 @@
         },
         methods: {
             isActive(path) {
-                return path === this.$route.path;
+                return path === this.$route.fullPath;
             },
             // 关闭单个标签
             closeTags(index) {
                 const delItem = this.tagsList.splice(index, 1)[0];
                 const item = this.tagsList[index] ? this.tagsList[index] : this.tagsList[index - 1];
                 if (item) {
-                    delItem.path === this.$route.path && this.$router.push(item.path);
+                    delItem.path === this.$route.fullPath && this.$router.push(item.path);
                 }else{
                     this.$router.push('/');
                 }
@@ -51,19 +52,21 @@
             // 关闭其他标签
             closeOther(){
                 const curItem = this.tagsList.filter(item => {
-                    return item.path === this.$route.path;
+                    return item.path === this.$route.fullPath;
                 })
                 this.tagsList = curItem;
             },
             // 设置标签
             setTags(route){
                 const isExist = this.tagsList.some(item => {
-                    return item.path === route.path;
+                    return item.path === route.fullPath;
                 })
                 !isExist && this.tagsList.push({
                     title: route.meta.title,
-                    path: route.path
+                    path: route.fullPath,
+                    name: route.matched[1].components.default.name
                 })
+                bus.$emit('tags', this.tagsList);
             },
             handleTags(command){
                 command === 'other' ? this.closeOther() : this.closeAll();
