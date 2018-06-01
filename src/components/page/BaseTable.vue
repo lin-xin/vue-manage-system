@@ -69,6 +69,7 @@
 
 <script>
     export default {
+        name: 'basetable',
         data() {
             return {
                 url: './static/vuetable.json',

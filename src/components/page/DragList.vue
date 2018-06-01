@@ -49,6 +49,7 @@
 <script>
     import draggable from 'vuedraggable'
     export default {
+        name: 'draglist',
         data() {
             return {
                 dragOptions:{

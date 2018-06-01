@@ -64,6 +64,7 @@
 
 <script>
     export default {
+        name: 'baseform',
         data: function(){
             return {
                 options:[
