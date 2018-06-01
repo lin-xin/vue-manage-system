@@ -18,7 +18,7 @@
     "vue-cropperjs": "^2.2.0",
     "vue-quill-editor": "3.0.6",
     "vue-router": "^3.0.1",
-    "vue-schart": "^0.1.4",
+    "vue-schart": "^1.0.0",
     "vuedraggable": "^2.16.0"
   },
   "devDependencies": {

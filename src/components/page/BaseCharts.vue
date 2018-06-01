@@ -11,21 +11,21 @@
                 vue-schart：vue.js封装sChart.js的图表组件。
                 访问地址：<a href="https://github.com/lin-xin/vue-schart" target="_blank">vue-schart</a>
             </div>
-            <div class="schart">
+            <div class="schart-box">
                 <div class="content-title">柱状图</div>
-                <schart canvasId="bar" width="500" height="400" :data="data1" type="bar" :options="options1"></schart>
+                <schart class="schart" canvasId="bar" :data="data1" type="bar" :options="options1"></schart>
             </div>
-            <div class="schart">
+            <div class="schart-box">
             <div class="content-title">折线图</div>
-            <schart canvasId="line" width="500" height="400" :data="data1" type="line" :options="options1"></schart>
+            <schart class="schart" canvasId="line" :data="data1" type="line" :options="options2"></schart>
             </div>
-            <div class="schart">
+            <div class="schart-box">
             <div class="content-title">饼状图</div>
-            <schart canvasId="pie" width="500" height="400" :data="data2" type="pie" :options="options2"></schart>
+            <schart class="schart" canvasId="pie" :data="data2" type="pie" :options="options3"></schart>
             </div>
-            <div class="schart">
+            <div class="schart-box">
             <div class="content-title">环形图</div>
-            <schart canvasId="ring" width="500" height="400" :data="data2" type="ring" :options="options2"></schart>
+            <schart class="schart" canvasId="ring" :data="data2" type="ring" :options="options4"></schart>
             </div>
         </div>
     </div>
@@ -55,26 +55,47 @@
             ],
             options1: {
                 title: '某商店近年营业总额',
-                bgColor: '#009688',
-                titleColor: '#ffffff',
-                fillColor: '#e0f2f1',
-                axisColor: '#ffffff',
-                contentColor: '#999'
+                autoWidth: true,   // 设置宽高自适应
+                showValue: false,
+                bgColor: '#F9EFCC',
+                fillColor: '#00887C',
+                contentColor: 'rgba(46,199,201,0.3)',
+                yEqual: 7
             },
             options2: {
+                title: '某商店近年营业总额',
+                bgColor: '#D5E4EB',
+                titleColor: '#00887C',
+                fillColor: 'red',
+                contentColor: 'rgba(46,199,201,0.3)'
+            },
+            options3: {
                 title: '某商店各商品年度销量',
-                bgColor: '#607d8b',
+                bgColor: '#829dca',
                 titleColor: '#ffffff',
-                legendColor: '#ffffff'
+                legendColor: '#ffffff',
+                radius: 120
+            },
+            options4: {
+                title: '某商店各商品年度销量',
+                bgColor: '#829daa',
+                titleColor: '#ffffff',
+                legendColor: '#ffffff',
+                radius: 120,
+                innerRadius:80
             }
         })
     }
 </script>
 
 <style scoped>
+.schart-box{
+    display: inline-block;
+    margin: 20px;
+}
     .schart{
-        width: 600px;
-        display: inline-block;
+        width: 500px;
+        height: 400px;
     }
     .content-title{
         clear: both;
