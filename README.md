@@ -5,7 +5,9 @@
 
 [更新日志](https://github.com/lin-xin/vue-manage-system/releases)
 
-## 捐赠
+## 赞赏
+请作者喝杯咖啡吧！
+
 ![微信扫一扫](http://blog.gdfengshuo.com/images/weixin.jpg)
 
 ## 前言 ##
@@ -28,6 +30,7 @@
 - [x] 列表拖拽排序
 - [x] 权限测试
 - [x] 404 / 403
+- [x] 三级菜单
 
 
 ## 目录结构介绍 ##
@@ -87,13 +90,12 @@
 vue.js封装sChart.js的图表组件。访问地址：[vue-schart](https://github.com/linxin/vue-schart)
 <p><a href="https://www.npmjs.com/package/vue-schart"><img src="https://img.shields.io/npm/dm/vue-schart.svg" alt="Downloads"></a></p>
 
-```JavaScript
+```html
 <template>
     <div>
-        <schart :canvasId="canvasId"
+        <schart  class="wrapper"
+				:canvasId="canvasId"
 				:type="type"
-				:width="width"
-				:height="height"
 				:data="data"
 				:options="options"
 		></schart>
@@ -107,8 +109,6 @@ vue.js封装sChart.js的图表组件。访问地址：[vue-schart](https://githu
             return {
                 canvasId: 'myCanvas',       // canvas的id
                 type: 'bar',                // 图表类型
-                width: 500,
-                height: 400,
                 data: [
                     {name: '2014', value: 1342},
                     {name: '2015', value: 2123},
@@ -125,6 +125,12 @@ vue.js封装sChart.js的图表组件。访问地址：[vue-schart](https://githu
         }
     }
 </script>
+<style>
+.wrapper{
+	width: 7rem;
+	height: 5rem;
+}
+</style>
 ```
 
 ### element-ui ###
