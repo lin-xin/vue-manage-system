@@ -8,9 +8,17 @@
                         <template slot="title">
                             <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
                         </template>
-                        <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
-                            {{ subItem.title }}
-                        </el-menu-item>
+                        <template v-for="subItem in item.subs">
+                            <el-submenu v-if="subItem.subs" :index="subItem.index" :key="subItem.index">
+                                <template slot="title">{{ subItem.title }}</template>
+                                <el-menu-item v-for="(threeItem,i) in subItem.subs" :key="i" :index="threeItem.index">
+                                    {{ threeItem.title }}
+                                </el-menu-item>
+                            </el-submenu>
+                            <el-menu-item v-else :index="subItem.index" :key="subItem.index">
+                                {{ subItem.title }}
+                            </el-menu-item>
+                        </template>
                     </el-submenu>
                 </template>
                 <template v-else>
@@ -55,12 +63,18 @@
                                 title: '基本表单'
                             },
                             {
-                                index: 'editor',
-                                title: '富文本编辑器'
-                            },
-                            {
-                                index: 'markdown',
-                                title: 'markdown编辑器'
+                                index: '3-2',
+                                title: '编辑器',
+                                subs: [
+                                    {
+                                        index: 'editor',
+                                        title: '富文本编辑器'
+                                    },
+                                    {
+                                        index: 'markdown',
+                                        title: 'markdown编辑器'
+                                    },
+                                ]
                             },
                             {
                                 index: 'upload',
