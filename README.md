@@ -1,4 +1,4 @@
-# manage-system #
+# vue-manage-system #
 基于Vue.js 2.x系列 + Element UI 的后台管理系统解决方案。[线上地址](http://blog.gdfengshuo.com/example/work/)
 
 [English document](https://github.com/lin-xin/manage-system/blob/master/README_EN.md)
@@ -31,6 +31,7 @@
 - [x] 权限测试
 - [x] 404 / 403
 - [x] 三级菜单
+- [x] 自定义图标
 
 
 ## 目录结构介绍 ##
@@ -53,6 +54,7 @@
 	|           |-- BaseTable.vue        // 基础表格
 	|           |-- DashBoard.vue        // 系统首页
 	|           |-- DragList.vue         // 拖拽列表组件
+	|           |-- Icon.vue			 // 自定义图标组件
 	|           |-- Login.vue          	 // 登录
 	|           |-- Markdown.vue         // markdown组件
 	|           |-- Premission.vue       // 权限测试组件

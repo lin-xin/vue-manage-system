@@ -1,4 +1,4 @@
-# manage-system #
+# vue-manage-system #
 The web management system solution based on Vue2 and Element-UI。[live demo](http://blog.gdfengshuo.com/example/work/)
 
 ## Donation
@@ -22,6 +22,8 @@ The scheme as a set of multi-function background frame templates, suitable for m
 - [x] List drag sort
 - [x] Permission
 - [x] 404 / 403
+- [x] Three level menu
+- [x] Custom icon
 
 
 ## Directory structure ##
