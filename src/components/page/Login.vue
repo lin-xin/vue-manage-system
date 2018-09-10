@@ -1,18 +1,22 @@
 <template>
     <div class="login-wrap">
-        <div class="ms-title">后台管理系统</div>
         <div class="ms-login">
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
+            <div class="ms-title">后台管理系统</div>
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="ms-content">
                 <el-form-item prop="username">
-                    <el-input v-model="ruleForm.username" placeholder="username"></el-input>
+                    <el-input v-model="ruleForm.username" placeholder="username">
+                        <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
+                    </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                    <el-input type="password" placeholder="password" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
+                    <el-input type="password" placeholder="password" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')">
+                        <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
+                    </el-input>
                 </el-form-item>
                 <div class="login-btn">
                     <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
                 </div>
-                <p style="font-size:12px;line-height:30px;color:#999;">Tips : 用户名和密码随便填。</p>
+                <p class="login-tips">Tips : 用户名和密码随便填。</p>
             </el-form>
         </div>
     </div>
@@ -57,27 +61,29 @@
         position: relative;
         width:100%;
         height:100%;
+        background-image: url(../../../static/img/login-bg.jpg);
+        background-size: 100%;
     }
     .ms-title{
-        position: absolute;
-        top:50%;
         width:100%;
-        margin-top: -230px;
+        line-height: 50px;
         text-align: center;
-        font-size:30px;
+        font-size:20px;
         color: #fff;
-
+        border-bottom: 1px solid #ddd;
     }
     .ms-login{
         position: absolute;
         left:50%;
         top:50%;
-        width:300px;
-        height:160px;
-        margin:-150px 0 0 -190px;
-        padding:40px;
+        width:350px;
+        margin:-190px 0 0 -175px;
         border-radius: 5px;
-        background: #fff;
+        background: rgba(255,255,255, 0.3);
+        overflow: hidden;
+    }
+    .ms-content{
+        padding: 30px 30px;
     }
     .login-btn{
         text-align: center;
@@ -85,5 +91,11 @@
     .login-btn button{
         width:100%;
         height:36px;
+        margin-bottom: 10px;
+    }
+    .login-tips{
+        font-size:12px;
+        line-height:30px;
+        color:#fff;
     }
 </style>
