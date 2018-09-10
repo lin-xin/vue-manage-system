@@ -34,7 +34,7 @@ a {
 .content {
     width: auto;
     height: 100%;
-    padding: 40px;
+    padding: 10px;
     overflow-y: scroll;
     box-sizing: border-box;
 }
@@ -51,7 +51,7 @@ a {
 }
 
 .crumbs {
-    margin-bottom: 20px;
+    margin: 10px 0;
 }
 
 .pagination {
