@@ -64,7 +64,7 @@
                             },
                             {
                                 index: '3-2',
-                                title: '编辑器',
+                                title: '三级菜单',
                                 subs: [
                                     {
                                         index: 'editor',
@@ -93,14 +93,19 @@
                         title: '拖拽列表'
                     },
                     {
-                        icon: 'el-icon-warning',
-                        index: 'permission',
-                        title: '权限测试'
-                    },
-                    {
                         icon: 'el-icon-error',
-                        index: '404',
-                        title: '404页面'
+                        index: '6',
+                        title: '错误处理',
+                        subs: [
+                            {
+                                index: 'permission',
+                                title: '权限测试'
+                            },
+                            {
+                                index: '404',
+                                title: '404页面'
+                            }
+                        ]
                     }
                 ]
             }

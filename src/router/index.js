@@ -69,24 +69,26 @@ export default new Router({
                     path: '/permission',
                     component: resolve => require(['../components/page/Permission.vue'], resolve),
                     meta: { title: '权限测试', permission: true }
+                },
+                {
+                    path: '/404',
+                    component: resolve => require(['../components/page/404.vue'], resolve),
+                    meta: { title: '404' }
+                },
+                {
+                    path: '/403',
+                    component: resolve => require(['../components/page/403.vue'], resolve),
+                    meta: { title: '403' }
+                },
+                {
+                    path: '*',
+                    redirect: '/404'
                 }
             ]
         },
         {
             path: '/login',
             component: resolve => require(['../components/page/Login.vue'], resolve)
-        },
-        {
-            path: '/404',
-            component: resolve => require(['../components/page/404.vue'], resolve)
-        },
-        {
-            path: '/403',
-            component: resolve => require(['../components/page/403.vue'], resolve)
-        },
-        {
-            path: '*',
-            redirect: '/404'
         }
     ]
 })
