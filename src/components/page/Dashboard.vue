@@ -18,13 +18,13 @@
                         <span>语言详情</span>
                     </div>
                     Vue
-                    <el-progress :percentage="57.2" color="#42b983"></el-progress>
+                    <el-progress :percentage="71.3" color="#42b983"></el-progress>
                     JavaScript
-                    <el-progress :percentage="29.8" color="#f1e05a"></el-progress>
+                    <el-progress :percentage="24.1" color="#f1e05a"></el-progress>
                     CSS
-                    <el-progress :percentage="11.9"></el-progress>
+                    <el-progress :percentage="3.7"></el-progress>
                     HTML
-                    <el-progress :percentage="1.1" color="#f56c6c"></el-progress>
+                    <el-progress :percentage="0.9" color="#f56c6c"></el-progress>
                 </el-card>
             </el-col>
             <el-col :span="16">
@@ -92,12 +92,12 @@
         <el-row :gutter="20">
             <el-col :span="12">
                 <el-card shadow="hover">
-                    <schart ref="bar" class="schart" canvasId="bar" :data="data1" type="bar" :options="options"></schart>
+                    <schart ref="bar" class="schart" canvasId="bar" :data="data" type="bar" :options="options"></schart>
                 </el-card>
             </el-col>
             <el-col :span="12">
                 <el-card shadow="hover">
-                    <schart ref="line" class="schart" canvasId="line" :data="data1" type="line" :options="options2"></schart>
+                    <schart ref="line" class="schart" canvasId="line" :data="data" type="line" :options="options2"></schart>
                 </el-card>
             </el-col>
         </el-row>
@@ -136,7 +136,7 @@
                         status: true,
                     }
                 ],
-                data1: [{
+                data: [{
                         name: '2018/09/04',
                         value: 1083
                     },
@@ -201,6 +201,7 @@
                 this.$refs.bar.renderChart();
                 this.$refs.line.renderChart();
             })
+            this.changeDate();
         },
         watch: {
             collapse(){
@@ -208,6 +209,15 @@
                     this.$refs.bar.renderChart();
                     this.$refs.line.renderChart();
                 }, 300);
+            }
+        },
+        methods: {
+            changeDate(){
+                const now = new Date().getTime();
+                this.data.forEach((item, index) => {
+                    const date = new Date(now - (6 - index) * 86400000);
+                    item.name = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`
+                })
             }
         }
     }
