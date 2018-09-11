@@ -39,22 +39,22 @@
                 collapse: false,
                 items: [
                     {
-                        icon: 'el-icon-setting',
+                        icon: 'el-icon-lx-home',
                         index: 'dashboard',
                         title: '系统首页'
                     },
                     {
-                        icon: 'el-icon-tickets',
+                        icon: 'el-icon-lx-cascades',
                         index: 'table',
                         title: '基础表格'
                     },
                     {
-                        icon: 'el-icon-message',
+                        icon: 'el-icon-lx-copy',
                         index: 'tabs',
                         title: 'tab选项卡'
                     },
                     {
-                        icon: 'el-icon-date',
+                        icon: 'el-icon-lx-calendar',
                         index: '3',
                         title: '表单相关',
                         subs: [
@@ -64,7 +64,7 @@
                             },
                             {
                                 index: '3-2',
-                                title: '编辑器',
+                                title: '三级菜单',
                                 subs: [
                                     {
                                         index: 'editor',
@@ -83,7 +83,12 @@
                         ]
                     },
                     {
-                        icon: 'el-icon-star-on',
+                        icon: 'el-icon-lx-emoji',
+                        index: 'icon',
+                        title: '自定义图标'
+                    },
+                    {
+                        icon: 'el-icon-lx-favor',
                         index: 'charts',
                         title: 'schart图表'
                     },
@@ -93,14 +98,19 @@
                         title: '拖拽列表'
                     },
                     {
-                        icon: 'el-icon-warning',
-                        index: 'permission',
-                        title: '权限测试'
-                    },
-                    {
-                        icon: 'el-icon-error',
-                        index: '404',
-                        title: '404页面'
+                        icon: 'el-icon-lx-warn',
+                        index: '6',
+                        title: '错误处理',
+                        subs: [
+                            {
+                                index: 'permission',
+                                title: '权限测试'
+                            },
+                            {
+                                index: '404',
+                                title: '404页面'
+                            }
+                        ]
                     }
                 ]
             }

@@ -19,6 +19,9 @@ body {
 a {
     text-decoration: none
 }
+[class*=" el-icon-lx"], [class^=el-icon-lx] {
+    font-family: lx-iconfont!important;
+}
 
 .content-box {
     position: absolute;
@@ -26,6 +29,7 @@ a {
     right: 0;
     top: 70px;
     bottom: 0;
+    padding-bottom: 30px;
     -webkit-transition: left .3s ease-in-out;
     transition: left .3s ease-in-out;
     background: #f0f0f0;
@@ -34,7 +38,7 @@ a {
 .content {
     width: auto;
     height: 100%;
-    padding: 40px;
+    padding: 10px;
     overflow-y: scroll;
     box-sizing: border-box;
 }
@@ -51,7 +55,7 @@ a {
 }
 
 .crumbs {
-    margin-bottom: 20px;
+    margin: 10px 0;
 }
 
 .pagination {
