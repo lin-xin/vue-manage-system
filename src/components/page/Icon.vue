@@ -180,9 +180,6 @@
                     return item.indexOf(this.keyword) !== -1;
                 })
             }
-        },
-        created(){
-            console.log(this.iconList.length);
         }
     }
 </script>
