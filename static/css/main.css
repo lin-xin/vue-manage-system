@@ -20,13 +20,14 @@ a {
     text-decoration: none
 }
 
+
 .content-box {
     position: absolute;
     left: 250px;
     right: 0;
     top: 70px;
     bottom: 0;
-    overflow-y: scroll;
+    padding-bottom: 30px;
     -webkit-transition: left .3s ease-in-out;
     transition: left .3s ease-in-out;
     background: #f0f0f0;
@@ -34,7 +35,10 @@ a {
 
 .content {
     width: auto;
-    padding: 40px;
+    height: 100%;
+    padding: 10px;
+    overflow-y: scroll;
+    box-sizing: border-box;
 }
 
 .content-collapse {
@@ -49,7 +53,7 @@ a {
 }
 
 .crumbs {
-    margin-bottom: 20px;
+    margin: 10px 0;
 }
 
 .pagination {

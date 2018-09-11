@@ -20,6 +20,11 @@ export default new Router({
                     meta: { title: '系统首页' }
                 },
                 {
+                    path: '/icon',
+                    component: resolve => require(['../components/page/Icon.vue'], resolve),
+                    meta: { title: '自定义图标' }
+                },
+                {
                     path: '/table',
                     component: resolve => require(['../components/page/BaseTable.vue'], resolve),
                     meta: { title: '基础表格' }
@@ -69,20 +74,22 @@ export default new Router({
                     path: '/permission',
                     component: resolve => require(['../components/page/Permission.vue'], resolve),
                     meta: { title: '权限测试', permission: true }
+                },
+                {
+                    path: '/404',
+                    component: resolve => require(['../components/page/404.vue'], resolve),
+                    meta: { title: '404' }
+                },
+                {
+                    path: '/403',
+                    component: resolve => require(['../components/page/403.vue'], resolve),
+                    meta: { title: '403' }
                 }
             ]
         },
         {
             path: '/login',
             component: resolve => require(['../components/page/Login.vue'], resolve)
-        },
-        {
-            path: '/404',
-            component: resolve => require(['../components/page/404.vue'], resolve)
-        },
-        {
-            path: '/403',
-            component: resolve => require(['../components/page/403.vue'], resolve)
         },
         {
             path: '*',
