@@ -7,20 +7,20 @@
         </div>
         <div class="container">
             <h2>使用方法</h2>
-            <p>
-                直接通过设置类名为 el-icon-lx-iconName 来使用即可。例如：
+            <p style="line-height: 50px;">
+                直接通过设置类名为 el-icon-lx-iconName 来使用即可。例如：（共{{iconList.length}}个图标）
             </p>
             <p class="example-p">
-                <i class="el-icon-lx-delete" style="font-size: 30px;"></i>
-                <span>&lt;i class=&quot;el-icon-lx-delete&quot;&gt;&lt;/i&gt;</span>
+                <i class="el-icon-lx-redpacket_fill" style="font-size: 30px;color: #ff5900"></i>
+                <span>&lt;i class=&quot;el-icon-lx-redpacket_fill&quot;&gt;&lt;/i&gt;</span>
             </p>
             <p class="example-p">
-                <i class="el-icon-lx-weibo" style="font-size: 30px;color: red"></i>
+                <i class="el-icon-lx-weibo" style="font-size: 30px;color:#fd5656"></i>
                 <span>&lt;i class=&quot;el-icon-lx-weibo&quot;&gt;&lt;/i&gt;</span>
             </p>
             <p class="example-p">
-                <i class="el-icon-lx-favorfill" style="font-size: 30px;color: #ffc300"></i>
-                <span>&lt;i class=&quot;el-icon-lx-favorfill&quot;&gt;&lt;/i&gt;</span>
+                <i class="el-icon-lx-emojifill" style="font-size: 30px;color: #ffc300"></i>
+                <span>&lt;i class=&quot;el-icon-lx-emojifill&quot;&gt;&lt;/i&gt;</span>
             </p>
             <br>
             <h2>图标</h2>
@@ -83,35 +83,94 @@
                     'locationfill',
                     'favor',
                     'favorfill',
+                    'skin',
+                    'skinfill',
+                    'news',
+                    'newsfill',
+                    'record',
+                    'recordfill',
+                    'emoji',
+                    'emojifill',
+                    'message',
+                    'messagefill',
+                    'goods',
+                    'goodsfill',
+                    'crown',
+                    'crownfill',
+                    'move',
+                    'add',
+                    'hot',
+                    'hotfill',
+                    'service',
+                    'servicefill',
+                    'present',
+                    'presentfill',
+                    'pic',
+                    'picfill',
+                    'rank',
+                    'rankfill',
+                    'male',
+                    'female',
+                    'down',
+                    'top',
+                    'recharge',
+                    'rechargefill',
+                    'forward',
+                    'forwardfill',
+                    'info',
+                    'infofill',
+                    'redpacket',
+                    'redpacket_fill',
+                    'roundadd',
+                    'roundaddfill',
+                    'friendadd',
+                    'friendaddfill',
+                    'cart',
+                    'cartfill',
+                    'more',
+                    'moreandroid',
+                    'back',
+                    'right',
+                    'shop',
+                    'shopfill',
+                    'question',
+                    'questionfill',
+                    'roundclose',
+                    'roundclosefill',
+                    'roundcheck',
+                    'roundcheckfill',
+                    'global',
+                    'mail',
+                    'punch',
+                    'exit',
+                    'upload',
+                    'read',
+                    'file',
+                    'link',
                     'full',
-                    'text',
                     'group',
                     'friend',
                     'profile',
                     'addressbook',
                     'calendar',
-                    'apps',
+                    'text',
                     'copy',
                     'share',
                     'wifi',
                     'vipcard',
-                    'goods',
                     'weibo',
-                    'message',
                     'remind',
-                    'qrcode',
-                    'cart',
                     'refresh',
-                    'top',
                     'filter',
-                    'pic',
                     'settings',
                     'scan',
+                    'qrcode',
                     'cascades',
+                    'apps',
+                    'sort',
+                    'searchlist',
                     'search',
-                    'emoji',
                     'edit'
-
                 ]
             }
         },
@@ -121,6 +180,9 @@
                     return item.indexOf(this.keyword) !== -1;
                 })
             }
+        },
+        created(){
+            console.log(this.iconList.length);
         }
     }
 </script>
