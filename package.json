@@ -1,6 +1,6 @@
 {
   "name": "vue-manage-system",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "description": "基于Vue.js 2.x系列 + element-ui 内容管理系统解决方案",
   "author": "lin-xin <2981207131@qq.com>",
   "private": true,
