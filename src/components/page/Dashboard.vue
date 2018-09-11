@@ -2,7 +2,7 @@
     <div>
         <el-row :gutter="20">
             <el-col :span="8">
-                <el-card shadow="hover" class="mgb20">
+                <el-card shadow="hover" class="mgb20" style="height:252px;">
                     <div class="user-info">
                         <img src="static/img/img.jpg" class="user-avator" alt="">
                         <div class="user-info-cont">
@@ -13,7 +13,7 @@
                     <div class="user-info-list">上次登录时间：<span>2018-01-01</span></div>
                     <div class="user-info-list">上次登录地点：<span>东莞</span></div>
                 </el-card>
-                <el-card shadow="hover">
+                <el-card shadow="hover" style="height:252px;">
                     <div slot="header" class="clearfix">
                         <span>语言详情</span>
                     </div>
@@ -63,7 +63,7 @@
                         </el-card>
                     </el-col>
                 </el-row>
-                <el-card shadow="hover" :body-style="{ height: '304px'}">
+                <el-card shadow="hover" style="height:403px;">
                     <div slot="header" class="clearfix">
                         <span>待办事项</span>
                         <el-button style="float: right; padding: 3px 0" type="text">添加</el-button>
