@@ -94,12 +94,22 @@
                     },
                     {
                         icon: 'el-icon-rank',
-                        index: 'drag',
-                        title: '拖拽列表'
+                        index: '6',
+                        title: '拖拽组件',
+                        subs: [
+                            {
+                                index: 'drag',
+                                title: '拖拽列表',
+                            },
+                            {
+                                index: 'dialog',
+                                title: '拖拽弹框',
+                            }
+                        ]
                     },
                     {
                         icon: 'el-icon-lx-warn',
-                        index: '6',
+                        index: '7',
                         title: '错误处理',
                         subs: [
                             {
