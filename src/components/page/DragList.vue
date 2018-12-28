@@ -16,7 +16,7 @@
                     <div class="item-title">todo</div>
                     <draggable v-model="todo" @remove="removeHandle" :options="dragOptions">
                         <transition-group tag="div" id="todo" class="item-ul">
-                            <div v-for="(item,index) in todo" class="drag-list" :key="index">
+                            <div v-for="item in todo" class="drag-list" :key="item.id">
                                 {{item.content}}
                             </div>
                         </transition-group>
@@ -26,7 +26,7 @@
                     <div class="item-title">doing</div>
                     <draggable v-model="doing" @remove="removeHandle" :options="dragOptions">
                         <transition-group tag="div" id="doing" class="item-ul">
-                            <div v-for="(item,index) in doing" class="drag-list" :key="index">
+                            <div v-for="item in doing" class="drag-list" :key="item.id">
                                 {{item.content}}
                             </div>
                         </transition-group>
@@ -36,7 +36,7 @@
                     <div class="item-title">done</div>
                     <draggable v-model="done" @remove="removeHandle" :options="dragOptions">
                         <transition-group tag="div" id="done" class="item-ul">
-                            <div v-for="(item,index) in done" class="drag-list" :key="index">
+                            <div v-for="item in done" class="drag-list" :key="item.id">
                                 {{item.content}}
                             </div>
                         </transition-group>
@@ -61,34 +61,43 @@
                 },
                 todo: [
                     {
+                        id: 1,
                         content: '开发图表组件'
                     },
                     {
+                        id: 2,
                         content: '开发拖拽组件'
                     },
                     {
+                        id: 3,
                         content: '开发权限测试组件'
                     }
                 ],
                 doing: [
                     {
+                        id: 1,
                         content: '开发登录注册页面'
                     },
                     {
+                        id: 2,
                         content: '开发头部组件'
                     },
                     {
+                        id: 3,
                         content: '开发表格相关组件'
                     },
                     {
+                        id: 4,
                         content: '开发表单相关组件'
                     }
                 ],
                 done:[
                     {
+                        id: 1,
                         content: '初始化项目，生成工程目录，完成相关配置'
                     },
                     {
+                        id: 2,
                         content: '开发项目整体框架'
                     }
                 ]
