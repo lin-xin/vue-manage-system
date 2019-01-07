@@ -72,7 +72,7 @@
         name: 'basetable',
         data() {
             return {
-                url: './static/vuetable.json',
+                url: './vuetable.json',
                 tableData: [],
                 cur_page: 1,
                 multipleSelection: [],
@@ -208,5 +208,8 @@
     }
     .red{
         color: #ff0000;
+    }
+    .mr10{
+        margin-right: 10px;
     }
 </style>
