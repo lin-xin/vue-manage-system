@@ -26,41 +26,6 @@ The scheme as a set of multi-function background frame templates, suitable for m
 - [x] Custom icon
 
 
-## Directory structure ##
-
-	|-- build                            // Webpack configuration file
-	|-- config                           // Project package path
-	|-- src                              // Source directory
-	|   |-- components                   // Components
-	|       |-- common                   // Common component
-	|           |-- bus.js           	 // Event Bus
-	|           |-- Header.vue           // Header component
-	|           |-- Home.vue           	 // Home component
-	|           |-- Sidebar.vue          // Sidebar component
-	|           |-- Tags.vue
-	|       |-- page                   	 // Router page
-	|           |-- 403.vue
-	|           |-- 404.vue
-	|           |-- BaseCharts.vue       // BaseCharts
-	|           |-- BaseForm.vue         // BaseForm
-	|           |-- BaseTable.vue        // BaseTable
-	|           |-- Login.vue          	 // Login
-	|           |-- Dashboard.vue
-	|           |-- DragList.vue
-	|           |-- Markdown.vue         // Markdown
-	|           |-- Premission.vue
-	|           |-- Upload.vue           // Upload
-	|           |-- VueEditor.vue        // VueEditor
-	|   |-- App.vue                      // Main component
-	|   |-- main.js                      // Entry file
-	|-- .babelrc                         // ES6 syntax compiler configuration
-	|-- .editorconfig                    // Code specification
-	|-- .gitignore                       // Ignored file
-	|-- index.html                       // Entry HTML file
-	|-- package.json                     // Dependent configuration file
-	|-- README.md                        // Readme
-
-
 ## Installation steps ##
 
 	git clone https://github.com/lin-xin/vue-manage-system.git		// Clone templates
@@ -70,7 +35,7 @@ The scheme as a set of multi-function background frame templates, suitable for m
 ## Local development ##
 
 	// Open server and access http://localhost:8080 in browser
-	npm run dev
+	npm run serve
 
 ## Constructing production ##
 
