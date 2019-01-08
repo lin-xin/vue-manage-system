@@ -2,6 +2,7 @@
 node_modules
 /dist
 example.html
+favicon.ico
 # local env files
 .env.local
 .env.*.local
