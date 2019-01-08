@@ -102,6 +102,7 @@
                             this.$router.push('/');
                         }
                         this.tagsList.splice(i, 1);
+                        break;
                     }
                 }
             })
