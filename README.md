@@ -6,7 +6,7 @@
 [更新日志](https://github.com/lin-xin/vue-manage-system/releases)
 
 ## 赞赏
-请作者喝杯咖啡吧！
+请作者喝杯咖啡吧！(微信号：linxin_20)
 
 ![微信扫一扫](http://blog.gdfengshuo.com/images/weixin.jpg)
 
