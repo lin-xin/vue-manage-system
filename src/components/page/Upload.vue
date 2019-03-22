@@ -50,7 +50,7 @@
         name: 'upload',
         data: function(){
             return {
-                defaultSrc: './static/img/img.jpg',
+                defaultSrc: require('../../assets/img/img.jpg'),
                 fileList: [],
                 imgSrc: '',
                 cropImg: '',

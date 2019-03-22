@@ -70,6 +70,12 @@ export default new Router({
                     meta: { title: '拖拽列表' }
                 },
                 {
+                    // 拖拽Dialog组件
+                    path: '/dialog',
+                    component: resolve => require(['../components/page/DragDialog.vue'], resolve),
+                    meta: { title: '拖拽弹框' }
+                },
+                {
                     // 权限页面
                     path: '/permission',
                     component: resolve => require(['../components/page/Permission.vue'], resolve),
