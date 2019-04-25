@@ -76,6 +76,12 @@ export default new Router({
                     meta: { title: '拖拽弹框' }
                 },
                 {
+                    // 国际化组件
+                    path: '/i18n',
+                    component: resolve => require(['../components/page/I18n.vue'], resolve),
+                    meta: { title: '国际化' }
+                },
+                {
                     // 权限页面
                     path: '/permission',
                     component: resolve => require(['../components/page/Permission.vue'], resolve),
