@@ -2,7 +2,7 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-lx-favor"></i> schart图表</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-pie-chart"></i> schart图表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
