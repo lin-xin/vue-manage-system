@@ -1,5 +1,22 @@
 # vue-manage-system #
+<a href="https://github.com/vuejs/vue">
+    <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
+  </a>
+  <a href="https://github.com/ElemeFE/element">
+    <img src="https://img.shields.io/badge/element--ui-2.8.2-brightgreen.svg" alt="element-ui">
+  </a>
+  <a href="https://github.com/lin-xin/vue-manage-system/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
+  </a>
+  <a href="https://github.com/lin-xin/vue-manage-system/releases">
+    <img src="https://img.shields.io/github/release/lin-xin/vue-manage-system.svg" alt="GitHub release">
+  </a>
+  <a href="http://blog.gdfengshuo.com/example/work/#/donate">
+    <img src="https://img.shields.io/badge/%24-donate-ff69b4.svg" alt="donate">
+  </a>
+
 基于Vue.js + Element UI 的后台管理系统解决方案。[线上地址](http://blog.gdfengshuo.com/example/work/)
+
 (本项目基于vue-cli3构建，如果是vue-cli2的请下载[旧版本V3.2.0](https://github.com/lin-xin/vue-manage-system/releases/tag/V3.2.0))
 
 [English document](https://github.com/lin-xin/manage-system/blob/master/README_EN.md)
@@ -43,6 +60,7 @@
 - [x] 三级菜单
 - [x] 自定义图标
 - [x] 可拖拽弹窗
+- [x] 国际化
 
 ## 安装步骤 ##
 ```
@@ -155,3 +173,7 @@ import 'element-ui/lib/theme-default/index.css';    // 默认主题
 ```
 
 第三步：打开 src/components/common/Sidebar.vue 文件，找到 el-menu 标签，把 background-color/text-color/active-text-color 属性去掉即可。
+
+## License
+
+[MIT](https://github.com/lin-xin/vue-manage-system/blob/master/LICENSE)

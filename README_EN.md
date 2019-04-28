@@ -158,3 +158,7 @@ Finally,enter 'src/components/common/Sidebar.vue' and find el-menu Tags,delete '
 ### Green theme ###
 
 ![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms2.png)
+
+## License
+
+[MIT](https://github.com/lin-xin/vue-manage-system/blob/master/LICENSE)

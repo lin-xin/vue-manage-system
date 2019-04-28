@@ -88,7 +88,7 @@
                         title: '自定义图标'
                     },
                     {
-                        icon: 'el-icon-lx-favor',
+                        icon: 'el-icon-pie-chart',
                         index: 'charts',
                         title: 'schart图表'
                     },
