@@ -87,7 +87,8 @@
                     date: '',
                     address: ''
                 },
-                idx: -1
+                idx: -1,
+                id: -1
             }
         },
         created() {
@@ -143,16 +144,18 @@
             },
             handleEdit(index, row) {
                 this.idx = index;
-                const item = this.tableData[index];
+                this.id = row.id;
                 this.form = {
-                    name: item.name,
-                    date: item.date,
-                    address: item.address
+                    id: row.id,
+                    name: row.name,
+                    date: row.date,
+                    address: row.address
                 }
                 this.editVisible = true;
             },
             handleDelete(index, row) {
                 this.idx = index;
+                this.id = row.id;
                 this.delVisible = true;
             },
             delAll() {
@@ -170,15 +173,33 @@
             },
             // 保存编辑
             saveEdit() {
-                this.$set(this.tableData, this.idx, this.form);
                 this.editVisible = false;
                 this.$message.success(`修改第 ${this.idx+1} 行成功`);
+                if(this.tableData[this.idx].id === this.id){
+                    this.$set(this.tableData, this.idx, this.form);
+                }else{
+                    for(let i = 0; i < this.tableData.length; i++){
+                        if(this.tableData[i].id === this.id){
+                            this.$set(this.tableData, i, this.form);
+                            return ;
+                        }
+                    }
+                }
             },
             // 确定删除
             deleteRow(){
-                this.tableData.splice(this.idx, 1);
                 this.$message.success('删除成功');
                 this.delVisible = false;
+                if(this.tableData[this.idx].id === this.id){
+                    this.tableData.splice(this.idx, 1);
+                }else{
+                    for(let i = 0; i < this.tableData.length; i++){
+                        if(this.tableData[i].id === this.id){
+                            this.tableData.splice(i, 1);
+                            return ;
+                        }
+                    }
+                }
             }
         }
     }
