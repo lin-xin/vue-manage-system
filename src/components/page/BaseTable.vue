@@ -7,13 +7,13 @@
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
+                <el-button type="primary" icon="el-icon-delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
                 <el-select v-model="select_cate" placeholder="筛选省份" class="handle-select mr10">
                     <el-option key="1" label="广东省" value="广东省"></el-option>
                     <el-option key="2" label="湖南省" value="湖南省"></el-option>
                 </el-select>
                 <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
-                <el-button type="primary" icon="search" @click="search">搜索</el-button>
+                <el-button type="primary" icon="el-icon-search" @click="search">搜索</el-button>
             </div>
             <el-table :data="data" border class="table" ref="multipleTable" @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
@@ -68,11 +68,11 @@
 </template>
 
 <script>
+    import { fetchData } from '../../api/index';
     export default {
         name: 'basetable',
         data() {
             return {
-                url: './vuetable.json',
                 tableData: [],
                 cur_page: 1,
                 multipleSelection: [],
@@ -123,14 +123,10 @@
             },
             // 获取 easy-mock 的模拟数据
             getData() {
-                // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
-                if (process.env.NODE_ENV === 'development') {
-                    this.url = '/ms/table/list';
-                };
-                this.$axios.post(this.url, {
+                fetchData({
                     page: this.cur_page
                 }).then((res) => {
-                    this.tableData = res.data.list;
+                    this.tableData = res.list;
                 })
             },
             search() {
