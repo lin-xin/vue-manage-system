@@ -11,106 +11,106 @@ export default new Router({
         },
         {
             path: '/',
-            component: resolve => require(['../components/common/Home.vue'], resolve),
+            component: () => import(/* webpackChunkName: "home" */ '../components/common/Home.vue'),
             meta: { title: '自述文件' },
-            children:[
+            children: [
                 {
                     path: '/dashboard',
-                    component: resolve => require(['../components/page/Dashboard.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "dashboard" */ '../components/page/Dashboard.vue'),
                     meta: { title: '系统首页' }
                 },
                 {
                     path: '/icon',
-                    component: resolve => require(['../components/page/Icon.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "icon" */ '../components/page/Icon.vue'),
                     meta: { title: '自定义图标' }
                 },
                 {
                     path: '/table',
-                    component: resolve => require(['../components/page/BaseTable.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseTable.vue'),
                     meta: { title: '基础表格' }
                 },
                 {
                     path: '/tabs',
-                    component: resolve => require(['../components/page/Tabs.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'),
                     meta: { title: 'tab选项卡' }
                 },
                 {
                     path: '/form',
-                    component: resolve => require(['../components/page/BaseForm.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "form" */ '../components/page/BaseForm.vue'),
                     meta: { title: '基本表单' }
                 },
                 {
                     // 富文本编辑器组件
                     path: '/editor',
-                    component: resolve => require(['../components/page/VueEditor.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "editor" */ '../components/page/VueEditor.vue'),
                     meta: { title: '富文本编辑器' }
                 },
                 {
                     // markdown组件
                     path: '/markdown',
-                    component: resolve => require(['../components/page/Markdown.vue'], resolve),
-                    meta: { title: 'markdown编辑器' }    
+                    component: () => import(/* webpackChunkName: "markdown" */ '../components/page/Markdown.vue'),
+                    meta: { title: 'markdown编辑器' }
                 },
                 {
                     // 图片上传组件
                     path: '/upload',
-                    component: resolve => require(['../components/page/Upload.vue'], resolve),
-                    meta: { title: '文件上传' }   
+                    component: () => import(/* webpackChunkName: "upload" */ '../components/page/Upload.vue'),
+                    meta: { title: '文件上传' }
                 },
                 {
                     // vue-schart组件
                     path: '/charts',
-                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "chart" */ '../components/page/BaseCharts.vue'),
                     meta: { title: 'schart图表' }
                 },
                 {
                     // 拖拽列表组件
                     path: '/drag',
-                    component: resolve => require(['../components/page/DragList.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "drag" */ '../components/page/DragList.vue'),
                     meta: { title: '拖拽列表' }
                 },
                 {
                     // 拖拽Dialog组件
                     path: '/dialog',
-                    component: resolve => require(['../components/page/DragDialog.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "dragdialog" */ '../components/page/DragDialog.vue'),
                     meta: { title: '拖拽弹框' }
                 },
                 {
                     // 国际化组件
                     path: '/i18n',
-                    component: resolve => require(['../components/page/I18n.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "i18n" */ '../components/page/I18n.vue'),
                     meta: { title: '国际化' }
                 },
                 {
                     // 权限页面
                     path: '/permission',
-                    component: resolve => require(['../components/page/Permission.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "permission" */ '../components/page/Permission.vue'),
                     meta: { title: '权限测试', permission: true }
                 },
                 {
                     path: '/404',
-                    component: resolve => require(['../components/page/404.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "404" */ '../components/page/404.vue'),
                     meta: { title: '404' }
                 },
                 {
                     path: '/403',
-                    component: resolve => require(['../components/page/403.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "403" */ '../components/page/403.vue'),
                     meta: { title: '403' }
                 },
                 {
                     path: '/donate',
-                    component: resolve => require(['../components/page/Donate.vue'], resolve),
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/Donate.vue'),
                     meta: { title: '支持作者' }
                 }
             ]
         },
         {
             path: '/login',
-            component: resolve => require(['../components/page/Login.vue'], resolve)
+            component: () => import(/* webpackChunkName: "login" */ '../components/page/Login.vue')
         },
         {
             path: '*',
             redirect: '/404'
         }
     ]
-})
+});
