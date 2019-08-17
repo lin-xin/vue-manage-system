@@ -56,6 +56,10 @@ a {
     margin: 10px 0;
 }
 
+.el-table th {
+    background-color: #f5f7fa !important;
+}
+
 .pagination {
     margin: 20px 0;
     text-align: right;
