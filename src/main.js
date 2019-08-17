@@ -15,10 +15,6 @@ Vue.use(VueI18n);
 Vue.use(ElementUI, {
     size: 'small'
 });
-Vue.use(wysiwyg, {
-    maxHeight: '600px'
-});
-
 const i18n = new VueI18n({
     locale: 'zh',
     messages
