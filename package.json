@@ -1,6 +1,6 @@
 {
   "name": "vue-manage-system",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "private": true,
   "scripts": {
     "dev": "npm run serve",
@@ -16,13 +16,13 @@
     "vue-cropperjs": "^3.0.0",
     "vue-i18n": "^8.10.0",
     "vue-quill-editor": "^3.0.6",
-    "vue-router": "^3.0.1",
+    "vue-router": "^3.0.3",
     "vue-schart": "^1.0.0",
     "vuedraggable": "^2.17.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.2.0",
-    "@vue/cli-service": "^3.2.0",
-    "vue-template-compiler": "^2.5.21"
+    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-service": "^3.9.0",
+    "vue-template-compiler": "^2.6.10"
   }
 }
