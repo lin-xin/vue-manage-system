@@ -27,12 +27,34 @@
                 border
                 class="table"
                 ref="multipleTable"
+                header-cell-class-name="table-header"
                 @selection-change="handleSelectionChange"
             >
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="date" label="日期" sortable width="150"></el-table-column>
-                <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-                <el-table-column prop="address" label="地址" :formatter="formatter"></el-table-column>
+                <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
+                <el-table-column prop="name" label="用户名"></el-table-column>
+                <el-table-column label="账户余额">
+                    <template slot-scope="scope">￥{{scope.row.money}}</template>
+                </el-table-column>
+                <el-table-column label="头像(查看大图)" align="center">
+                    <template slot-scope="scope">
+                        <el-image
+                            class="table-td-thumb"
+                            :src="scope.row.thumb"
+                            :preview-src-list="[scope.row.thumb]"
+                        ></el-image>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="address" label="地址"></el-table-column>
+                <el-table-column label="状态" align="center">
+                    <template slot-scope="scope">
+                        <el-tag
+                            :type="scope.row.state==='成功'?'success':(scope.row.state==='失败'?'danger':'')"
+                        >{{scope.row.state}}</el-tag>
+                    </template>
+                </el-table-column>
+
+                <el-table-column prop="date" label="注册时间"></el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
                         <el-button
@@ -52,26 +74,19 @@
             <div class="pagination">
                 <el-pagination
                     background
+                    layout="total, prev, pager, next"
+                    :current-page="page.index"
+                    :page-size="page.size"
+                    :total="page.total"
                     @current-change="handleCurrentChange"
-                    layout="prev, pager, next"
-                    :total="1000"
                 ></el-pagination>
             </div>
         </div>
 
         <!-- 编辑弹出框 -->
         <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
-            <el-form ref="form" :model="form" label-width="50px">
-                <el-form-item label="日期">
-                    <el-date-picker
-                        type="date"
-                        placeholder="选择日期"
-                        v-model="form.date"
-                        value-format="yyyy-MM-dd"
-                        style="width: 100%;"
-                    ></el-date-picker>
-                </el-form-item>
-                <el-form-item label="姓名">
+            <el-form ref="form" :model="form" label-width="70px">
+                <el-form-item label="用户名">
                     <el-input v-model="form.name"></el-input>
                 </el-form-item>
                 <el-form-item label="地址">
@@ -81,15 +96,6 @@
             <span slot="footer" class="dialog-footer">
                 <el-button @click="editVisible = false">取 消</el-button>
                 <el-button type="primary" @click="saveEdit">确 定</el-button>
-            </span>
-        </el-dialog>
-
-        <!-- 删除提示框 -->
-        <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-            <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="delVisible = false">取 消</el-button>
-                <el-button type="primary" @click="deleteRow">确 定</el-button>
             </span>
         </el-dialog>
     </div>
@@ -107,13 +113,12 @@ export default {
             select_cate: '',
             select_word: '',
             del_list: [],
-            is_search: false,
             editVisible: false,
-            delVisible: false,
-            form: {
-                name: '',
-                date: '',
-                address: ''
+            form: {},
+            page: {
+                index: 1,
+                size: 10,
+                total: 50
             },
             idx: -1,
             id: -1
@@ -157,30 +162,32 @@ export default {
                 this.tableData = res.list;
             });
         },
-        search() {
-            this.is_search = true;
-        },
-        formatter(row, column) {
-            return row.address;
-        },
-        filterTag(value, row) {
-            return row.tag === value;
-        },
+        search() {},
         handleEdit(index, row) {
             this.idx = index;
             this.id = row.id;
-            this.form = {
-                id: row.id,
-                name: row.name,
-                date: row.date,
-                address: row.address
-            };
+            this.form = row;
             this.editVisible = true;
         },
         handleDelete(index, row) {
-            this.idx = index;
-            this.id = row.id;
-            this.delVisible = true;
+            // 二次确认删除
+            this.$confirm('确定要删除吗？', '提示', {
+                type: 'warning'
+            })
+                .then(() => {
+                    this.$message.success('删除成功');
+                    if (this.tableData[index].id === row.id) {
+                        this.tableData.splice(index, 1);
+                    } else {
+                        for (let i = 0; i < this.tableData.length; i++) {
+                            if (this.tableData[i].id === row.id) {
+                                this.tableData.splice(i, 1);
+                                return;
+                            }
+                        }
+                    }
+                })
+                .catch(() => {});
         },
         delAll() {
             const length = this.multipleSelection.length;
@@ -205,21 +212,6 @@ export default {
                 for (let i = 0; i < this.tableData.length; i++) {
                     if (this.tableData[i].id === this.id) {
                         this.$set(this.tableData, i, this.form);
-                        return;
-                    }
-                }
-            }
-        },
-        // 确定删除
-        deleteRow() {
-            this.$message.success('删除成功');
-            this.delVisible = false;
-            if (this.tableData[this.idx].id === this.id) {
-                this.tableData.splice(this.idx, 1);
-            } else {
-                for (let i = 0; i < this.tableData.length; i++) {
-                    if (this.tableData[i].id === this.id) {
-                        this.tableData.splice(i, 1);
                         return;
                     }
                 }
@@ -255,5 +247,11 @@ export default {
 }
 .mr10 {
     margin-right: 10px;
+}
+.table-td-thumb {
+    display: block;
+    margin: auto;
+    width: 40px;
+    height: 40px;
 }
 </style>
