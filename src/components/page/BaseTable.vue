@@ -15,15 +15,15 @@
                     class="handle-del mr10"
                     @click="delAllSelection"
                 >批量删除</el-button>
-                <el-select v-model="selectCate" placeholder="筛选省份" class="handle-select mr10">
+                <el-select v-model="query.address" placeholder="地址" class="handle-select mr10">
                     <el-option key="1" label="广东省" value="广东省"></el-option>
                     <el-option key="2" label="湖南省" value="湖南省"></el-option>
                 </el-select>
-                <el-input v-model="selectWord" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+                <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
             </div>
             <el-table
-                :data="data"
+                :data="tableData"
                 border
                 class="table"
                 ref="multipleTable"
@@ -75,9 +75,9 @@
                 <el-pagination
                     background
                     layout="total, prev, pager, next"
-                    :current-page="page.index"
-                    :page-size="page.size"
-                    :total="page.total"
+                    :current-page="query.pageIndex"
+                    :page-size="query.pageSize"
+                    :total="pageTotal"
                     @current-change="handlePageChange"
                 ></el-pagination>
             </div>
@@ -107,17 +107,17 @@ export default {
     name: 'basetable',
     data() {
         return {
+            query: {
+                address: '',
+                name: '',
+                pageIndex: 1,
+                pageSize: 10
+            },
             tableData: [],
             multipleSelection: [],
             delList: [],
-            selectCate: '',
-            selectWord: '',
             editVisible: false,
-            page: {
-                index: 1,
-                size: 10,
-                total: 50
-            },
+            pageTotal: 0,
             form: {},
             idx: -1,
             id: -1
@@ -126,38 +126,19 @@ export default {
     created() {
         this.getData();
     },
-    computed: {
-        data() {
-            return this.tableData.filter(d => {
-                let is_del = false;
-                for (let i = 0; i < this.delList.length; i++) {
-                    if (d.name === this.delList[i].name) {
-                        is_del = true;
-                        break;
-                    }
-                }
-                if (!is_del) {
-                    if (
-                        d.address.indexOf(this.selectCate) > -1 &&
-                        (d.name.indexOf(this.selectWord) > -1 || d.address.indexOf(this.selectWord) > -1)
-                    ) {
-                        return d;
-                    }
-                }
-            });
-        }
-    },
     methods: {
         // 获取 easy-mock 的模拟数据
         getData() {
-            fetchData({
-                page: this.page.index
-            }).then(res => {
+            fetchData(this.query).then(res => {
                 this.tableData = res.list;
+                this.pageTotal = res.pageTotal || 50;
             });
         },
         // 触发搜索按钮
-        handleSearch() {},
+        handleSearch() {
+            this.$set(this.query, 'pageIndex', 1);
+            this.getData();
+        },
         // 删除操作
         handleDelete(index, row) {
             // 二次确认删除
@@ -187,7 +168,6 @@ export default {
         // 编辑操作
         handleEdit(index, row) {
             this.idx = index;
-            this.id = row.id;
             this.form = row;
             this.editVisible = true;
         },
@@ -199,7 +179,7 @@ export default {
         },
         // 分页导航
         handlePageChange(val) {
-            this.page.index = val;
+            this.$set(this.query, 'pageIndex', val);
             this.getData();
         }
     }
