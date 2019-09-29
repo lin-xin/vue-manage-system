@@ -1,8 +1,8 @@
 # vue-manage-system #
-The web management system solution based on Vue2 and Element-UI。[live demo](http://blog.gdfengshuo.com/example/work/)
+The web management system solution based on Vue2 and Element-UI。[live demo](https://lin-xin.github.io/example/work/)
 
 ## Donation
-![WeChat](http://blog.gdfengshuo.com/images/weixin.jpg)
+![WeChat](https://lin-xin.github.io/images/weixin.jpg)
 
 ## Preface ##
 The scheme as a set of multi-function background frame templates, suitable for most of the WEB management system development. Convenient development fast simple good components based on Vue2 and Element-UI. Color separation of color style, support manual switch themes, and it is convenient to use a custom theme color.
