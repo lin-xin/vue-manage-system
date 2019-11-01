@@ -12,12 +12,11 @@
   <a href="https://github.com/lin-xin/vue-manage-system/releases">
     <img src="https://img.shields.io/github/release/lin-xin/vue-manage-system.svg" alt="GitHub release">
   </a>
-  <a href="https://lin-xin.github.io/example/work/#/donate">
+  <a href="https://lin-xin.gitee.io/example/work/#/donate">
     <img src="https://img.shields.io/badge/%24-donate-ff69b4.svg" alt="donate">
   </a>
 
-基于 Vue + Element UI 的后台管理系统解决方案。[线上地址](https://lin-xin.github.io/example/work/)
-
+基于 Vue + Element UI 的后台管理系统解决方案。[线上地址](https://lin-xin.gitee.io/example/work/)
 
 > React + Ant Design 的版本正在开发中，仓库地址：[react-manage-system](https://github.com/lin-xin/react-manage-system)
 
@@ -41,7 +40,7 @@
 
 请作者喝杯咖啡吧！(微信号：linxin_20)
 
-![微信扫一扫](https://lin-xin.github.io/images/weixin.jpg)
+![微信扫一扫](https://lin-xin.gitee.io/images/weixin.jpg)
 
 ## 前言
 
@@ -93,26 +92,35 @@ vue.js 封装 sChart.js 的图表组件。访问地址：[vue-schart](https://gi
 ```html
 <template>
     <div>
-        <schart class="wrapper" :canvasId="canvasId" :type="type" :data="data" :options="options"></schart>
+        <schart class="wrapper" canvasId="myCanvas" :options="options"></schart>
     </div>
 </template>
 
 <script>
     import Schart from 'vue-schart'; // 导入Schart组件
     export default {
-        data: function() {
+        data() {
             return {
-                canvasId: 'myCanvas', // canvas的id
-                type: 'bar', // 图表类型
-                data: [
-                    { name: '2014', value: 1342 },
-                    { name: '2015', value: 2123 },
-                    { name: '2016', value: 1654 },
-                    { name: '2017', value: 1795 }
-                ],
                 options: {
-                    // 图表可选参数
-                    title: 'Total sales of stores in recent years'
+                    type: 'bar',
+                    title: {
+                        text: '最近一周各品类销售图'
+                    },
+                    labels: ['周一', '周二', '周三', '周四', '周五'],
+                    datasets: [
+                        {
+                            label: '家电',
+                            data: [234, 278, 270, 190, 230]
+                        },
+                        {
+                            label: '百货',
+                            data: [164, 178, 190, 135, 160]
+                        },
+                        {
+                            label: '食品',
+                            data: [144, 198, 150, 235, 120]
+                        }
+                    ]
                 }
             };
         },
