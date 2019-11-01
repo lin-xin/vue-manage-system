@@ -16,9 +16,8 @@
     <img src="https://img.shields.io/badge/%24-donate-ff69b4.svg" alt="donate">
   </a>
 
-基于 Vue.js + Element UI 的后台管理系统解决方案。[线上地址](https://lin-xin.github.io/example/work/)
+基于 Vue + Element UI 的后台管理系统解决方案。[线上地址](https://lin-xin.github.io/example/work/)
 
-本项目基于 vue-cli3 构建，如果是 vue-cli2 的请下载[旧版本 V3.2.0](https://github.com/lin-xin/vue-manage-system/releases/tag/V3.2.0)
 
 > React + Ant Design 的版本正在开发中，仓库地址：[react-manage-system](https://github.com/lin-xin/react-manage-system)
 
