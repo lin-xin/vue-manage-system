@@ -1,107 +1,139 @@
-# vue-manage-system #
-The web management system solution based on Vue2 and Element-UI。[live demo](http://blog.gdfengshuo.com/example/work/)
+# vue-manage-system
+
+<a href="https://github.com/vuejs/vue">
+    <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
+  </a>
+  <a href="https://github.com/ElemeFE/element">
+    <img src="https://img.shields.io/badge/element--ui-2.8.2-brightgreen.svg" alt="element-ui">
+  </a>
+  <a href="https://github.com/lin-xin/vue-manage-system/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
+  </a>
+  <a href="https://github.com/lin-xin/vue-manage-system/releases">
+    <img src="https://img.shields.io/github/release/lin-xin/vue-manage-system.svg" alt="GitHub release">
+  </a>
+  <a href="https://lin-xin.gitee.io/example/work/#/donate">
+    <img src="https://img.shields.io/badge/%24-donate-ff69b4.svg" alt="donate">
+  </a>
+
+The web management system solution based on Vue2 and Element-UI。[live demo](https://lin-xin.gitee.io/example/work/)
 
 ## Donation
-![WeChat](http://blog.gdfengshuo.com/images/weixin.jpg)
 
-## Preface ##
+![WeChat](https://lin-xin.gitee.io/images/weixin.jpg)
+
+## Preface
+
 The scheme as a set of multi-function background frame templates, suitable for most of the WEB management system development. Convenient development fast simple good components based on Vue2 and Element-UI. Color separation of color style, support manual switch themes, and it is convenient to use a custom theme color.
 
-## Function ##
-- [x] Element-UI
-- [x] Login/Logout
-- [x] Dashboard
-- [x] Table
-- [x] Tabs
-- [x] From
-- [x] Chart :bar_chart:
-- [x] Editor
-- [x] Markdown
-- [x] Upload pictures by clipping or dragging
-- [x] Support manual switch themes :sparkles:
-- [x] List drag sort
-- [x] Permission
-- [x] 404 / 403
-- [x] Three level menu
-- [x] Custom icon
+## Function
 
+-   [x] Element-UI
+-   [x] Login/Logout
+-   [x] Dashboard
+-   [x] Table
+-   [x] Tabs
+-   [x] From
+-   [x] Chart :bar_chart:
+-   [x] Editor
+-   [x] Markdown
+-   [x] Upload pictures by clipping or dragging
+-   [x] Support manual switch themes :sparkles:
+-   [x] List drag sort
+-   [x] Permission
+-   [x] 404 / 403
+-   [x] Three level menu
+-   [x] Custom icon
 
-## Installation steps ##
+## Installation steps
 
-	git clone https://github.com/lin-xin/vue-manage-system.git		// Clone templates
-	cd vue-manage-system											// Enter template directory
-	npm install													// Installation dependency
+    git clone https://github.com/lin-xin/vue-manage-system.git		// Clone templates
+    cd vue-manage-system											// Enter template directory
+    npm install													// Installation dependency
 
-## Local development ##
+## Local development
 
-	// Open server and access http://localhost:8080 in browser
-	npm run serve
+    // Open server and access http://localhost:8080 in browser
+    npm run serve
 
-## Constructing production ##
+## Constructing production
 
-	// Constructing project
-	npm run build
+    // Constructing project
+    npm run build
 
-## Component description and presentation ##
+## Component description and presentation
 
-### vue-schart ###
+### vue-schart
+
 Vue.js wrapper for sChart.js. Github : [vue-schart](https://github.com/linxin/vue-schart)
 
-```JavaScript
+```html
 <template>
     <div>
-        <schart :canvasId="canvasId"
-				:type="type"
-				:width="width"
-				:height="height"
-				:data="data"
-				:options="options"
-		></schart>
+        <schart class="wrapper" canvasId="myCanvas" :options="options"></schart>
     </div>
 </template>
-	
+
 <script>
-    import Schart from 'vue-schart';
+    import Schart from 'vue-schart'; // 导入Schart组件
     export default {
-        data: function(){
+        data() {
             return {
-                canvasId: 'myCanvas',
-                type: 'bar',
-                width: 500,
-                height: 400,
-                data: [
-                    {name: '2014', value: 1342},
-                    {name: '2015', value: 2123},
-                    {name: '2016', value: 1654},
-                    {name: '2017', value: 1795},
-                ],
                 options: {
-                    title: 'Total sales of stores in recent years'
+                    type: 'bar',
+                    title: {
+                        text: '最近一周各品类销售图'
+                    },
+                    labels: ['周一', '周二', '周三', '周四', '周五'],
+                    datasets: [
+                        {
+                            label: '家电',
+                            data: [234, 278, 270, 190, 230]
+                        },
+                        {
+                            label: '百货',
+                            data: [164, 178, 190, 135, 160]
+                        },
+                        {
+                            label: '食品',
+                            data: [144, 198, 150, 235, 120]
+                        }
+                    ]
                 }
-            }
+            };
         },
         components: {
             Schart
         }
-    }
+    };
 </script>
+<style>
+    .wrapper {
+        width: 7rem;
+        height: 5rem;
+    }
+</style>
 ```
 
-### element-ui ###
+### element-ui
+
 A desktop component library based on vue.js2.0 . Github : [element](http://element.eleme.io/#/zh-CN/component/layout)
 
-### Vue-Quill-Editor ###
+### Vue-Quill-Editor
+
 Quill editor component for Vue2. Github : [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
 
-### mavonEditor ###
+### mavonEditor
+
 A markdown editor based on Vue that supports a variety of personalized features. Github: [mavonEditor](https://github.com/hinesboy/mavonEditor)
 
-### vue-cropperjs ###
+### vue-cropperjs
+
 A Vue wrapper component for cropperjs. Github: [vue-cropperjs](https://github.com/Agontuk/vue-cropperjs)
 
+## Notice
 
-## Notice ##
-### 一、If I don't want to use some components, how can I delete it? ###
+### 一、If I don't want to use some components, how can I delete it?
 
 For example, I don't want to use the Vue-Quill-Editor component, I need to take four steps.
 
@@ -110,14 +142,14 @@ The first step to remove the component of the routing. Enter 'src/router/index.j
 ```JavaScript
 {
     path: '/editor',
-    component: resolve => require(['../components/page/VueEditor.vue'], resolve) 
+    component: resolve => require(['../components/page/VueEditor.vue'], resolve)
 },
 ```
 
 Second,delete the component files. Enter 'src/components/page/' and delete 'VueEditor.vue' file.
 
 The third step is to delete the entry. Enter 'src/components/common/Sidebar.vue' and delete the code below.
-	
+
 ```js
 {
 	index: 'editor',
@@ -126,17 +158,16 @@ The third step is to delete the entry. Enter 'src/components/common/Sidebar.vue'
 ```
 
 Finally, uninstall this component.
-	
-	npm un vue-quill-editor -S
+npm un vue-quill-editor -S
 
 Complete!
 
-### 二、How to switch themes? ###
+### 二、How to switch themes?
 
 The first step to enter 'src/main.js' and change into green theme.
 
 ```javascript
-import 'element-ui/lib/theme-default/index.css';    // default theme
+import 'element-ui/lib/theme-default/index.css'; // default theme
 // import '../static/css/theme-green/index.css';       // green theme
 ```
 
@@ -150,12 +181,13 @@ The second step to enter 'src/App.vue' and change into green theme.
 
 Finally,enter 'src/components/common/Sidebar.vue' and find el-menu Tags,delete 'background-color/text-color/active-text-color'。
 
-## Screenshot ##
-### Default theme ###
+## Screenshot
+
+### Default theme
 
 ![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms1.png)
 
-### Green theme ###
+### Green theme
 
 ![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms2.png)
 

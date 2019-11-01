@@ -1,6 +1,6 @@
 {
   "name": "vue-manage-system",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "private": true,
   "scripts": {
     "dev": "npm run serve",
@@ -17,7 +17,7 @@
     "vue-i18n": "^8.10.0",
     "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.0.3",
-    "vue-schart": "^1.0.0",
+    "vue-schart": "^2.0.0",
     "vuedraggable": "^2.17.0"
   },
   "devDependencies": {
