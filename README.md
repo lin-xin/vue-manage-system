@@ -42,6 +42,10 @@
 
 ![微信扫一扫](https://lin-xin.gitee.io/images/weixin.jpg)
 
+## 特别鸣谢
+
+- [实验楼](https://www.shiyanlou.com?source=vue-manage-system)
+
 ## 前言
 
 该方案作为一套多功能的后台框架模板，适用于绝大部分的后台管理系统（Web Management System）开发。基于 vue.js，使用 vue-cli3 脚手架，引用 Element UI 组件库，方便开发快速简洁好看的组件。分离颜色样式，支持手动切换主题色，而且很方便使用自定义主题色。
