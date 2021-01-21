@@ -97,11 +97,6 @@ export default new Router({
                     component: () => import(/* webpackChunkName: "403" */ '../components/page/403.vue'),
                     meta: { title: '403' }
                 },
-                {
-                    path: '/donate',
-                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/Donate.vue'),
-                    meta: { title: '支持作者' }
-                }
             ]
         },
         {
