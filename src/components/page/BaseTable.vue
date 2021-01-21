@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> 基础表格
+                    <i class="el-icon-lx-cascades"></i> 用户列表
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -101,7 +101,7 @@ export default {
     data() {
         return {
             query: {
-                address: '',
+                department: '',
                 name: '',
                 pageIndex: 1,
                 pageSize: 10
@@ -124,8 +124,8 @@ export default {
         getData() {
             fetchData(this.query).then(res => {
                 console.log(res);
-                this.tableData = res;
-                this.pageTotal = res.pageTotal || 50;
+                this.tableData = res.msg.user_list;
+                this.pageTotal = res.msg.pageTotal;
             });
         },
         // 触发搜索按钮
