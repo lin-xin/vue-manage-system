@@ -62,14 +62,14 @@ export default {
                     title: '系统首页'
                 },
                 {
-                    icon: 'el-icon-lx-cascades',
+                    icon: 'el-icon-lx-people',
                     index: 'table',
                     title: '用户列表'
                 },
                 {
                     icon: 'el-icon-lx-copy',
-                    index: 'tabs',
-                    title: 'tab选项卡'
+                    index: 'upload',
+                    title: '文件上传'
                 },
                 {
                     icon: 'el-icon-lx-calendar',
