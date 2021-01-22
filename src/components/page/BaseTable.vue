@@ -88,14 +88,14 @@
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="editVisible = false">取 消</el-button>
-                <el-button type="primary" @click="saveEdit">确 定</el-button>
+                <el-button type="primary" @click="saveEdit(form.uuid, form.name, form.department)">确 定</el-button>
             </span>
         </el-dialog>
     </div>
 </template>
 
 <script>
-import { fetchData } from '../../api/index';
+import { fetchData, upUserData } from '../../api/index';
 export default {
     name: 'basetable',
     data() {
@@ -120,7 +120,7 @@ export default {
         this.getData();
     },
     methods: {
-        // 获取 easy-mock 的模拟数据
+        // 获取数据
         getData() {
             fetchData(this.query).then(res => {
                 console.log(res);
@@ -161,15 +161,27 @@ export default {
         },
         // 编辑操作
         handleEdit(index, row) {
-            this.idx = index;
-            this.form = row;
+            this.idx = index,
+            this.form = row,
             this.editVisible = true;
+
         },
         // 保存编辑
-        saveEdit() {
+        saveEdit(uuid, name, department) {
             this.editVisible = false;
-            this.$message.success(`修改第 ${this.idx + 1} 行成功`);
-            this.$set(this.tableData, this.idx, this.form);
+            this.$message.success(`修改成功`);
+            this.uuid = uuid;
+            this.department = department;
+            this.name = name;
+            let data = {
+                department : this.department,
+                name : this.name,
+                uuid : this.uuid,
+
+            }
+            upUserData(data).then((res)=>{
+                console.log(res)
+            })
         },
         // 分页导航
         handlePageChange(val) {

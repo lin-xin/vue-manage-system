@@ -7,3 +7,11 @@ export const fetchData = query => {
         params: query
     });
 };
+
+export const upUserData = query => {
+    return request({
+        url: 'http://127.0.0.1:8000/userlist',
+        method: 'put',
+        params: query
+    });
+};
