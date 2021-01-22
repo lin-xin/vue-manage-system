@@ -10,8 +10,12 @@
         <div class="container">
             <div class="handle-box">
                 <el-select v-model="query.department" placeholder="部门" class="handle-select mr10">
-                    <el-option key="1" label="计科" value="计科"></el-option>
+                    <el-option key="0" label="全部" value=""></el-option>
+                    <el-option key="1" label="网络工程" value="网络工程"></el-option>
                     <el-option key="2" label="物联网" value="物联网"></el-option>
+                    <el-option key="3" label="计算机科学与技术" value="计算机科学与技术"></el-option>
+                    <el-option key="4" label="空间信息" value="空间信息"></el-option>
+                    <el-option key="5" label="软件工程" value="软件工程"></el-option>
                 </el-select>
                 <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
