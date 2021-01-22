@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import { departmentData, deleteuserData, fetchData, upUserData } from '../../api/index';
+import { departmentData, deleteuserData, fetchData, upUserData } from '../../api/userlist';
 
 export default {
     name: 'basetable',
