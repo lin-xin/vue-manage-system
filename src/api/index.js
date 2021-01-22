@@ -15,3 +15,19 @@ export const upUserData = query => {
         params: query
     });
 };
+
+export const deleteuserData = query => {
+    return request({
+        url: 'http://127.0.0.1:8000/userlist',
+        method: 'delete',
+        params: query
+    });
+};
+
+export const departmentData = query => {
+    return request({
+        url: 'http://127.0.0.1:8000/department',
+        method: 'delete',
+        params: query
+    });
+};

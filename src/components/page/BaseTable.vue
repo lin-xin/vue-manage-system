@@ -9,12 +9,6 @@
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-button
-                    type="primary"
-                    icon="el-icon-delete"
-                    class="handle-del mr10"
-                    @click="delAllSelection"
-                >批量删除</el-button>
                 <el-select v-model="query.department" placeholder="部门" class="handle-select mr10">
                     <el-option key="1" label="计科" value="计科"></el-option>
                     <el-option key="2" label="物联网" value="物联网"></el-option>
@@ -59,7 +53,7 @@
                             type="text"
                             icon="el-icon-delete"
                             class="red"
-                            @click="handleDelete(scope.$index, scope.row)"
+                            @click="handleDelete(scope.row.uuid)"
                         >删除</el-button>
                     </template>
                 </el-table-column>
@@ -95,7 +89,8 @@
 </template>
 
 <script>
-import { fetchData, upUserData } from '../../api/index';
+import { departmentData, deleteuserData, fetchData, upUserData } from '../../api/index';
+
 export default {
     name: 'basetable',
     data() {
@@ -133,15 +128,28 @@ export default {
             this.$set(this.query, 'pageIndex', 1);
             this.getData();
         },
+        getdepatment() {
+            departmentData(this.query).then(res => {
+                console.log(res);
+                this.departmentlist = res.msg;
+            });
+        },
         // 删除操作
-        handleDelete(index, row) {
+        handleDelete(uuid) {
             // 二次确认删除
+            this.uuid = uuid;
+            let data ={
+                uuid : this.uuid,
+            }
             this.$confirm('确定要删除吗？', '提示', {
                 type: 'warning'
             })
                 .then(() => {
+                    deleteuserData(data).then((res)=>{
+                        console.log(res)
+                    })
                     this.$message.success('删除成功');
-                    this.tableData.splice(index, 1);
+                    this.getData();
                 })
                 .catch(() => {});
         },
