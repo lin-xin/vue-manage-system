@@ -19,7 +19,7 @@
                     </el-input>
                 </el-form-item>
                 <div class="login-btn">
-                    <el-button type="primary" @click="submitForm()">登录</el-button>
+                    <el-button type="primary" @click="submitForm(param.username, param.password)">登录</el-button>
                 </div>
                 <p class="login-tips">Tips : 用户名和密码随便填。</p>
             </el-form>
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import {userLogin } from '../../api/userlist';
+
 export default {
     data: function() {
         return {
@@ -42,8 +44,19 @@ export default {
         };
     },
     methods: {
-        submitForm() {
+        submitForm(username, password) {
+            this.username = username;
+            this.password = password;
+                let data = {
+                    username : this.username,
+                    password : this.password,
+    
+                }
+                userLogin(data).then((res)=>{
+                    console.log(res)
+                })
             this.$refs.login.validate(valid => {
+                console.log(data)
                 if (valid) {
                     this.$message.success('登录成功');
                     localStorage.setItem('ms_username', this.param.username);

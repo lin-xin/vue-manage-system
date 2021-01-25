@@ -31,3 +31,11 @@ export const departmentData = query => {
         params: query
     });
 };
+
+export const userLogin = query => {
+    return request({
+        url: 'http://127.0.0.1:8000/user/login',
+        method: 'post',
+        data: query
+    });
+};
