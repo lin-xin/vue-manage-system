@@ -3,150 +3,246 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-calendar"></i> 表单
+                    <i class="el-icon-lx-cascades"></i> 标签相关
                 </el-breadcrumb-item>
-                <el-breadcrumb-item>基本表单</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
+        
         <div class="container">
-            <div class="form-box">
-                <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="表单名称">
-                        <el-input v-model="form.name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="选择器">
-                        <el-select v-model="form.region" placeholder="请选择">
-                            <el-option key="bbk" label="步步高" value="bbk"></el-option>
-                            <el-option key="xtc" label="小天才" value="xtc"></el-option>
-                            <el-option key="imoo" label="imoo" value="imoo"></el-option>
-                        </el-select>
-                    </el-form-item>
-                    <el-form-item label="日期时间">
-                        <el-col :span="11">
-                            <el-date-picker
-                                type="date"
-                                placeholder="选择日期"
-                                v-model="form.date1"
-                                value-format="yyyy-MM-dd"
-                                style="width: 100%;"
-                            ></el-date-picker>
-                        </el-col>
-                        <el-col class="line" :span="2">-</el-col>
-                        <el-col :span="11">
-                            <el-time-picker
-                                placeholder="选择时间"
-                                v-model="form.date2"
-                                style="width: 100%;"
-                            ></el-time-picker>
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="城市级联">
-                        <el-cascader :options="options" v-model="form.options"></el-cascader>
-                    </el-form-item>
-                    <el-form-item label="选择开关">
-                        <el-switch v-model="form.delivery"></el-switch>
-                    </el-form-item>
-                    <el-form-item label="多选框">
-                        <el-checkbox-group v-model="form.type">
-                            <el-checkbox label="步步高" name="type"></el-checkbox>
-                            <el-checkbox label="小天才" name="type"></el-checkbox>
-                            <el-checkbox label="imoo" name="type"></el-checkbox>
-                        </el-checkbox-group>
-                    </el-form-item>
-                    <el-form-item label="单选框">
-                        <el-radio-group v-model="form.resource">
-                            <el-radio label="步步高"></el-radio>
-                            <el-radio label="小天才"></el-radio>
-                            <el-radio label="imoo"></el-radio>
-                        </el-radio-group>
-                    </el-form-item>
-                    <el-form-item label="文本框">
-                        <el-input type="textarea" rows="5" v-model="form.desc"></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button type="primary" @click="onSubmit">表单提交</el-button>
-                        <el-button>取消</el-button>
-                    </el-form-item>
-                </el-form>
+            <div class="handle-box">
+                <el-input v-model="query.name" placeholder="标签" class="handle-input mr10"></el-input>
+                <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+                 <div class="right">
+        <el-button type="primary" icon="el-icon-plus" @click="handleAddForm">新增标签</el-button></div>
+            
+            </div>
+            <el-table
+                :data="tableData"
+                border
+                class="table"
+                ref="multipleTable"
+                header-cell-class-name="table-header"
+                @selection-change="handleSelectionChange"
+            >
+                <el-table-column type="selection" width="55" align="center"></el-table-column>
+                <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
+                <el-table-column label="标签名">
+                    <template slot-scope="scope">{{scope.row.name}}</template>
+                </el-table-column>
+                <el-table-column prop="user_name" label="上传者"></el-table-column>
+
+                <el-table-column prop="build_time" label="创建时间"></el-table-column>
+                <el-table-column label="操作" width="180" align="center">
+                    <template slot-scope="scope">
+                        <el-button
+                            type="text"
+                            icon="el-icon-edit"
+                            @click="handleEdit(scope.$index, scope.row)"
+                        >编辑</el-button>
+                        <el-button
+                            type="text"
+                            icon="el-icon-delete"
+                            class="red"
+                            @click="handleDelete(scope.row.uuid)"
+                        >删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <div class="pagination">
+                <el-pagination
+                    background
+                    layout="total, prev, pager, next"
+                    :current-page="query.pageIndex"
+                    :page-size="query.pageSize"
+                    :total="pageTotal"
+                    @current-change="handlePageChange"
+                ></el-pagination>
             </div>
         </div>
+
+         <!-- 新增弹出框 -->
+        <el-dialog title="编辑" :visible.sync="addVisible" width="30%">
+            <el-form ref="form" :model="form" label-width="70px">
+                <el-form-item label="标签名">
+                    <el-input v-model="form.tagname"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="addVisible = false">取 消</el-button>
+                <el-button type="primary" @click="saveAdd(form.tagname)">确 定</el-button>
+            </span>
+        </el-dialog>
+
+        <!-- 编辑弹出框 -->
+        <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
+            <el-form ref="form" :model="form" label-width="70px">
+                <el-form-item label="用户名">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="部门">
+                    <el-input v-model="form.user_name"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="editVisible = false">取 消</el-button>
+                <el-button type="primary" @click="saveEdit(form.uuid, form.name, form.user_name)">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
 <script>
+import { gettagsData, addTagrData } from '../../api/tags';
+
 export default {
-    name: 'baseform',
+    name: 'basefrom',
     data() {
         return {
-            options: [
-                {
-                    value: 'guangdong',
-                    label: '广东省',
-                    children: [
-                        {
-                            value: 'guangzhou',
-                            label: '广州市',
-                            children: [
-                                {
-                                    value: 'tianhe',
-                                    label: '天河区'
-                                },
-                                {
-                                    value: 'haizhu',
-                                    label: '海珠区'
-                                }
-                            ]
-                        },
-                        {
-                            value: 'dongguan',
-                            label: '东莞市',
-                            children: [
-                                {
-                                    value: 'changan',
-                                    label: '长安镇'
-                                },
-                                {
-                                    value: 'humen',
-                                    label: '虎门镇'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    value: 'hunan',
-                    label: '湖南省',
-                    children: [
-                        {
-                            value: 'changsha',
-                            label: '长沙市',
-                            children: [
-                                {
-                                    value: 'yuelu',
-                                    label: '岳麓区'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
-            form: {
+            query: {
                 name: '',
-                region: '',
-                date1: '',
-                date2: '',
-                delivery: true,
-                type: ['步步高'],
-                resource: '小天才',
-                desc: '',
-                options: []
-            }
+                pageIndex: 1,
+                pageSize: 10
+            },
+            tableData: [],
+            multipleSelection: [],
+            delList: [],
+            editVisible: false,
+            addVisible: false,
+            pageTotal: 0,
+            form: {},
+            idx: -1,
+            id: -1
         };
     },
+    created() {
+        this.getData();
+    },
     methods: {
-        onSubmit() {
-            this.$message.success('提交成功！');
+        // 获取数据
+        getData() {
+            gettagsData(this.query).then(res => {
+                console.log(res);
+                this.tableData = res.msg.tags_list;
+                this.pageTotal = res.msg.pageTotal;
+            });
+        },
+        // 触发搜索按钮
+        handleSearch() {
+            this.$set(this.query, 'pageIndex', 1);
+            this.getData();
+        },
+        // 删除操作
+        handleDelete(uuid) {
+            // 二次确认删除
+            this.uuid = uuid;
+            let data ={
+                uuid : this.uuid,
+            }
+            this.$confirm('确定要删除吗？', '提示', {
+                type: 'warning'
+            })
+                .then(() => {
+                    deleteuserData(data).then((res)=>{
+                        console.log(res)
+                    })
+                    this.$message.success('删除成功');
+                    this.getData();
+                })
+                .catch(() => {});
+        },
+        // 多选操作
+        handleSelectionChange(val) {
+            this.multipleSelection = val;
+        },
+        delAllSelection() {
+            const length = this.multipleSelection.length;
+            let str = '';
+            this.delList = this.delList.concat(this.multipleSelection);
+            for (let i = 0; i < length; i++) {
+                str += this.multipleSelection[i].name + ' ';
+            }
+            this.$message.error(`删除了${str}`);
+            this.multipleSelection = [];
+        },
+        // 编辑操作
+        handleEdit(index, row) {
+            this.idx = index,
+            this.form = row,
+            this.editVisible = true;
+
+        },
+        // 新增标签
+        handleAddForm(){
+            this.addVisible = true;
+        },
+        // 保存新增 
+        saveAdd(name){
+            console.log(name)
+            this.addVisible = false;
+            this.$message.success(`新增成功`);
+            this.name = name;
+            let data = {
+                name : this.name,
+            }
+            console.log(data)
+            addTagrData(data).then((res)=>{
+                console.log(res)
+            })
+        },
+
+        // 保存编辑
+        saveEdit(uuid, name, department) {
+            this.editVisible = false;
+            this.$message.success(`修改成功`);
+            this.uuid = uuid;
+            this.department = department;
+            this.name = name;
+            let data = {
+                department : this.department,
+                name : this.name,
+                uuid : this.uuid,
+
+            }
+            upUserData(data).then((res)=>{
+                console.log(res)
+            })
+        },
+        // 分页导航
+        handlePageChange(val) {
+            this.$set(this.query, 'pageIndex', val);
+            this.getData();
         }
     }
 };
 </script>
+
+<style scoped>
+.handle-box {
+    margin-bottom: 20px;
+}
+
+.handle-select {
+    width: 120px;
+}
+
+.handle-input {
+    width: 300px;
+    display: inline-block;
+}
+.table {
+    width: 100%;
+    font-size: 14px;
+}
+.red {
+    color: #ff0000;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.table-td-thumb {
+    display: block;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+}
+</style>
