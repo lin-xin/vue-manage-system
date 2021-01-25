@@ -67,7 +67,7 @@ export default {
                     title: '用户列表'
                 },
                 {
-                    icon: 'el-icon-lx-copy',
+                    icon: 'el-icon-lx-top',
                     index: 'upload',
                     title: '文件上传'
                 },
