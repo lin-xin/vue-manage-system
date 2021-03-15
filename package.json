@@ -1,28 +1,55 @@
 {
-  "name": "vue-manage-system",
-  "version": "4.2.0",
-  "private": true,
-  "scripts": {
-    "dev": "npm run serve",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
-  },
-  "dependencies": {
-    "axios": "^0.18.0",
-    "babel-polyfill": "^6.26.0",
-    "element-ui": "^2.11.0",
-    "mavon-editor": "^2.6.17",
-    "vue": "^2.6.10",
-    "vue-cropperjs": "^3.0.0",
-    "vue-i18n": "^8.10.0",
-    "vue-quill-editor": "^3.0.6",
-    "vue-router": "^3.0.3",
-    "vue-schart": "^2.0.0",
-    "vuedraggable": "^2.17.0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.9.0",
-    "@vue/cli-service": "^3.9.0",
-    "vue-template-compiler": "^2.6.10"
-  }
+    "name": "vue-manage-system",
+    "version": "5.0.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
+    },
+    "dependencies": {
+        "axios": "^0.21.1",
+        "core-js": "~3.9.1",
+        "element-plus": "~1.0.2-beta.33",
+        "vue": "~3.0.7",
+        "vue-cropperjs": "^5.0.0",
+        "vue-i18n": "^9.0.0",
+        "vue-loader-v16": "^16.0.0-beta.5.4",
+        "vue-router": "~4.0.4",
+        "vue-schart": "^2.0.0",
+        "vuex": "~4.0.0"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.5.11",
+        "@vue/cli-plugin-eslint": "~4.5.11",
+        "@vue/cli-plugin-router": "~4.5.11",
+        "@vue/cli-plugin-vuex": "~4.5.11",
+        "@vue/cli-service": "~4.5.11",
+        "@vue/compiler-sfc": "~3.0.7",
+        "babel-eslint": "~10.1.0",
+        "eslint": "~6.8.0",
+        "eslint-plugin-vue": "~7.7.0",
+        "sass": "~1.32.8",
+        "sass-loader": "~8.0.2",
+        "vue-cli-plugin-element-plus": "0.0.13"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/vue3-essential",
+            "eslint:recommended"
+        ],
+        "parserOptions": {
+            "parser": "babel-eslint"
+        },
+        "rules": {}
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
 }
