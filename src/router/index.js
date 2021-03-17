@@ -12,7 +12,7 @@ const routes = [
         children: [
             {
                 path: "/dashboard",
-                name: "Dashboard",
+                name: "dashboard",
                 meta: {
                     title: '系统首页'
                 },
@@ -21,7 +21,7 @@ const routes = [
                 "../views/Dashboard.vue")
             }, {
                 path: "/table",
-                name: "BaseTable",
+                name: "basetable",
                 meta: {
                     title: '表格'
                 },
@@ -30,7 +30,7 @@ const routes = [
                 "../views/BaseTable.vue")
             }, {
                 path: "/charts",
-                name: "BaseCharts",
+                name: "basecharts",
                 meta: {
                     title: '图表'
                 },
@@ -39,7 +39,7 @@ const routes = [
                 "../views/BaseCharts.vue")
             }, {
                 path: "/form",
-                name: "BaseForm",
+                name: "baseform",
                 meta: {
                     title: '表单'
                 },
@@ -48,7 +48,7 @@ const routes = [
                 "../views/BaseForm.vue")
             }, {
                 path: "/tabs",
-                name: "Tabs",
+                name: "tabs",
                 meta: {
                     title: 'tab标签'
                 },
@@ -57,7 +57,7 @@ const routes = [
                 "../views/Tabs.vue")
             }, {
                 path: "/donate",
-                name: "Donate",
+                name: "donate",
                 meta: {
                     title: '鼓励作者'
                 },
@@ -66,7 +66,7 @@ const routes = [
                 "../views/Donate.vue")
             }, {
                 path: "/permission",
-                name: "Permission",
+                name: "permission",
                 meta: {
                     title: '权限管理',
                     permission: true
@@ -76,7 +76,7 @@ const routes = [
                 "../views/Permission.vue")
             }, {
                 path: "/i18n",
-                name: "I18n",
+                name: "i18n",
                 meta: {
                     title: '国际化语言'
                 },
@@ -85,7 +85,7 @@ const routes = [
                 "../views/I18n.vue")
             }, {
                 path: "/upload",
-                name: "Upload",
+                name: "upload",
                 meta: {
                     title: '上传插件'
                 },
@@ -94,7 +94,7 @@ const routes = [
                 "../views/Upload.vue")
             }, {
                 path: "/icon",
-                name: "Icon",
+                name: "icon",
                 meta: {
                     title: '自定义图标'
                 },

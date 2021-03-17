@@ -81,6 +81,7 @@
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
 export default {
+    name: "upload",
     data() {
         return {
             defaultSrc: require("../assets/img/img.jpg"),

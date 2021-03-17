@@ -80,6 +80,7 @@ export default {
                     this.$store.commit("delTagsItem", { index: 0 });
                 }
                 this.$store.commit("setTagsItem", {
+                    name: route.name,
                     title: route.meta.title,
                     path: route.fullPath
                 });

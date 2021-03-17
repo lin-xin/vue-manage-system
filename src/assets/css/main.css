@@ -84,11 +84,11 @@ a {
 
 .move-enter-active,
 .move-leave-active {
-    transition: opacity .5s;
+    transition: opacity .1s ease;
 }
 
-.move-enter,
-.move-leave {
+.move-enter-from,
+.move-leave-to {
     opacity: 0;
 }
 
