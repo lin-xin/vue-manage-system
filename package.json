@@ -10,7 +10,7 @@
     "dependencies": {
         "axios": "^0.21.1",
         "core-js": "~3.9.1",
-        "element-plus": "~1.0.2-beta.33",
+        "element-plus": "1.0.2-beta.33",
         "vue": "~3.0.7",
         "vue-cropperjs": "^5.0.0",
         "vue-i18n": "^9.0.0",
