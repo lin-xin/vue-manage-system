@@ -27,12 +27,12 @@ export default new Router({
                 {
                     path: '/form',
                     component: () => import(/* webpackChunkName: "form" */ '../components/page/BaseForm.vue'),
-                    meta: { title: '基本表单' }
+                    meta: { title: '标签列表' }
                 },
                 {
                     path: '/resource',
                     component: () => import(/* webpackChunkName: "upload" */ '../components/page/Upload.vue'),
-                    meta: { title: '文件上传' }
+                    meta: { title: '资源列表' }
                 },
                
             ]
