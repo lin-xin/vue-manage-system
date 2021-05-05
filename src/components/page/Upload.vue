@@ -3,21 +3,14 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> 用户列表
+                    <i class="el-icon-lx-cascades"></i> 资源列表
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-select v-model="query.department" placeholder="部门" class="handle-select mr10">
-                    <el-option key="0" label="全部" value=""></el-option>
-                    <el-option key="1" label="网络工程" value="网络工程"></el-option>
-                    <el-option key="2" label="物联网" value="物联网"></el-option>
-                    <el-option key="3" label="计算机科学与技术" value="计算机科学与技术"></el-option>
-                    <el-option key="4" label="空间信息" value="空间信息"></el-option>
-                    <el-option key="5" label="软件工程" value="软件工程"></el-option>
-                </el-select>
-                <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
+               
+                <el-input v-model="query.name" placeholder="资源名称" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
             </div>
             <el-table
@@ -26,38 +19,29 @@
                 class="table"
                 ref="multipleTable"
                 header-cell-class-name="table-header"
-                @selection-change="handleSelectionChange"
             >
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
-                <el-table-column prop="uuid" label="用户uuid"></el-table-column>
-                <el-table-column label="用户名">
-                    <template slot-scope="scope">{{scope.row.name}}</template>
-                </el-table-column>
-                <el-table-column label="头像(查看大图)" align="center">
-                    <template slot-scope="scope">
-                        <el-image
-                            class="table-td-thumb"
-                            :src="scope.row.avatar"
-                            :preview-src-list="[scope.row.avatar]"
-                        ></el-image>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="department" label="部门"></el-table-column>
+                <el-table-column prop="res_name" label="资源名称"></el-table-column>
+                <el-table-column prop="author" label="作者"></el-table-column>
 
-                <el-table-column prop="build_time" label="注册时间"></el-table-column>
-                <el-table-column label="操作" width="180" align="center">
-                    <template slot-scope="scope">
-                        <el-button
+                <el-table-column prop="press" label="出版社"></el-table-column>
+                <el-table-column prop="tag_name" label="标签"></el-table-column>
+                <el-table-column prop="name" label="上传者"></el-table-column>
+                <el-table-column label="操作" width="100" align="center">
+                   <template slot-scope="scope">
+                        <el-link target="_blank" :href="(scope.row.file_path)" :underline="false" 
+                        style="margin-left:15px">
+                          <el-button
                             type="text"
-                            icon="el-icon-edit"
-                            @click="handleEdit(scope.$index, scope.row)"
-                        >编辑</el-button>
+                            icon="el-icon-info"
+                        >查看</el-button>
+                        </el-link>
                         <el-button
                             type="text"
                             icon="el-icon-delete"
                             class="red"
-                            @click="handleDelete(scope.row.uuid)"
+                            @click="handleDelete(scope.row.id)"
                         >删除</el-button>
                     </template>
                 </el-table-column>
@@ -74,34 +58,19 @@
             </div>
         </div>
 
-        <!-- 编辑弹出框 -->
-        <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
-            <el-form ref="form" :model="form" label-width="70px">
-                <el-form-item label="用户名">
-                    <el-input v-model="form.name"></el-input>
-                </el-form-item>
-                <el-form-item label="部门">
-                    <el-input v-model="form.department"></el-input>
-                </el-form-item>
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="editVisible = false">取 消</el-button>
-                <el-button type="primary" @click="saveEdit(form.uuid, form.name, form.department)">确 定</el-button>
-            </span>
-        </el-dialog>
+       
     </div>
 </template>
 
 <script>
-import { departmentData, deleteuserData, fetchData, upUserData } from '../../api/userlist';
+import { getresData, deleteresData } from '../../api/resource'
 
 export default {
     name: 'basetable',
     data() {
         return {
             query: {
-                department: '',
-                name: '',
+                keys: '',
                 pageIndex: 1,
                 pageSize: 10
             },
@@ -121,10 +90,10 @@ export default {
     methods: {
         // 获取数据
         getData() {
-            fetchData(this.query).then(res => {
+            getresData(this.query).then(res => {
                 console.log(res);
-                this.tableData = res.msg.user_list;
-                this.pageTotal = res.msg.pageTotal;
+                this.tableData = res.msg.result;
+                this.pageTotal = res.msg.total;
             });
         },
         // 触发搜索按钮
@@ -132,30 +101,26 @@ export default {
             this.$set(this.query, 'pageIndex', 1);
             this.getData();
         },
-        getdepatment() {
-            departmentData(this.query).then(res => {
-                console.log(res);
-                this.departmentlist = res.msg;
-            });
-        },
+
         // 删除操作
-        handleDelete(uuid) {
+        handleDelete(id) {
             // 二次确认删除
-            this.uuid = uuid;
+            this.res_id = id;
             let data ={
-                uuid : this.uuid,
+                res_id : this.res_id,
             }
+            console.log(data)
             this.$confirm('确定要删除吗？', '提示', {
                 type: 'warning'
             })
-                .then(() => {
-                    deleteuserData(data).then((res)=>{
-                        console.log(res)
-                    })
-                    this.$message.success('删除成功');
-                    this.getData();
+            .then(() => {
+                deleteresData(data).then((res)=>{
+                    console.log(res)
                 })
-                .catch(() => {});
+                this.$message.success('删除成功');
+                this.getData();
+            })
+            .catch(() => {});
         },
         // 多选操作
         handleSelectionChange(val) {
@@ -178,23 +143,7 @@ export default {
             this.editVisible = true;
 
         },
-        // 保存编辑
-        saveEdit(uuid, name, department) {
-            this.editVisible = false;
-            this.$message.success(`修改成功`);
-            this.uuid = uuid;
-            this.department = department;
-            this.name = name;
-            let data = {
-                department : this.department,
-                name : this.name,
-                uuid : this.uuid,
-
-            }
-            upUserData(data).then((res)=>{
-                console.log(res)
-            })
-        },
+       
         // 分页导航
         handlePageChange(val) {
             this.$set(this.query, 'pageIndex', val);
