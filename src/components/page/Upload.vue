@@ -2,140 +2,235 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-lx-calendar"></i> 表单</el-breadcrumb-item>
-                <el-breadcrumb-item>图片上传</el-breadcrumb-item>
+                <el-breadcrumb-item>
+                    <i class="el-icon-lx-cascades"></i> 用户列表
+                </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
-            <div class="content-title">支持拖拽</div>
-            <div class="plugins-tips">
-                Element UI自带上传组件。
-                访问地址：<a href="http://element.eleme.io/#/zh-CN/component/upload" target="_blank">Element UI Upload</a>
+            <div class="handle-box">
+                <el-select v-model="query.department" placeholder="部门" class="handle-select mr10">
+                    <el-option key="0" label="全部" value=""></el-option>
+                    <el-option key="1" label="网络工程" value="网络工程"></el-option>
+                    <el-option key="2" label="物联网" value="物联网"></el-option>
+                    <el-option key="3" label="计算机科学与技术" value="计算机科学与技术"></el-option>
+                    <el-option key="4" label="空间信息" value="空间信息"></el-option>
+                    <el-option key="5" label="软件工程" value="软件工程"></el-option>
+                </el-select>
+                <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
+                <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
             </div>
-            <el-upload
-                class="upload-demo"
-                drag
-                action="http://jsonplaceholder.typicode.com/api/posts/"
-                multiple>
-                <i class="el-icon-upload"></i>
-                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-            </el-upload>
-            <div class="content-title">支持裁剪</div>
-            <div class="plugins-tips">
-                vue-cropperjs：一个封装了 cropperjs 的 Vue 组件。
-                访问地址：<a href="https://github.com/Agontuk/vue-cropperjs" target="_blank">vue-cropperjs</a>
+            <el-table
+                :data="tableData"
+                border
+                class="table"
+                ref="multipleTable"
+                header-cell-class-name="table-header"
+                @selection-change="handleSelectionChange"
+            >
+                <el-table-column type="selection" width="55" align="center"></el-table-column>
+                <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
+                <el-table-column prop="uuid" label="用户uuid"></el-table-column>
+                <el-table-column label="用户名">
+                    <template slot-scope="scope">{{scope.row.name}}</template>
+                </el-table-column>
+                <el-table-column label="头像(查看大图)" align="center">
+                    <template slot-scope="scope">
+                        <el-image
+                            class="table-td-thumb"
+                            :src="scope.row.avatar"
+                            :preview-src-list="[scope.row.avatar]"
+                        ></el-image>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="department" label="部门"></el-table-column>
+
+                <el-table-column prop="build_time" label="注册时间"></el-table-column>
+                <el-table-column label="操作" width="180" align="center">
+                    <template slot-scope="scope">
+                        <el-button
+                            type="text"
+                            icon="el-icon-edit"
+                            @click="handleEdit(scope.$index, scope.row)"
+                        >编辑</el-button>
+                        <el-button
+                            type="text"
+                            icon="el-icon-delete"
+                            class="red"
+                            @click="handleDelete(scope.row.uuid)"
+                        >删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <div class="pagination">
+                <el-pagination
+                    background
+                    layout="total, prev, pager, next"
+                    :current-page="query.pageIndex"
+                    :page-size="query.pageSize"
+                    :total="pageTotal"
+                    @current-change="handlePageChange"
+                ></el-pagination>
             </div>
-            <div class="crop-demo">
-                <img :src="cropImg" class="pre-img">
-                <div class="crop-demo-btn">选择图片
-                    <input class="crop-input" type="file" name="image" accept="image/*" @change="setImage"/>
-                </div>
-            </div>
-        
-            <el-dialog title="裁剪图片" :visible.sync="dialogVisible" width="30%">
-                <vue-cropper ref='cropper' :src="imgSrc" :ready="cropImage" :zoom="cropImage" :cropmove="cropImage" style="width:100%;height:300px;"></vue-cropper>
-                <span slot="footer" class="dialog-footer">
-                    <el-button @click="cancelCrop">取 消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-                </span>
-            </el-dialog>
         </div>
+
+        <!-- 编辑弹出框 -->
+        <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
+            <el-form ref="form" :model="form" label-width="70px">
+                <el-form-item label="用户名">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="部门">
+                    <el-input v-model="form.department"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="editVisible = false">取 消</el-button>
+                <el-button type="primary" @click="saveEdit(form.uuid, form.name, form.department)">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
 <script>
-    import VueCropper  from 'vue-cropperjs';
-    export default {
-        name: 'upload',
-        data: function(){
-            return {
-                defaultSrc: require('../../assets/img/img.jpg'),
-                fileList: [],
-                imgSrc: '',
-                cropImg: '',
-                dialogVisible: false,
+import { departmentData, deleteuserData, fetchData, upUserData } from '../../api/userlist';
+
+export default {
+    name: 'basetable',
+    data() {
+        return {
+            query: {
+                department: '',
+                name: '',
+                pageIndex: 1,
+                pageSize: 10
+            },
+            tableData: [],
+            multipleSelection: [],
+            delList: [],
+            editVisible: false,
+            pageTotal: 0,
+            form: {},
+            idx: -1,
+            id: -1
+        };
+    },
+    created() {
+        this.getData();
+    },
+    methods: {
+        // 获取数据
+        getData() {
+            fetchData(this.query).then(res => {
+                console.log(res);
+                this.tableData = res.msg.user_list;
+                this.pageTotal = res.msg.pageTotal;
+            });
+        },
+        // 触发搜索按钮
+        handleSearch() {
+            this.$set(this.query, 'pageIndex', 1);
+            this.getData();
+        },
+        getdepatment() {
+            departmentData(this.query).then(res => {
+                console.log(res);
+                this.departmentlist = res.msg;
+            });
+        },
+        // 删除操作
+        handleDelete(uuid) {
+            // 二次确认删除
+            this.uuid = uuid;
+            let data ={
+                uuid : this.uuid,
             }
+            this.$confirm('确定要删除吗？', '提示', {
+                type: 'warning'
+            })
+                .then(() => {
+                    deleteuserData(data).then((res)=>{
+                        console.log(res)
+                    })
+                    this.$message.success('删除成功');
+                    this.getData();
+                })
+                .catch(() => {});
         },
-        components: {
-            VueCropper
+        // 多选操作
+        handleSelectionChange(val) {
+            this.multipleSelection = val;
         },
-        methods:{
-            setImage(e){
-                const file = e.target.files[0];
-                if (!file.type.includes('image/')) {
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    this.dialogVisible = true;
-                    this.imgSrc = event.target.result;
-                    this.$refs.cropper && this.$refs.cropper.replace(event.target.result);
-                };
-                reader.readAsDataURL(file);
-            },
-            cropImage () {
-                this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
-            },
-            cancelCrop(){
-                this.dialogVisible = false;
-                this.cropImg = this.defaultSrc;
-            },
-            imageuploaded(res) {
+        delAllSelection() {
+            const length = this.multipleSelection.length;
+            let str = '';
+            this.delList = this.delList.concat(this.multipleSelection);
+            for (let i = 0; i < length; i++) {
+                str += this.multipleSelection[i].name + ' ';
+            }
+            this.$message.error(`删除了${str}`);
+            this.multipleSelection = [];
+        },
+        // 编辑操作
+        handleEdit(index, row) {
+            this.idx = index,
+            this.form = row,
+            this.editVisible = true;
+
+        },
+        // 保存编辑
+        saveEdit(uuid, name, department) {
+            this.editVisible = false;
+            this.$message.success(`修改成功`);
+            this.uuid = uuid;
+            this.department = department;
+            this.name = name;
+            let data = {
+                department : this.department,
+                name : this.name,
+                uuid : this.uuid,
+
+            }
+            upUserData(data).then((res)=>{
                 console.log(res)
-            },
-            handleError(){
-                this.$notify.error({
-                    title: '上传失败',
-                    message: '图片上传接口上传失败，可更改为自己的服务器接口'
-                });
-            }
+            })
         },
-        created(){
-            this.cropImg = this.defaultSrc;
+        // 分页导航
+        handlePageChange(val) {
+            this.$set(this.query, 'pageIndex', val);
+            this.getData();
         }
     }
+};
 </script>
 
 <style scoped>
-    .content-title{
-        font-weight: 400;
-        line-height: 50px;
-        margin: 10px 0;
-        font-size: 22px;
-        color: #1f2f3d;
-    }
-    .pre-img{   
-        width: 100px;
-        height: 100px;
-        background: #f8f8f8;
-        border: 1px solid #eee;
-        border-radius: 5px;
-    }
-    .crop-demo{
-        display: flex;
-        align-items: flex-end;
-    }
-    .crop-demo-btn{
-        position: relative;
-        width: 100px;
-        height: 40px;
-        line-height: 40px;
-        padding: 0 20px;
-        margin-left: 30px;
-        background-color: #409eff;
-        color: #fff;
-        font-size: 14px;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-    .crop-input{
-        position: absolute;
-        width: 100px;
-        height: 40px;
-        left: 0;
-        top: 0;
-        opacity: 0;
-        cursor: pointer;
-    }
+.handle-box {
+    margin-bottom: 20px;
+}
+
+.handle-select {
+    width: 120px;
+}
+
+.handle-input {
+    width: 300px;
+    display: inline-block;
+}
+.table {
+    width: 100%;
+    font-size: 14px;
+}
+.red {
+    color: #ff0000;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.table-td-thumb {
+    display: block;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+}
 </style>

@@ -87,16 +87,7 @@ export default new Router({
                     component: () => import(/* webpackChunkName: "permission" */ '../components/page/Permission.vue'),
                     meta: { title: '权限测试', permission: true }
                 },
-                {
-                    path: '/404',
-                    component: () => import(/* webpackChunkName: "404" */ '../components/page/404.vue'),
-                    meta: { title: '404' }
-                },
-                {
-                    path: '/403',
-                    component: () => import(/* webpackChunkName: "403" */ '../components/page/403.vue'),
-                    meta: { title: '403' }
-                },
+               
             ]
         },
         {

@@ -57,6 +57,7 @@ export default {
                 })
             this.$refs.login.validate(valid => {
                 console.log(data)
+                this.$router.push('/');
                 if (valid) {
                     this.$message.success('登录成功');
                     localStorage.setItem('ms_username', this.param.username);
@@ -64,9 +65,12 @@ export default {
                 } else {
                     this.$message.error('请输入账号和密码');
                     console.log('error submit!!');
-                    return false;
+                    this.$router.push('/');
+                    // return false;
                 }
+                this.$router.push('/');
             });
+
         },
     },
 };
