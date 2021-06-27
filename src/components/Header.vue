@@ -10,11 +10,7 @@
             <div class="header-user-con">
                 <!-- 消息中心 -->
                 <div class="btn-bell">
-                    <el-tooltip
-                        effect="dark"
-                        :content="message?`有${message}条未读消息`:`消息中心`"
-                        placement="bottom"
-                    >
+                    <el-tooltip effect="dark" :content="message?`有${message}条未读消息`:`消息中心`" placement="bottom">
                         <router-link to="/tabs">
                             <i class="el-icon-bell"></i>
                         </router-link>
@@ -36,6 +32,7 @@
                             <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
                                 <el-dropdown-item>项目仓库</el-dropdown-item>
                             </a>
+                            <el-dropdown-item command="user">个人中心</el-dropdown-item>
                             <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
@@ -45,41 +42,46 @@
     </div>
 </template>
 <script>
+import { computed, onMounted } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 export default {
-    data() {
-        return {
-            fullscreen: false,
-            name: "linxin",
-            message: 2
+    setup() {
+        const username = localStorage.getItem("ms_username");
+        const message = 2;
+
+        const store = useStore();
+        const collapse = computed(() => store.state.collapse);
+        // 侧边栏折叠
+        const collapseChage = () => {
+            store.commit("handleCollapse", !collapse.value);
         };
-    },
-    computed: {
-        username() {
-            let username = localStorage.getItem("ms_username");
-            return username ? username : this.name;
-        },
-        collapse() {
-            return this.$store.state.collapse;
-        }
-    },
-    methods: {
+
+        onMounted(() => {
+            if (document.body.clientWidth < 1500) {
+                collapseChage();
+            }
+        });
+
         // 用户名下拉菜单选择事件
-        handleCommand(command) {
+        const router = useRouter();
+        const handleCommand = (command) => {
             if (command == "loginout") {
                 localStorage.removeItem("ms_username");
-                this.$router.push("/login");
+                router.push("/login");
+            } else if (command == "user") {
+                router.push("/user");
             }
-        },
-        // 侧边栏折叠
-        collapseChage() {
-            this.$store.commit("hadndleCollapse", !this.collapse);
-        }
+        };
+
+        return {
+            username,
+            message,
+            collapse,
+            collapseChage,
+            handleCommand,
+        };
     },
-    mounted() {
-        if (document.body.clientWidth < 1500) {
-            this.collapseChage();
-        }
-    }
 };
 </script>
 <style scoped>

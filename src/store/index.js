@@ -47,7 +47,7 @@ export default createStore({
             }
         },
         // 侧边栏折叠
-        hadndleCollapse(state, data) {
+        handleCollapse(state, data) {
             state.collapse = data;
         }
     },

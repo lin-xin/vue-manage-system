@@ -18,22 +18,27 @@
     </div>
 </template>
 <script>
-import vHeader from "../components/Header";
-import vSidebar from "../components/Sidebar";
+import { computed } from "vue";
+import { useStore } from "vuex";
+import vHeader from "../components/Header.vue";
+import vSidebar from "../components/Sidebar.vue";
 import vTags from "../components/Tags.vue";
 export default {
     components: {
         vHeader,
         vSidebar,
-        vTags
+        vTags,
     },
-    computed: {
-        tagsList() {
-            return this.$store.state.tagsList.map(item => item.name);
-        },
-        collapse() {
-            return this.$store.state.collapse;
-        }
-    }
+    setup() {
+        const store = useStore();
+        const tagsList = computed(() =>
+            store.state.tagsList.map((item) => item.name)
+        );
+        const collapse = computed(() => store.state.collapse);
+        return {
+            tagsList,
+            collapse,
+        };
+    },
 };
 </script>

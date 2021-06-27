@@ -7,8 +7,8 @@
         </div>
         <div class="container">
             <el-tabs v-model="message">
-                <el-tab-pane :label="`未读消息(${unread.length})`" name="first">
-                    <el-table :data="unread" :show-header="false" style="width: 100%">
+                <el-tab-pane :label="`未读消息(${state.unread.length})`" name="first">
+                    <el-table :data="state.unread" :show-header="false" style="width: 100%">
                         <el-table-column>
                             <template #default="scope">
                                 <span class="message-title">{{scope.row.title}}</span>
@@ -25,9 +25,9 @@
                         <el-button type="primary">全部标为已读</el-button>
                     </div>
                 </el-tab-pane>
-                <el-tab-pane :label="`已读消息(${read.length})`" name="second">
+                <el-tab-pane :label="`已读消息(${state.read.length})`" name="second">
                     <template v-if="message === 'second'">
-                        <el-table :data="read" :show-header="false" style="width: 100%">
+                        <el-table :data="state.read" :show-header="false" style="width: 100%">
                             <el-table-column>
                                 <template #default="scope">
                                     <span class="message-title">{{scope.row.title}}</span>
@@ -45,9 +45,9 @@
                         </div>
                     </template>
                 </el-tab-pane>
-                <el-tab-pane :label="`回收站(${recycle.length})`" name="third">
+                <el-tab-pane :label="`回收站(${state.recycle.length})`" name="third">
                     <template v-if="message === 'third'">
-                        <el-table :data="recycle" :show-header="false" style="width: 100%">
+                        <el-table :data="state.recycle" :show-header="false" style="width: 100%">
                             <el-table-column>
                                 <template #default="scope">
                                     <span class="message-title">{{scope.row.title}}</span>
@@ -71,58 +71,66 @@
 </template>
 
 <script>
-    export default {
-        name: 'tabs',
-        data() {
-            return {
-                message: 'first',
-                showHeader: false,
-                unread: [{
-                    date: '2018-04-19 20:00:00',
-                    title: '【系统通知】该系统将于今晚凌晨2点到5点进行升级维护',
-                },{
-                    date: '2018-04-19 21:00:00',
-                    title: '今晚12点整发大红包，先到先得',
-                }],
-                read: [{
-                    date: '2018-04-19 20:00:00',
-                    title: '【系统通知】该系统将于今晚凌晨2点到5点进行升级维护'
-                }],
-                recycle: [{
-                    date: '2018-04-19 20:00:00',
-                    title: '【系统通知】该系统将于今晚凌晨2点到5点进行升级维护'
-                }]
-            }
-        },
-        methods: {
-            handleRead(index) {
-                const item = this.unread.splice(index, 1);
-                console.log(item);
-                this.read = item.concat(this.read);
-            },
-            handleDel(index) {
-                const item = this.read.splice(index, 1);
-                this.recycle = item.concat(this.recycle);
-            },
-            handleRestore(index) {
-                const item = this.recycle.splice(index, 1);
-                this.read = item.concat(this.read);
-            }
-        },
-        computed: {
-            unreadNum(){
-                return this.unread.length;
-            }
-        }
-    }
+import { ref, reactive } from "vue";
+export default {
+    name: "tabs",
+    setup() {
+        const message = ref("first");
+        const state = reactive({
+            unread: [
+                {
+                    date: "2018-04-19 20:00:00",
+                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护",
+                },
+                {
+                    date: "2018-04-19 21:00:00",
+                    title: "今晚12点整发大红包，先到先得",
+                },
+            ],
+            read: [
+                {
+                    date: "2018-04-19 20:00:00",
+                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护",
+                },
+            ],
+            recycle: [
+                {
+                    date: "2018-04-19 20:00:00",
+                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护",
+                },
+            ],
+        });
 
+        const handleRead = (index) => {
+            const item = state.unread.splice(index, 1);
+            console.log(item);
+            state.read = item.concat(state.read);
+        };
+        const handleDel = (index) => {
+            const item = state.read.splice(index, 1);
+            state.recycle = item.concat(state.recycle);
+        };
+        const handleRestore = (index) => {
+            const item = state.recycle.splice(index, 1);
+            state.read = item.concat(state.read);
+        };
+
+        return {
+            message,
+            state,
+            handleRead,
+            handleDel,
+            handleRestore,
+        };
+    },
+};
 </script>
 
 <style>
-.message-title{
+.message-title {
     cursor: pointer;
 }
-.handle-row{
+.handle-row {
     margin-top: 30px;
 }
 </style>

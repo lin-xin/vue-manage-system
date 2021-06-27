@@ -84,12 +84,9 @@
                         </el-table-column>
                         <el-table-column>
                             <template #default="scope">
-                                <div
-                                    class="todo-item"
-                                    :class="{
+                                <div class="todo-item" :class="{
                                         'todo-item-del': scope.row.status,
-                                    }"
-                                >{{ scope.row.title }}</div>
+                                    }">{{ scope.row.title }}</div>
                             </template>
                         </el-table-column>
                         <el-table-column width="60">
@@ -119,131 +116,123 @@
 
 <script>
 import Schart from "vue-schart";
+import { reactive } from "vue";
 export default {
     name: "dashboard",
-    data() {
-        return {
-            name: localStorage.getItem("ms_username"),
-            todoList: [
-                {
-                    title: "今天要修复100个bug",
-                    status: false
-                },
-                {
-                    title: "今天要修复100个bug",
-                    status: false
-                },
-                {
-                    title: "今天要写100行代码加几个bug吧",
-                    status: false
-                },
-                {
-                    title: "今天要修复100个bug",
-                    status: false
-                },
-                {
-                    title: "今天要修复100个bug",
-                    status: true
-                },
-                {
-                    title: "今天要写100行代码加几个bug吧",
-                    status: true
-                }
-            ],
-            data: [
-                {
-                    name: "2018/09/04",
-                    value: 1083
-                },
-                {
-                    name: "2018/09/05",
-                    value: 941
-                },
-                {
-                    name: "2018/09/06",
-                    value: 1139
-                },
-                {
-                    name: "2018/09/07",
-                    value: 816
-                },
-                {
-                    name: "2018/09/08",
-                    value: 327
-                },
-                {
-                    name: "2018/09/09",
-                    value: 228
-                },
-                {
-                    name: "2018/09/10",
-                    value: 1065
-                }
-            ],
-            options: {
-                type: "bar",
-                title: {
-                    text: "最近一周各品类销售图"
-                },
-                xRorate: 25,
-                labels: ["周一", "周二", "周三", "周四", "周五"],
-                datasets: [
-                    {
-                        label: "家电",
-                        data: [234, 278, 270, 190, 230]
-                    },
-                    {
-                        label: "百货",
-                        data: [164, 178, 190, 135, 160]
-                    },
-                    {
-                        label: "食品",
-                        data: [144, 198, 150, 235, 120]
-                    }
-                ]
+    components: { Schart },
+    setup() {
+        const name = localStorage.getItem("ms_username");
+        const role = name === "admin" ? "超级管理员" : "普通用户";
+
+        const data = reactive([
+            {
+                name: "2018/09/04",
+                value: 1083,
             },
-            options2: {
-                type: "line",
-                title: {
-                    text: "最近几个月各品类销售趋势图"
+            {
+                name: "2018/09/05",
+                value: 941,
+            },
+            {
+                name: "2018/09/06",
+                value: 1139,
+            },
+            {
+                name: "2018/09/07",
+                value: 816,
+            },
+            {
+                name: "2018/09/08",
+                value: 327,
+            },
+            {
+                name: "2018/09/09",
+                value: 228,
+            },
+            {
+                name: "2018/09/10",
+                value: 1065,
+            },
+        ]);
+        const options = {
+            type: "bar",
+            title: {
+                text: "最近一周各品类销售图",
+            },
+            xRorate: 25,
+            labels: ["周一", "周二", "周三", "周四", "周五"],
+            datasets: [
+                {
+                    label: "家电",
+                    data: [234, 278, 270, 190, 230],
                 },
-                labels: ["6月", "7月", "8月", "9月", "10月"],
-                datasets: [
-                    {
-                        label: "家电",
-                        data: [234, 278, 270, 190, 230]
-                    },
-                    {
-                        label: "百货",
-                        data: [164, 178, 150, 135, 160]
-                    },
-                    {
-                        label: "食品",
-                        data: [74, 118, 200, 235, 90]
-                    }
-                ]
-            }
+                {
+                    label: "百货",
+                    data: [164, 178, 190, 135, 160],
+                },
+                {
+                    label: "食品",
+                    data: [144, 198, 150, 235, 120],
+                },
+            ],
+        };
+        const options2 = {
+            type: "line",
+            title: {
+                text: "最近几个月各品类销售趋势图",
+            },
+            labels: ["6月", "7月", "8月", "9月", "10月"],
+            datasets: [
+                {
+                    label: "家电",
+                    data: [234, 278, 270, 190, 230],
+                },
+                {
+                    label: "百货",
+                    data: [164, 178, 150, 135, 160],
+                },
+                {
+                    label: "食品",
+                    data: [74, 118, 200, 235, 90],
+                },
+            ],
+        };
+        const todoList = reactive([
+            {
+                title: "今天要修复100个bug",
+                status: false,
+            },
+            {
+                title: "今天要修复100个bug",
+                status: false,
+            },
+            {
+                title: "今天要写100行代码加几个bug吧",
+                status: false,
+            },
+            {
+                title: "今天要修复100个bug",
+                status: false,
+            },
+            {
+                title: "今天要修复100个bug",
+                status: true,
+            },
+            {
+                title: "今天要写100行代码加几个bug吧",
+                status: true,
+            },
+        ]);
+
+        return {
+            name,
+            data,
+            options,
+            options2,
+            todoList,
+            role,
         };
     },
-    components: {
-        Schart
-    },
-    computed: {
-        role() {
-            return this.name === "admin" ? "超级管理员" : "普通用户";
-        }
-    },
-
-    methods: {
-        changeDate() {
-            const now = new Date().getTime();
-            this.data.forEach((item, index) => {
-                const date = new Date(now - (6 - index) * 86400000);
-                item.name = `${date.getFullYear()}/${date.getMonth() +
-                    1}/${date.getDate()}`;
-            });
-        }
-    }
 };
 </script>
 
