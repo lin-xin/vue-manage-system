@@ -25,15 +25,17 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed } from "vue";
 import { useStore } from "vuex";
-import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
+import { onBeforeRouteUpdate, useRoute, useRouter, } from "vue-router";
+import { tabItem } from "../types/tab";
+
 export default {
     setup() {
         const route = useRoute();
         const router = useRouter();
-        const isActive = (path) => {
+        const isActive = (path: string) => {
             return path === route.fullPath;
         };
 
@@ -42,7 +44,7 @@ export default {
         const showTags = computed(() => tagsList.value.length > 0);
 
         // 关闭单个标签
-        const closeTags = (index) => {
+        const closeTags = (index: number) => {
             const delItem = tagsList.value[index];
             store.commit("delTagsItem", { index });
             const item = tagsList.value[index]
@@ -57,7 +59,7 @@ export default {
 
         // 设置标签
         const setTags = (route) => {
-            const isExist = tagsList.value.some((item) => {
+            const isExist = tagsList.value.some((item: tabItem): boolean => {
                 return item.path === route.fullPath;
             });
             if (!isExist) {
@@ -68,7 +70,7 @@ export default {
                     name: route.name,
                     title: route.meta.title,
                     path: route.fullPath,
-                });
+                } as tabItem);
             }
         };
         setTags(route);
@@ -88,7 +90,7 @@ export default {
             });
             store.commit("closeTagsOther", curItem);
         };
-        const handleTags = (command) => {
+        const handleTags = (command: string) => {
             command === "other" ? closeOther() : closeAll();
         };
 

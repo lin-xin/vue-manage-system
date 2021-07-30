@@ -33,7 +33,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import Schart from "vue-schart";
 export default {
     name: "basecharts",

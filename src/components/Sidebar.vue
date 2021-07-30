@@ -31,7 +31,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, watch } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";

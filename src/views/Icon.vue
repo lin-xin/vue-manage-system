@@ -39,9 +39,9 @@
     </div>
 </template>
 
-<script>
-import { computed, ref } from "vue";
-export default {
+<script lang="ts">
+import { defineComponent, computed, ref } from "vue";
+export default defineComponent({
     name: "icon",
     setup() {
         const iconList = [
@@ -171,7 +171,7 @@ export default {
             "search",
             "edit",
         ];
-        const keyword = ref("");
+        const keyword = ref<string>("");
         const list = computed(() => {
             return iconList.filter((item) => {
                 return item.indexOf(keyword.value) !== -1;
@@ -184,7 +184,7 @@ export default {
             list,
         };
     },
-};
+});
 </script>
 
 <style scoped>

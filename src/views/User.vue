@@ -61,19 +61,25 @@
     </div>
 </template>
 
-<script>
-import { reactive, ref } from "vue";
+<script lang="ts">
+import { defineComponent, reactive, ref } from "vue";
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
 import avatar from "../assets/img/img.jpg";
-export default {
+
+interface formData {
+    old: string,
+    new: string,
+    desc: string
+}
+export default defineComponent({
     name: "user",
     components: {
         VueCropper,
     },
     setup() {
         const name = localStorage.getItem("ms_username");
-        const form = reactive({
+        const form = reactive<formData>({
             old: "",
             new: "",
             desc: "不可能！我的代码怎么可能会有bug！",
@@ -84,7 +90,7 @@ export default {
         const imgSrc = ref("");
         const cropImg = ref("");
         const dialogVisible = ref(false);
-        const cropper = ref(null);
+        const cropper = ref();
 
         const showDialog = () => {
             dialogVisible.value = true;
@@ -92,15 +98,15 @@ export default {
         };
 
         const setImage = (e) => {
-            const file = e.target.files[0];
+            const file = e.target!.files[0];
             if (!file.type.includes("image/")) {
                 return;
             }
             const reader = new FileReader();
             reader.onload = (event) => {
                 dialogVisible.value = true;
-                imgSrc.value = event.target.result;
-                cropper.value && cropper.value.replace(event.target.result);
+                imgSrc.value = event.target?.result as string;
+                cropper.value && cropper.value.replace(event.target?.result as string);
             };
             reader.readAsDataURL(file);
         };
@@ -129,7 +135,7 @@ export default {
             saveAvatar,
         };
     },
-};
+});
 </script>
 
 <style scoped>

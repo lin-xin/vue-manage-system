@@ -27,16 +27,20 @@
     </div>
 </template>
 
-<script>
-import { ref, reactive } from "vue";
+<script lang="ts">
+import { defineComponent, ref, reactive } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 
-export default {
+interface LoginParam {
+    username: string,
+    password: string | number
+}
+export default defineComponent({
     setup() {
         const router = useRouter();
-        const param = reactive({
+        const param = reactive<LoginParam>({
             username: "admin",
             password: "123123",
         });
@@ -53,9 +57,9 @@ export default {
                 { required: true, message: "请输入密码", trigger: "blur" },
             ],
         };
-        const login = ref(null);
+        const login = ref<HTMLFormElement>();
         const submitForm = () => {
-            login.value.validate((valid) => {
+            login.value?.validate((valid: boolean) => {
                 if (valid) {
                     ElMessage.success("登录成功");
                     localStorage.setItem("ms_username", param.username);
@@ -77,7 +81,7 @@ export default {
             submitForm,
         };
     },
-};
+});
 </script>
 
 <style scoped>
