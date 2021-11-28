@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "element-plus": "1.0.2-beta.52",
+    "element-plus": "^1.2.0-beta.4",
     "vue": "^3.1.2",
     "vue-cropperjs": "^5.0.0",
     "vue-i18n": "^9.0.0",
@@ -19,9 +19,9 @@
     "wangeditor": "^4.7.4"
   },
   "devDependencies": {
-    "vite": "2.3.7",
     "@vitejs/plugin-vue": "^1.2.3",
-    "@vue/compiler-sfc": "^3.1.2"
+    "@vue/compiler-sfc": "^3.1.2",
+    "vite": "^2.6.14"
   },
   "browserslist": [
     "> 1%",
