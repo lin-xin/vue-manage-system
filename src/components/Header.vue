@@ -22,21 +22,23 @@
                     <img src="../assets/img/img.jpg" />
                 </div>
                 <!-- 用户名下拉菜单 -->
-                <el-dropdown class="user-name" trigger="click" @command="handleCommand">
+               <div class="user-name">
+                 <el-dropdown trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
                         {{username}}
                         <i class="el-icon-caret-bottom"></i>
                     </span>
-                    <template #dropdown>
-                        <el-dropdown-menu>
-                            <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
-                                <el-dropdown-item>项目仓库</el-dropdown-item>
-                            </a>
-                            <el-dropdown-item command="user">个人中心</el-dropdown-item>
-                            <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </template>
-                </el-dropdown>
+                   <template #dropdown>
+                     <el-dropdown-menu>
+                       <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
+                         <el-dropdown-item>项目仓库</el-dropdown-item>
+                       </a>
+                       <el-dropdown-item command="user">个人中心</el-dropdown-item>
+                       <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
+                     </el-dropdown-menu>
+                   </template>
+                 </el-dropdown>
+               </div>
             </div>
         </div>
     </div>
