@@ -11,20 +11,21 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { useRouter } from "vue-router";
-export default {
+import {defineComponent} from 'vue'
+export default defineComponent({
     name: "404",
     setup() {
         const router = useRouter();
-        const goBack = () => {
+        const goBack = (): void => {
             router.go(-1);
         };
         return {
             goBack,
         };
     },
-};
+});
 </script>
 
 

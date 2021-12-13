@@ -70,7 +70,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { ref, reactive } from "vue";
 export default {
     name: "tabs",
@@ -101,16 +101,16 @@ export default {
             ],
         });
 
-        const handleRead = (index) => {
+        const handleRead = (index: number) => {
             const item = state.unread.splice(index, 1);
             console.log(item);
             state.read = item.concat(state.read);
         };
-        const handleDel = (index) => {
+        const handleDel = (index: number) => {
             const item = state.read.splice(index, 1);
             state.recycle = item.concat(state.recycle);
         };
-        const handleRestore = (index) => {
+        const handleRestore = (index: number) => {
             const item = state.recycle.splice(index, 1);
             state.read = item.concat(state.read);
         };

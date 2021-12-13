@@ -11,7 +11,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { useRouter } from "vue-router";
 export default {
     name: "404",

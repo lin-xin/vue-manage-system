@@ -36,7 +36,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { ref } from "vue";
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
@@ -47,21 +47,21 @@ export default {
         VueCropper,
     },
     setup() {
-        const imgSrc = ref("");
+        const imgSrc = ref<string>("");
         const cropImg = ref(defaultSrc);
-        const dialogVisible = ref(false);
+        const dialogVisible = ref<boolean>(false);
         const cropper = ref(null);
 
         const setImage = (e) => {
-            const file = e.target.files[0];
+            const file = e.target?.files[0];
             if (!file.type.includes("image/")) {
                 return;
             }
             const reader = new FileReader();
             reader.onload = (event) => {
                 dialogVisible.value = true;
-                imgSrc.value = event.target.result;
-                cropper.value && cropper.value.replace(event.target.result);
+                imgSrc.value = event.target?.result as string;
+                cropper.value && cropper.value.replace(event.target?.result);
             };
             reader.readAsDataURL(file);
         };

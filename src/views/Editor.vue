@@ -20,7 +20,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import WangEditor from "wangEditor";
 import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
 export default {

@@ -69,7 +69,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { reactive, ref } from "vue";
 import { ElMessage } from "element-plus";
 export default {
@@ -132,7 +132,7 @@ export default {
                 { required: true, message: "请输入表单名称", trigger: "blur" },
             ],
         };
-        const formRef = ref(null);
+        const formRef = ref<HTMLFormElement>();
         const form = reactive({
             name: "",
             region: "",
@@ -145,11 +145,10 @@ export default {
             options: [],
         });
         // 提交
-        const onSubmit = () => {
+        const onSubmit = (): void | boolean => {
             // 表单校验
-            formRef.value.validate((valid) => {
+            formRef.value?.validate((valid: boolean) => {
                 if (valid) {
-                    console.log(form);
                     ElMessage.success("提交成功！");
                 } else {
                     return false;
@@ -158,7 +157,7 @@ export default {
         };
         // 重置
         const onReset = () => {
-            formRef.value.resetFields();
+            formRef.value?.resetFields();
         };
 
         return {
