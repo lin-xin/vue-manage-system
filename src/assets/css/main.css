@@ -2,6 +2,16 @@
     margin: 0;
     padding: 0;
 }
+:root{
+    --header-height:55px;
+    --sidebar-width:200px;
+    --sidemenu-height:45px;
+}
+
+.el-menu-item, .el-submenu__title{
+    height: var(--sidemenu-height) !important;
+    line-height: var(--sidemenu-height) !important;
+}
 
 html,
 body,
@@ -23,9 +33,9 @@ a {
 
 .content-box {
     position: absolute;
-    left: 250px;
+    left: var(--sidebar-width);
     right: 0;
-    top: 70px;
+    top: var(--header-height);
     bottom: 0;
     padding-bottom: 30px;
     -webkit-transition: left .3s ease-in-out;
