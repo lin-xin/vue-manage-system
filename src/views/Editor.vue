@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import WangEditor from "wangEditor";
+import WangEditor from "wangeditor";
 import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
 export default {
     name: "editor",
