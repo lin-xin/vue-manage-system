@@ -61,7 +61,7 @@ export default {
                     localStorage.setItem("ms_username", param.username);
                     router.push("/");
                 } else {
-                    ElMessage.error("登录成功");
+                    ElMessage.error("登录失败");
                     return false;
                 }
             });
