@@ -47,7 +47,8 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 export default {
     setup() {
-        const username = localStorage.getItem("ms_username");
+        //const username = localStorage.getItem("ms_username");
+        const username = "小红书"
         const message = 2;
 
         const store = useStore();
@@ -89,7 +90,7 @@ export default {
     position: relative;
     box-sizing: border-box;
     width: 100%;
-    height: 70px;
+    height: 50px;
     font-size: 22px;
     color: #fff;
 }
@@ -97,12 +98,12 @@ export default {
     float: left;
     padding: 0 21px;
     cursor: pointer;
-    line-height: 70px;
+    line-height: 50px;
 }
 .header .logo {
     float: left;
     width: 250px;
-    line-height: 70px;
+    line-height: 50px;
 }
 .header-right {
     float: right;
@@ -110,7 +111,7 @@ export default {
 }
 .header-user-con {
     display: flex;
-    height: 70px;
+    height: 50px;
     align-items: center;
 }
 .btn-fullscreen {
@@ -141,7 +142,7 @@ export default {
     color: #fff;
 }
 .user-name {
-    margin-left: 10px;
+    padding-left: 20px;
 }
 .user-avator {
     margin-left: 20px;
@@ -155,6 +156,7 @@ export default {
 .el-dropdown-link {
     color: #fff;
     cursor: pointer;
+    margin-left: 5px;
 }
 .el-dropdown-menu__item {
     text-align: center;
