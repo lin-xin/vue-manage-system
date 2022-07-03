@@ -1,6 +1,6 @@
 {
   "name": "vue-manage-system",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -9,13 +9,14 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "element-plus": "1.0.2-beta.52",
+    "element-plus": "^1.0.2-beta.52",
+    "md-editor-v3": "^2.2.0",
+    "pinia": "^2.0.14",
     "vue": "^3.1.2",
     "vue-cropperjs": "^5.0.0",
     "vue-i18n": "^9.0.0",
     "vue-router": "^4.0.10",
     "vue-schart": "^2.0.0",
-    "vuex": "^4.0.2",
     "wangeditor": "^4.7.4"
   },
   "devDependencies": {

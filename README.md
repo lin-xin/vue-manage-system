@@ -1,10 +1,10 @@
 # vue-manage-system
 
 <a href="https://github.com/vuejs/vue">
-    <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
+    <img src="https://img.shields.io/badge/vue-3.1.2-brightgreen.svg" alt="vue">
   </a>
-  <a href="https://github.com/ElemeFE/element">
-    <img src="https://img.shields.io/badge/element--ui-2.8.2-brightgreen.svg" alt="element-ui">
+  <a href="https://github.com/vuejs/pinia">
+    <img src="https://img.shields.io/badge/pinia-2.0.14-brightgreen.svg" alt="pinia">
   </a>
   <a href="https://github.com/lin-xin/vue-manage-system/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
@@ -16,7 +16,7 @@
     <img src="https://img.shields.io/badge/%24-donate-ff69b4.svg" alt="donate">
   </a>
 
-基于 Vue3 + Element Plus 的后台管理系统解决方案。[线上地址](https://lin-xin.gitee.io/example/work/)
+基于 Vue3 + pinia + Element Plus 的后台管理系统解决方案。[线上地址](https://lin-xin.gitee.io/example/work/)
 
 > Vue2 版本请看 [tag-V4.2.0](https://github.com/lin-xin/vue-manage-system/tree/V4.2.0)
 
@@ -48,7 +48,7 @@
 
 ## 前言
 
-该方案作为一套多功能的后台框架模板，适用于绝大部分的后台管理系统（Web Management System）开发。基于 Vue3，使用 vue-cli3 脚手架，引用 Element Plus 组件库，方便开发快速简洁好看的组件。分离颜色样式，支持手动切换主题色，而且很方便使用自定义主题色。
+该方案作为一套多功能的后台框架模板，适用于绝大部分的后台管理系统（Web Management System）开发。基于 Vue3 + pinia，引用 Element Plus 组件库，方便开发快速简洁好看的组件。分离颜色样式，支持手动切换主题色，而且很方便使用自定义主题色。
 
 ## 功能
 
@@ -66,6 +66,8 @@
 -   [x] 三级菜单
 -   [x] 自定义图标
 -   [x] 国际化
+-   [x] vite
+-   [x] pinia
 
 ## 安装步骤
 

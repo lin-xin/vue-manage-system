@@ -2,12 +2,12 @@
     <div class="about">
         <v-header />
         <v-sidebar />
-        <div class="content-box" :class="{ 'content-collapse': collapse }">
+        <div class="content-box" :class="{ 'content-collapse': sidebar.collapse }">
             <v-tags></v-tags>
             <div class="content">
                 <router-view v-slot="{ Component }">
                     <transition name="move" mode="out-in">
-                        <keep-alive :include="tagsList">
+                        <keep-alive :include="tags.nameList">
                             <component :is="Component" />
                         </keep-alive>
                     </transition>
@@ -18,8 +18,8 @@
     </div>
 </template>
 <script>
-import { computed } from "vue";
-import { useStore } from "vuex";
+import { useSidebarStore } from '../store/sidebar'
+import { useTagsStore } from '../store/tags'
 import vHeader from "../components/Header.vue";
 import vSidebar from "../components/Sidebar.vue";
 import vTags from "../components/Tags.vue";
@@ -30,14 +30,11 @@ export default {
         vTags,
     },
     setup() {
-        const store = useStore();
-        const tagsList = computed(() =>
-            store.state.tagsList.map((item) => item.name)
-        );
-        const collapse = computed(() => store.state.collapse);
+        const sidebar = useSidebarStore();
+        const tags = useTagsStore();
         return {
-            tagsList,
-            collapse,
+            tags,
+            sidebar,
         };
     },
 };

@@ -2,7 +2,7 @@
     <div class="header">
         <!-- 折叠按钮 -->
         <div class="collapse-btn" @click="collapseChage">
-            <i v-if="!collapse" class="el-icon-s-fold"></i>
+            <i v-if="!sidebar.collapse" class="el-icon-s-fold"></i>
             <i v-else class="el-icon-s-unfold"></i>
         </div>
         <div class="logo">后台管理系统</div>
@@ -43,18 +43,17 @@
 </template>
 <script>
 import { computed, onMounted } from "vue";
-import { useStore } from "vuex";
+import { useSidebarStore } from '../store/sidebar'
 import { useRouter } from "vue-router";
 export default {
     setup() {
         const username = localStorage.getItem("ms_username");
         const message = 2;
 
-        const store = useStore();
-        const collapse = computed(() => store.state.collapse);
+        const sidebar = useSidebarStore();
         // 侧边栏折叠
         const collapseChage = () => {
-            store.commit("handleCollapse", !collapse.value);
+            sidebar.handleCollapse();
         };
 
         onMounted(() => {
@@ -75,9 +74,9 @@ export default {
         };
 
         return {
+            sidebar,
             username,
             message,
-            collapse,
             collapseChage,
             handleCommand,
         };

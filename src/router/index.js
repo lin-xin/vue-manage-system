@@ -109,6 +109,13 @@ const routes = [
                     title: '富文本编辑器'
                 },
                 component: () => import (/* webpackChunkName: "editor" */ '../views/Editor.vue')
+            }, {
+                path: '/markdown',
+                name: 'markdown',
+                meta: {
+                    title: 'markdown编辑器'
+                },
+                component: () => import (/* webpackChunkName: "markdown" */ '../views/Markdown.vue')
             }
         ]
     }, {
