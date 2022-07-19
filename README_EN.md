@@ -26,7 +26,9 @@ Please check the version of vue2 in [tag V4.2.0](https://github.com/lin-xin/vue-
 
 ## Preface
 
-The scheme as a set of multi-function background frame templates, suitable for most of the WEB management system development. Convenient development fast simple good components based on Vue3 and ElementPlus. Color separation of color style, support manual switch themes, and it is convenient to use a custom theme color.
+The scheme is a set of multi-function background frame templates which are suitable for most of the WEB management system developments.
+It can be used to develop simple and good components fast based on Vue3 and ElementPlus.
+It has separations of color styles, supports manually switching themes, and it's convenient to use a custom theme color.
 
 ## Function
 
