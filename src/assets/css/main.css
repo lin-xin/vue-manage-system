@@ -175,3 +175,27 @@ a {
 .v-note-wrapper .v-note-panel {
     min-height: 500px;
 }
+
+[class*=" el-icon-"], [class^=el-icon-] {
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: baseline;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.el-sub-menu [class^=el-icon-] {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+}
+
+[hidden]{
+    display: none !important;
+}

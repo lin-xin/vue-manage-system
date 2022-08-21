@@ -37,13 +37,10 @@ The scheme as a set of multi-function background frame templates, suitable for m
 -   [x] Tabs
 -   [x] From
 -   [x] Chart :bar_chart:
--   [ ] Editor
--   [ ] Markdown
+-   [x] Editor
+-   [x] Markdown
 -   [x] Upload pictures by clipping or dragging
--   [ ] Support manual switch themes :sparkles:
--   [ ] List drag sort
 -   [x] Permission
--   [x] 404 / 403
 -   [x] Three level menu
 -   [x] Custom icon
 
@@ -55,8 +52,7 @@ The scheme as a set of multi-function background frame templates, suitable for m
 
 ## Local development
 
-    // Open server and access http://localhost:8080 in browser
-    npm run serve
+    npm run dev
 
 ## Constructing production
 
@@ -75,39 +71,30 @@ Vue.js wrapper for sChart.js. Github : [vue-schart](https://github.com/lin-xin/v
         <schart class="wrapper" canvasId="myCanvas" :options="options"></schart>
     </div>
 </template>
-
-<script>
-    import Schart from "vue-schart"; // 导入Schart组件
-    export default {
-        data() {
-            return {
-                options: {
-                    type: "bar",
-                    title: {
-                        text: "最近一周各品类销售图",
-                    },
-                    labels: ["周一", "周二", "周三", "周四", "周五"],
-                    datasets: [
-                        {
-                            label: "家电",
-                            data: [234, 278, 270, 190, 230],
-                        },
-                        {
-                            label: "百货",
-                            data: [164, 178, 190, 135, 160],
-                        },
-                        {
-                            label: "食品",
-                            data: [144, 198, 150, 235, 120],
-                        },
-                    ],
-                },
-            };
+<script setup>
+import { ref } from 'vue';
+import Schart from "vue-schart"; // 导入Schart组件
+const options = ref({
+    type: "bar",
+    title: {
+        text: "最近一周各品类销售图",
+    },
+    labels: ["周一", "周二", "周三", "周四", "周五"],
+    datasets: [
+        {
+            label: "家电",
+            data: [234, 278, 270, 190, 230],
         },
-        components: {
-            Schart,
+        {
+            label: "百货",
+            data: [164, 178, 190, 135, 160],
         },
-    };
+        {
+            label: "食品",
+            data: [144, 198, 150, 235, 120],
+        },
+    ],
+})
 </script>
 <style>
     .wrapper {
@@ -116,10 +103,6 @@ Vue.js wrapper for sChart.js. Github : [vue-schart](https://github.com/lin-xin/v
     }
 </style>
 ```
-
-### element-ui
-
-A desktop component library based on vue.js2.0 . Github : [element](http://element.eleme.io/#/zh-CN/component/layout)
 
 ## Screenshot
 

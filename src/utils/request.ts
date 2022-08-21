@@ -1,31 +1,28 @@
-import axios from 'axios';
+import axios, {AxiosInstance, AxiosError, AxiosResponse, AxiosRequestConfig} from 'axios';
 
-const service = axios.create({
-    // process.env.NODE_ENV === 'development' 来判断是否开发环境
-    // easy-mock服务挂了，暂时不使用了
-    // baseURL: 'https://www.easy-mock.com/mock/592501a391470c0ac1fab128',
+const service:AxiosInstance = axios.create({
     timeout: 5000
 });
 
 service.interceptors.request.use(
-    config => {
+    (config: AxiosRequestConfig) => {
         return config;
     },
-    error => {
+    (error: AxiosError) => {
         console.log(error);
         return Promise.reject();
     }
 );
 
 service.interceptors.response.use(
-    response => {
+    (response: AxiosResponse) => {
         if (response.status === 200) {
-            return response.data;
+            return response;
         } else {
             Promise.reject();
         }
     },
-    error => {
+    (error: AxiosError) => {
         console.log(error);
         return Promise.reject();
     }

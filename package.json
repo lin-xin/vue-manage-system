@@ -1,32 +1,37 @@
 {
-  "name": "vue-manage-system",
-  "version": "5.2.0",
-  "private": true,
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
-  },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "element-plus": "^1.0.2-beta.52",
-    "md-editor-v3": "^2.2.0",
-    "pinia": "^2.0.14",
-    "vue": "^3.1.2",
-    "vue-cropperjs": "^5.0.0",
-    "vue-i18n": "^9.0.0",
-    "vue-router": "^4.0.10",
-    "vue-schart": "^2.0.0",
-    "wangeditor": "^4.7.4"
-  },
-  "devDependencies": {
-    "vite": "2.3.7",
-    "@vitejs/plugin-vue": "^1.2.3",
-    "@vue/compiler-sfc": "^3.1.2"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+	"name": "vue-manage-system",
+	"version": "5.3.0",
+	"private": true,
+	"scripts": {
+		"dev": "vite",
+		"build": "vue-tsc --noEmit && vite build",
+		"serve": "vite preview"
+	},
+	"dependencies": {
+		"@element-plus/icons-vue": "^2.0.9",
+		"axios": "^0.27.2",
+		"element-plus": "^2.2.14",
+		"md-editor-v3": "^2.2.1",
+		"pinia": "^2.0.20",
+		"vue": "^3.2.37",
+		"vue-cropperjs": "^5.0.0",
+		"vue-router": "^4.1.3",
+		"vue-schart": "^2.0.0",
+		"wangeditor": "^4.7.15"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^3.0.0",
+		"@vue/compiler-sfc": "^3.1.2",
+		"typescript": "^4.6.4",
+		"unplugin-auto-import": "^0.11.2",
+		"unplugin-vue-components": "^0.22.4",
+		"vite": "^3.0.0",
+		"vite-plugin-vue-setup-extend": "^0.4.0",
+		"vue-tsc": "^0.38.4"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	]
 }

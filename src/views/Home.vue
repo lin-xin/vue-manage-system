@@ -1,41 +1,26 @@
 <template>
-    <div class="about">
-        <v-header />
-        <v-sidebar />
-        <div class="content-box" :class="{ 'content-collapse': sidebar.collapse }">
-            <v-tags></v-tags>
-            <div class="content">
-                <router-view v-slot="{ Component }">
-                    <transition name="move" mode="out-in">
-                        <keep-alive :include="tags.nameList">
-                            <component :is="Component" />
-                        </keep-alive>
-                    </transition>
-                </router-view>
-                <!-- <el-backtop target=".content"></el-backtop> -->
-            </div>
-        </div>
-    </div>
+	<v-header />
+	<v-sidebar />
+	<div class="content-box" :class="{ 'content-collapse': sidebar.collapse }">
+		<v-tags></v-tags>
+		<div class="content">
+			<router-view v-slot="{ Component }">
+				<transition name="move" mode="out-in">
+					<keep-alive :include="tags.nameList">
+						<component :is="Component"></component>
+					</keep-alive>
+				</transition>
+			</router-view>
+		</div>
+	</div>
 </template>
-<script>
-import { useSidebarStore } from '../store/sidebar'
-import { useTagsStore } from '../store/tags'
-import vHeader from "../components/Header.vue";
-import vSidebar from "../components/Sidebar.vue";
-import vTags from "../components/Tags.vue";
-export default {
-    components: {
-        vHeader,
-        vSidebar,
-        vTags,
-    },
-    setup() {
-        const sidebar = useSidebarStore();
-        const tags = useTagsStore();
-        return {
-            tags,
-            sidebar,
-        };
-    },
-};
+<script setup lang="ts">
+import { useSidebarStore } from '../store/sidebar';
+import { useTagsStore } from '../store/tags';
+import vHeader from '../components/header.vue';
+import vSidebar from '../components/sidebar.vue';
+import vTags from '../components/tags.vue';
+
+const sidebar = useSidebarStore();
+const tags = useTagsStore();
 </script>
