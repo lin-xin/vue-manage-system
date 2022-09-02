@@ -5,7 +5,7 @@
 			Element Plus自带上传组件。 访问地址：
 			<a href="https://element-plus.org/zh-CN/component/upload.html" target="_blank">Element Plus Upload</a>
 		</div>
-		<el-upload class="upload-demo" drag action="http://jsonplaceholder.typicode.com/api/posts/" multiple>
+		<el-upload class="upload-demo" drag action="http://jsonplaceholder.typicode.com/api/posts/" multiple :on-change="handle">
 			<el-icon class="el-icon--upload"><upload-filled /></el-icon>
 			<div class="el-upload__text">
 				将文件拖到此处，或
@@ -24,6 +24,12 @@
 		</div>
 	</div>
 </template>
+
+<script setup lang="ts">
+const handle = (rawFile:any)=>{
+	console.log(rawFile);
+}
+</script>
 
 <style scoped>
 .content-title {
