@@ -38,13 +38,14 @@
 
 ## 前言
 
-该方案作为一套多功能的后台框架模板，适用于绝大部分的后台管理系统开发。基于 Vue3 + pinia，引用 Element Plus 组件库，方便开发。
+该方案作为一套多功能的后台框架模板，适用于绝大部分的后台管理系统开发。基于 Vue3 + pinia + typescript，引用 Element Plus 组件库，方便开发。实现逻辑简单，适合外包项目，快速交付。
 
 ## 功能
 
 -   [x] Element Plus
--   [x] vite
+-   [x] vite 3
 -   [x] pinia
+-   [x] typescript
 -   [x] 登录/注销
 -   [x] Dashboard
 -   [x] 表格
@@ -59,6 +60,7 @@
 
 
 ## 安装步骤
+> 因为使用vite3，node版本需要 14.18+
 
 ```
 git clone https://github.com/lin-xin/vue-manage-system.git      // 把模板下载到本地
@@ -87,7 +89,7 @@ vue.js 封装 sChart.js 的图表组件。访问地址：[vue-schart](https://gi
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import Schart from "vue-schart"; // 导入Schart组件
 const options = ref({
