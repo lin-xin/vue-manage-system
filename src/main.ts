@@ -1,5 +1,6 @@
 import {createApp} from 'vue'
 import { createPinia } from 'pinia'
+import piniaPluginPersist from 'pinia-plugin-persist'
 import ElementPlus from 'element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
@@ -12,7 +13,9 @@ import './assets/css/icon.css'
 
 const app = createApp(App)
 
-app.use(createPinia())
+const store = createPinia()
+store.use(piniaPluginPersist)
+app.use(store)
 app.use(router)
 app.use(ElementPlus, {
     locale: zhCn,
