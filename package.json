@@ -13,6 +13,7 @@
 		"element-plus": "^2.2.14",
 		"md-editor-v3": "^2.2.1",
 		"pinia": "^2.0.20",
+		"pinia-plugin-persist": "^1.0.0",
 		"vue": "^3.2.37",
 		"vue-cropperjs": "^5.0.0",
 		"vue-router": "^4.1.3",

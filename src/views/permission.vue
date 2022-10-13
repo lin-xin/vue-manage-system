@@ -24,6 +24,7 @@
 
 <script setup lang="ts" name="permission">
 import { ref } from 'vue';
+import { ElMessage } from 'element-plus';
 import { ElTree } from 'element-plus';
 import { usePermissStore } from '../store/permiss';
 
@@ -118,12 +119,15 @@ getPremission();
 // 保存权限
 const tree = ref<InstanceType<typeof ElTree>>();
 const onSubmit = () => {
-	// 获取选中的权限
-	console.log(tree.value!.getCheckedKeys(false));
+	// 获取选中的权限  !. 非空断言符号 符号表示对象后面的属性一定不是null或者undefine
+	// console.log(tree.value!.getCheckedKeys(true));
+	// console.log(tree.value!.getCheckedKeys(false));
+	permiss.saveKeys(role.value, tree.value!.getCheckedKeys(false) as string[])
+	ElMessage.success('保存成功');
 };
 
-const handleChange = (val: string[]) => {
-	tree.value!.setCheckedKeys(permiss.defaultList[role.value]);
+const handleChange = (val: string) => {
+	tree.value!.setCheckedKeys(permiss.defaultList[val]);
 };
 </script>
 
