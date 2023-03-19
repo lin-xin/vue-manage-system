@@ -10,6 +10,10 @@ export default defineConfig({
 		vue(),
 		VueSetupExtend(),
 		AutoImport({
+			imports: [
+				'vue',
+				'vue-router'
+			],
 			resolvers: [ElementPlusResolver()]
 		}),
 		Components({

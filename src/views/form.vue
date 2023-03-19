@@ -64,9 +64,6 @@
 </template>
 
 <script setup lang="ts" name="baseform">
-import { reactive, ref } from 'vue';
-import { ElMessage } from 'element-plus';
-import type { FormInstance, FormRules } from 'element-plus';
 
 const options = [
     {
