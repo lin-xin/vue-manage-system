@@ -177,7 +177,7 @@ const saveEdit = () => {
 	font-size: 14px;
 }
 .red {
-	color: #ff0000;
+	color: #F56C6C;
 }
 .mr10 {
 	margin-right: 10px;
