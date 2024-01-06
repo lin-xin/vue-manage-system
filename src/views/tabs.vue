@@ -27,10 +27,10 @@
 								<span class="message-title">{{ scope.row.title }}</span>
 							</template>
 						</el-table-column>
-						<el-table-column prop="date" width="150"></el-table-column>
+						<el-table-column prop="date" width="180"></el-table-column>
 						<el-table-column width="120">
 							<template #default="scope">
-								<el-button type="danger" @click="handleDel(scope.$index)">删除</el-button>
+								<el-button type="danger" size="small" @click="handleDel(scope.$index)">删除</el-button>
 							</template>
 						</el-table-column>
 					</el-table>
@@ -47,10 +47,10 @@
 								<span class="message-title">{{ scope.row.title }}</span>
 							</template>
 						</el-table-column>
-						<el-table-column prop="date" width="150"></el-table-column>
+						<el-table-column prop="date" width="180"></el-table-column>
 						<el-table-column width="120">
 							<template #default="scope">
-								<el-button @click="handleRestore(scope.$index)">还原</el-button>
+								<el-button size="small" @click="handleRestore(scope.$index)">还原</el-button>
 							</template>
 						</el-table-column>
 					</el-table>

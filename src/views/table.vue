@@ -1,19 +1,15 @@
 <template>
 	<div>
 		<div class="container">
-			<div class="handle-box">
-				<el-select v-model="query.address" placeholder="地址" class="handle-select mr10">
-					<el-option key="1" label="广东省" value="广东省"></el-option>
-					<el-option key="2" label="湖南省" value="湖南省"></el-option>
-				</el-select>
-				<el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
+			<div class="search-box">
+				<el-input v-model="query.name" placeholder="用户名" class="search-input mr10" clearable></el-input>
 				<el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-				<el-button type="primary" :icon="Plus">新增</el-button>
+				<el-button type="warning" :icon="CirclePlusFilled" @click="visible = true">新增</el-button>
 			</div>
 			<el-table :data="tableData" border class="table" ref="multipleTable" header-cell-class-name="table-header">
 				<el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
-				<el-table-column prop="name" label="用户名"></el-table-column>
-				<el-table-column label="账户余额">
+				<el-table-column prop="name" label="用户名" align="center"></el-table-column>
+				<el-table-column label="账户余额" align="center">
 					<template #default="scope">￥{{ scope.row.money }}</template>
 				</el-table-column>
 				<el-table-column label="头像(查看大图)" align="center">
@@ -28,24 +24,37 @@
 						</el-image>
 					</template>
 				</el-table-column>
-				<el-table-column prop="address" label="地址"></el-table-column>
-				<el-table-column label="状态" align="center">
+				<el-table-column prop="address" label="地址" align="center"></el-table-column>
+				<el-table-column label="账户状态" align="center">
 					<template #default="scope">
-						<el-tag
-							:type="scope.row.state === '成功' ? 'success' : scope.row.state === '失败' ? 'danger' : ''"
-						>
-							{{ scope.row.state }}
+						<el-tag :type="scope.row.state ? 'success' : 'danger'">
+							{{ scope.row.state ? '正常' : '异常' }}
 						</el-tag>
 					</template>
 				</el-table-column>
 
-				<el-table-column prop="date" label="注册时间"></el-table-column>
-				<el-table-column label="操作" width="220" align="center">
+				<el-table-column prop="date" label="注册时间" align="center"></el-table-column>
+				<el-table-column label="操作" width="280" align="center">
 					<template #default="scope">
-						<el-button text :icon="Edit" @click="handleEdit(scope.$index, scope.row)" v-permiss="15">
+						<el-button type="warning" size="small" :icon="View" @click="handleView(scope.row)">
+							查看
+						</el-button>
+						<el-button
+							type="primary"
+							size="small"
+							:icon="Edit"
+							@click="handleEdit(scope.$index, scope.row)"
+							v-permiss="15"
+						>
 							编辑
 						</el-button>
-						<el-button text :icon="Delete" class="red" @click="handleDelete(scope.$index)" v-permiss="16">
+						<el-button
+							type="danger"
+							size="small"
+							:icon="Delete"
+							@click="handleDelete(scope.$index)"
+							v-permiss="16"
+						>
 							删除
 						</el-button>
 					</template>
@@ -62,23 +71,18 @@
 				></el-pagination>
 			</div>
 		</div>
-
-		<!-- 编辑弹出框 -->
-		<el-dialog title="编辑" v-model="editVisible" width="30%">
-			<el-form label-width="70px">
-				<el-form-item label="用户名">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="地址">
-					<el-input v-model="form.address"></el-input>
-				</el-form-item>
-			</el-form>
-			<template #footer>
-				<span class="dialog-footer">
-					<el-button @click="editVisible = false">取 消</el-button>
-					<el-button type="primary" @click="saveEdit">确 定</el-button>
-				</span>
-			</template>
+		<el-dialog
+			:title="idEdit ? '编辑用户' : '新增用户'"
+			v-model="visible"
+			width="500px"
+			destroy-on-close
+			:close-on-click-modal="false"
+			@close="closeDialog"
+		>
+			<TableEdit :data="rowData" :edit="idEdit" :update="updateData" />
+		</el-dialog>
+		<el-dialog title="查看用户详情" v-model="visible1" width="700px" destroy-on-close>
+			<TableDetail :data="rowData" />
 		</el-dialog>
 	</div>
 </template>
@@ -86,13 +90,16 @@
 <script setup lang="ts" name="basetable">
 import { ref, reactive } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
-import { Delete, Edit, Search, Plus } from '@element-plus/icons-vue';
+import { Delete, Edit, Search, CirclePlusFilled, View } from '@element-plus/icons-vue';
 import { fetchData } from '../api/index';
+import TableEdit from '../components/table-edit.vue';
+import TableDetail from '../components/table-detail.vue';
 
 interface TableItem {
 	id: number;
 	name: string;
-	money: string;
+	thumb: string;
+	money: number;
 	state: string;
 	date: string;
 	address: string;
@@ -107,11 +114,10 @@ const query = reactive({
 const tableData = ref<TableItem[]>([]);
 const pageTotal = ref(0);
 // 获取表格数据
-const getData = () => {
-	fetchData().then(res => {
-		tableData.value = res.data.list;
-		pageTotal.value = res.data.pageTotal || 50;
-	});
+const getData = async () => {
+	const res = await fetchData();
+	tableData.value = res.data.list;
+	pageTotal.value = res.data.pageTotal || 50;
 };
 getData();
 
@@ -139,46 +145,43 @@ const handleDelete = (index: number) => {
 		.catch(() => {});
 };
 
-// 表格编辑时弹窗和保存
-const editVisible = ref(false);
-let form = reactive({
-	name: '',
-	address: ''
-});
+const visible = ref(false);
 let idx: number = -1;
-const handleEdit = (index: number, row: any) => {
+const idEdit = ref(false);
+const rowData = ref({});
+const handleEdit = (index: number, row: TableItem) => {
 	idx = index;
-	form.name = row.name;
-	form.address = row.address;
-	editVisible.value = true;
+	rowData.value = row;
+	idEdit.value = true;
+	visible.value = true;
 };
-const saveEdit = () => {
-	editVisible.value = false;
-	ElMessage.success(`修改第 ${idx + 1} 行成功`);
-	tableData.value[idx].name = form.name;
-	tableData.value[idx].address = form.address;
+const updateData = (row: TableItem) => {
+	idEdit.value ? (tableData.value[idx] = row) : tableData.value.unshift(row);
+	console.log(tableData.value);
+	closeDialog();
+};
+
+const closeDialog = () => {
+	visible.value = false;
+	idEdit.value = false;
+};
+
+const visible1 = ref(false);
+const handleView = (row: TableItem) => {
+	rowData.value = row;
+	visible1.value = true;
 };
 </script>
 
 <style scoped>
-.handle-box {
+.search-box {
 	margin-bottom: 20px;
 }
 
-.handle-select {
-	width: 120px;
+.search-input {
+	width: 200px;
 }
 
-.handle-input {
-	width: 300px;
-}
-.table {
-	width: 100%;
-	font-size: 14px;
-}
-.red {
-	color: #F56C6C;
-}
 .mr10 {
 	margin-right: 10px;
 }

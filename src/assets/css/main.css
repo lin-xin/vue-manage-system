@@ -74,10 +74,6 @@ a {
     margin-left: 10px;
 }
 
-.el-table tr:hover {
-    background: #f6faff;
-}
-
 .mgb20 {
     margin-bottom: 20px;
 }
@@ -113,7 +109,6 @@ a {
 
 
 [class*=" el-icon-"], [class^=el-icon-] {
-    speak: none;
     font-style: normal;
     font-weight: 400;
     font-variant: normal;

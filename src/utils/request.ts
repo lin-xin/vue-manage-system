@@ -1,11 +1,11 @@
-import axios, {AxiosInstance, AxiosError, AxiosResponse, AxiosRequestConfig} from 'axios';
+import axios, { AxiosInstance, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-const service:AxiosInstance = axios.create({
+const service: AxiosInstance = axios.create({
     timeout: 5000
 });
 
 service.interceptors.request.use(
-    (config: AxiosRequestConfig) => {
+    (config: InternalAxiosRequestConfig) => {
         return config;
     },
     (error: AxiosError) => {
