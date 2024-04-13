@@ -1,23 +1,58 @@
 import { defineStore } from 'pinia';
 
 interface ObjectList {
-	[key: string]: string[];
+    [key: string]: string[];
 }
 
 export const usePermissStore = defineStore('permiss', {
-	state: () => {
-		const keys = localStorage.getItem('ms_keys');
-		return {
-			key: keys ? JSON.parse(keys) : <string[]>[],
-			defaultList: <ObjectList>{
-				admin: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'],
-				user: ['1', '2', '3', '11', '13', '14', '15']
-			}
-		};
-	},
-	actions: {
-		handleSet(val: string[]) {
-			this.key = val;
-		}
-	}
+    state: () => {
+        const keys = localStorage.getItem('ms_keys');
+        return {
+            key: keys ? JSON.parse(keys) : <string[]>[],
+            defaultList: <ObjectList>{
+                admin: [
+                    '0',
+                    '1',
+                    '11',
+                    '12',
+                    '13',
+                    '2',
+                    '21',
+                    '22',
+                    '23',
+                    '24',
+                    '25',
+                    '26',
+                    '27',
+                    '28',
+                    '29',
+                    '291',
+                    '292',
+                    '3',
+                    '31',
+                    '32',
+                    '33',
+                    '34',
+                    '4',
+                    '41',
+                    '42',
+                    '5',
+                    '7',
+                    '6',
+                    '61',
+                    '62',
+                    '63',
+                    '64',
+                    '65',
+                    '66',
+                ],
+                user: ['0', '1', '11', '12', '13'],
+            },
+        };
+    },
+    actions: {
+        handleSet(val: string[]) {
+            this.key = val;
+        },
+    },
 });

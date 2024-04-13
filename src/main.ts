@@ -19,7 +19,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 const permiss = usePermissStore();
 app.directive('permiss', {
     mounted(el, binding) {
-        if (!permiss.key.includes(String(binding.value))) {
+        if (binding.value && !permiss.key.includes(String(binding.value))) {
             el['hidden'] = true;
         }
     },

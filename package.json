@@ -1,6 +1,6 @@
 {
 	"name": "vue-manage-system",
-	"version": "5.3.5",
+	"version": "5.5.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite",
@@ -12,12 +12,16 @@
 		"@wangeditor/editor": "^5.1.23",
 		"@wangeditor/editor-for-vue": "^5.1.12",
 		"axios": "^1.6.3",
-		"element-plus": "^2.4.4",
+		"countup.js": "^2.8.0",
+		"echarts": "^5.5.0",
+		"echarts-wordcloud": "^2.1.0",
+		"element-plus": "^2.6.3",
 		"md-editor-v3": "^2.11.2",
 		"nprogress": "^0.2.0",
 		"pinia": "^2.1.7",
-		"vue": "^3.3.0",
-		"vue-cropperjs": "^5.0.0",
+		"vue": "^3.4.5",
+		"vue-cropper": "1.1.1",
+		"vue-echarts": "^6.6.9",
 		"vue-router": "^4.2.5",
 		"vue-schart": "^2.0.0",
 		"xlsx": "^0.18.5"

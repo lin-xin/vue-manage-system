@@ -1,32 +1,10 @@
 <template>
-	<el-descriptions title="" :column="2" border>
-		<el-descriptions-item>
-			<template #label> 用户ID </template>
-			{{ data.id }}
-		</el-descriptions-item>
-		<el-descriptions-item>
-			<template #label> 用户名 </template>
-			{{ data.name }}
-		</el-descriptions-item>
-		<el-descriptions-item>
-			<template #label> 账户余额 </template>
-			{{ data.money }}
-		</el-descriptions-item>
-		<el-descriptions-item>
-			<template #label> 账户状态 </template>
-			{{ data.state ? '正常' : '异常' }}
-		</el-descriptions-item>
-		<el-descriptions-item :span="2">
-			<template #label> 地址 </template>
-			{{ data.address }}
-		</el-descriptions-item>
-		<el-descriptions-item>
-			<template #label> 日期 </template>
-			{{ data.date }}
-		</el-descriptions-item>
-		<el-descriptions-item>
-			<template #label> 头像 </template>
-			<img :src="data.thumb" style="width: 120px" alt="" />
+	<el-descriptions :title="title" :column="column" border>
+		<el-descriptions-item v-for="item in list" :span="item.span">
+			<template #label> {{ item.label }} </template>
+			<slot :name="item.prop" :rows="row">
+				{{ item.value || row[item.prop] }}
+			</slot>
 		</el-descriptions-item>
 	</el-descriptions>
 </template>
@@ -35,7 +13,9 @@
 const props = defineProps({
 	data: {
 		type: Object,
-		required: true
+		required: true,
 	}
 });
+const { row, title, column = 2, list } = props.data;
+
 </script>

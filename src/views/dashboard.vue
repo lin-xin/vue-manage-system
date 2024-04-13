@@ -1,301 +1,357 @@
 <template>
-	<div>
-		<el-row :gutter="20">
-			<el-col :span="8">
-				<el-card shadow="hover" class="mgb20" style="height: 252px">
-					<div class="user-info">
-						<el-avatar :size="120" :src="imgurl" />
-						<div class="user-info-cont">
-							<div class="user-info-name">{{ name }}</div>
-							<div>{{ role }}</div>
-						</div>
-					</div>
-					<div class="user-info-list">
-						上次登录时间：
-						<span>2022-10-01</span>
-					</div>
-					<div class="user-info-list">
-						上次登录地点：
-						<span>东莞</span>
-					</div>
-				</el-card>
-				<el-card shadow="hover" style="height: 252px">
-					<template #header>
-						<div class="clearfix">
-							<span>语言详情</span>
-						</div>
-					</template>
-					Vue
-					<el-progress :percentage="79.4" color="#42b983"></el-progress>
-					TypeScript
-					<el-progress :percentage="14" color="#f1e05a"></el-progress>
-					CSS
-					<el-progress :percentage="5.6"></el-progress>
-					HTML
-					<el-progress :percentage="1" color="#f56c6c"></el-progress>
-				</el-card>
-			</el-col>
-			<el-col :span="16">
-				<el-row :gutter="20" class="mgb20">
-					<el-col :span="8">
-						<el-card shadow="hover" :body-style="{ padding: '0px' }">
-							<div class="grid-content grid-con-1">
-								<el-icon class="grid-con-icon"><User /></el-icon>
-								<div class="grid-cont-right">
-									<div class="grid-num">1234</div>
-									<div>用户访问量</div>
-								</div>
-							</div>
-						</el-card>
-					</el-col>
-					<el-col :span="8">
-						<el-card shadow="hover" :body-style="{ padding: '0px' }">
-							<div class="grid-content grid-con-2">
-								<el-icon class="grid-con-icon"><ChatDotRound /></el-icon>
-								<div class="grid-cont-right">
-									<div class="grid-num">321</div>
-									<div>系统消息</div>
-								</div>
-							</div>
-						</el-card>
-					</el-col>
-					<el-col :span="8">
-						<el-card shadow="hover" :body-style="{ padding: '0px' }">
-							<div class="grid-content grid-con-3">
-								<el-icon class="grid-con-icon"><Goods /></el-icon>
-								<div class="grid-cont-right">
-									<div class="grid-num">5000</div>
-									<div>商品数量</div>
-								</div>
-							</div>
-						</el-card>
-					</el-col>
-				</el-row>
-				<el-card shadow="hover" style="height: 403px">
-					<template #header>
-						<div class="clearfix">
-							<span>待办事项</span>
-							<el-button style="float: right; padding: 3px 0" text>添加</el-button>
-						</div>
-					</template>
+    <div>
+        <el-row :gutter="20" class="mgb20">
+            <el-col :span="6">
+                <el-card shadow="hover" body-class="card-body">
+                    <el-icon class="card-icon bg1">
+                        <User />
+                    </el-icon>
+                    <div class="card-content">
+                        <countup class="card-num color1" :end="6666" />
+                        <div>用户访问量</div>
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :span="6">
+                <el-card shadow="hover" body-class="card-body">
+                    <el-icon class="card-icon bg2">
+                        <ChatDotRound />
+                    </el-icon>
+                    <div class="card-content">
+                        <countup class="card-num color2" :end="168" />
+                        <div>系统消息</div>
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :span="6">
+                <el-card shadow="hover" body-class="card-body">
+                    <el-icon class="card-icon bg3">
+                        <Goods />
+                    </el-icon>
+                    <div class="card-content">
+                        <countup class="card-num color3" :end="8888" />
+                        <div>商品数量</div>
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :span="6">
+                <el-card shadow="hover" body-class="card-body">
+                    <el-icon class="card-icon bg4">
+                        <ShoppingCartFull />
+                    </el-icon>
+                    <div class="card-content">
+                        <countup class="card-num color4" :end="568" />
+                        <div>今日订单量</div>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
 
-					<el-table :show-header="false" :data="todoList" style="width: 100%">
-						<el-table-column width="40">
-							<template #default="scope">
-								<el-checkbox v-model="scope.row.status"></el-checkbox>
-							</template>
-						</el-table-column>
-						<el-table-column>
-							<template #default="scope">
-								<div
-									class="todo-item"
-									:class="{
-										'todo-item-del': scope.row.status
-									}"
-								>
-									{{ scope.row.title }}
-								</div>
-							</template>
-						</el-table-column>
-					</el-table>
-				</el-card>
-			</el-col>
-		</el-row>
-		<el-row :gutter="20">
-			<el-col :span="12">
-				<el-card shadow="hover">
-					<schart ref="bar" class="schart" canvasId="bar" :options="options"></schart>
-				</el-card>
-			</el-col>
-			<el-col :span="12">
-				<el-card shadow="hover">
-					<schart ref="line" class="schart" canvasId="line" :options="options2"></schart>
-				</el-card>
-			</el-col>
-		</el-row>
-	</div>
+        <el-row :gutter="20" class="mgb20">
+            <el-col :span="18">
+                <el-card shadow="hover">
+                    <div class="card-header">
+                        <p class="card-header-title">订单动态</p>
+                        <p class="card-header-desc">最近一周订单状态，包括订单成交量和订单退货量</p>
+                    </div>
+                    <v-chart class="chart" :option="dashOpt1" />
+                </el-card>
+            </el-col>
+            <el-col :span="6">
+                <el-card shadow="hover">
+                    <div class="card-header">
+                        <p class="card-header-title">品类分布</p>
+                        <p class="card-header-desc">最近一个月销售商品的品类情况</p>
+                    </div>
+                    <v-chart class="chart" :option="dashOpt2" />
+                </el-card>
+            </el-col>
+        </el-row>
+        <el-row :gutter="20">
+            <el-col :span="7">
+                <el-card shadow="hover" :body-style="{ height: '400px' }">
+                    <div class="card-header">
+                        <p class="card-header-title">时间线</p>
+                        <p class="card-header-desc">最新的销售动态和活动信息</p>
+                    </div>
+                    <el-timeline>
+                        <el-timeline-item v-for="(activity, index) in activities" :key="index" :color="activity.color">
+                            <div class="timeline-item">
+                                <div>
+                                    <p>{{ activity.content }}</p>
+                                    <p class="timeline-desc">{{ activity.description }}</p>
+                                </div>
+                                <div class="timeline-time">{{ activity.timestamp }}</div>
+                            </div>
+                        </el-timeline-item>
+                    </el-timeline>
+                </el-card>
+            </el-col>
+            <el-col :span="10">
+                <el-card shadow="hover" :body-style="{ height: '400px' }">
+                    <div class="card-header">
+                        <p class="card-header-title">渠道统计</p>
+                        <p class="card-header-desc">最近一个月的订单来源统计</p>
+                    </div>
+                    <v-chart class="map-chart" :option="mapOptions" />
+                </el-card>
+            </el-col>
+            <el-col :span="7">
+                <el-card shadow="hover" :body-style="{ height: '400px' }">
+                    <div class="card-header">
+                        <p class="card-header-title">排行榜</p>
+                        <p class="card-header-desc">销售商品的热门榜单Top5</p>
+                    </div>
+                    <div>
+                        <div class="rank-item" v-for="(rank, index) in ranks">
+                            <div class="rank-item-avatar">{{ index + 1 }}</div>
+                            <div class="rank-item-content">
+                                <div class="rank-item-top">
+                                    <div class="rank-item-title">{{ rank.title }}</div>
+                                    <div class="rank-item-desc">销量：{{ rank.value }}</div>
+                                </div>
+                                <el-progress
+                                    :show-text="false"
+                                    striped
+                                    :stroke-width="10"
+                                    :percentage="rank.percent"
+                                    :color="rank.color"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
+    </div>
 </template>
 
 <script setup lang="ts" name="dashboard">
-import Schart from 'vue-schart';
-import { reactive } from 'vue';
-import imgurl from '../assets/img/img.jpg';
-
-const name = localStorage.getItem('ms_username');
-const role: string = name === 'admin' ? '超级管理员' : '普通用户';
-
-const options = {
-	type: 'bar',
-	title: {
-		text: '最近一周各品类销售图'
-	},
-	xRorate: 25,
-	labels: ['周一', '周二', '周三', '周四', '周五'],
-	datasets: [
-		{
-			label: '家电',
-			data: [234, 278, 270, 190, 230]
-		},
-		{
-			label: '百货',
-			data: [164, 178, 190, 135, 160]
-		},
-		{
-			label: '食品',
-			data: [144, 198, 150, 235, 120]
-		}
-	]
-};
-const options2 = {
-	type: 'line',
-	title: {
-		text: '最近几个月各品类销售趋势图'
-	},
-	labels: ['6月', '7月', '8月', '9月', '10月'],
-	datasets: [
-		{
-			label: '家电',
-			data: [234, 278, 270, 190, 230]
-		},
-		{
-			label: '百货',
-			data: [164, 178, 150, 135, 160]
-		},
-		{
-			label: '食品',
-			data: [74, 118, 200, 235, 90]
-		}
-	]
-};
-const todoList = reactive([
-	{
-		title: '今天要修复100个bug',
-		status: false
-	},
-	{
-		title: '今天要修复100个bug',
-		status: false
-	},
-	{
-		title: '今天要写100行代码加几个bug吧',
-		status: false
-	},
-	{
-		title: '今天要修复100个bug',
-		status: false
-	},
-	{
-		title: '今天要修复100个bug',
-		status: true
-	},
-	{
-		title: '今天要写100行代码加几个bug吧',
-		status: true
-	}
+import countup from '@/components/countup.vue';
+import { use, registerMap } from 'echarts/core';
+import { BarChart, LineChart, PieChart, MapChart } from 'echarts/charts';
+import {
+    GridComponent,
+    TooltipComponent,
+    LegendComponent,
+    TitleComponent,
+    VisualMapComponent,
+} from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
+import VChart from 'vue-echarts';
+import { dashOpt1, dashOpt2, mapOptions } from './chart/options';
+import chinaMap from '@/utils/china';
+use([
+    CanvasRenderer,
+    BarChart,
+    GridComponent,
+    LineChart,
+    PieChart,
+    TooltipComponent,
+    LegendComponent,
+    TitleComponent,
+    VisualMapComponent,
+    MapChart,
 ]);
+registerMap('china', chinaMap);
+const activities = [
+    {
+        content: '收藏商品',
+        description: 'xxx收藏了你的商品，就是不买',
+        timestamp: '30分钟前',
+        color: '#00bcd4',
+    },
+    {
+        content: '用户评价',
+        description: 'xxx给了某某商品一个差评，吐血啊',
+        timestamp: '55分钟前',
+        color: '#1ABC9C',
+    },
+    {
+        content: '订单提交',
+        description: 'xxx提交了订单，快去收钱吧',
+        timestamp: '1小时前',
+        color: '#3f51b5',
+    },
+    {
+        content: '退款申请',
+        description: 'xxx申请了仅退款，又要亏钱了',
+        timestamp: '15小时前',
+        color: '#f44336',
+    },
+    {
+        content: '商品上架',
+        description: '运营专员瞒着你上架了一辆飞机',
+        timestamp: '1天前',
+        color: '#009688',
+    },
+];
+
+const ranks = [
+    {
+        title: '手机',
+        value: 10000,
+        percent: 80,
+        color: '#f25e43',
+    },
+    {
+        title: '电脑',
+        value: 8000,
+        percent: 70,
+        color: '#00bcd4',
+    },
+    {
+        title: '相机',
+        value: 6000,
+        percent: 60,
+        color: '#64d572',
+    },
+    {
+        title: '衣服',
+        value: 5000,
+        percent: 55,
+        color: '#e9a745',
+    },
+    {
+        title: '书籍',
+        value: 4000,
+        percent: 50,
+        color: '#009688',
+    },
+];
 </script>
 
+<style>
+.card-body {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    padding: 0;
+}
+</style>
 <style scoped>
-.el-row {
-	margin-bottom: 20px;
+.card-content {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    padding: 0 20px;
 }
 
-.grid-content {
-	display: flex;
-	align-items: center;
-	height: 100px;
+.card-num {
+    font-size: 30px;
 }
 
-.grid-cont-right {
-	flex: 1;
-	text-align: center;
-	font-size: 14px;
-	color: #999;
+.card-icon {
+    font-size: 50px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    color: #fff;
 }
 
-.grid-num {
-	font-size: 30px;
-	font-weight: bold;
+.bg1 {
+    background: #2d8cf0;
 }
 
-.grid-con-icon {
-	font-size: 50px;
-	width: 100px;
-	height: 100px;
-	text-align: center;
-	line-height: 100px;
-	color: #fff;
+.bg2 {
+    background: #64d572;
 }
 
-.grid-con-1 .grid-con-icon {
-	background: rgb(45, 140, 240);
+.bg3 {
+    background: #f25e43;
 }
 
-.grid-con-1 .grid-num {
-	color: rgb(45, 140, 240);
+.bg4 {
+    background: #e9a745;
 }
 
-.grid-con-2 .grid-con-icon {
-	background: rgb(100, 213, 114);
+.color1 {
+    color: #2d8cf0;
 }
 
-.grid-con-2 .grid-num {
-	color: rgb(100, 213, 114);
+.color2 {
+    color: #64d572;
 }
 
-.grid-con-3 .grid-con-icon {
-	background: rgb(242, 94, 67);
+.color3 {
+    color: #f25e43;
 }
 
-.grid-con-3 .grid-num {
-	color: rgb(242, 94, 67);
+.color4 {
+    color: #e9a745;
 }
 
-.user-info {
-	display: flex;
-	align-items: center;
-	padding-bottom: 20px;
-	border-bottom: 2px solid #ccc;
-	margin-bottom: 20px;
+.chart {
+    width: 100%;
+    height: 400px;
 }
 
-.user-info-cont {
-	padding-left: 50px;
-	flex: 1;
-	font-size: 14px;
-	color: #999;
+.card-header {
+    padding-left: 10px;
+    margin-bottom: 20px;
 }
 
-.user-info-cont div:first-child {
-	font-size: 30px;
-	color: #222;
+.card-header-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.user-info-list {
-	font-size: 14px;
-	color: #999;
-	line-height: 25px;
+.card-header-desc {
+    font-size: 14px;
+    color: #999;
 }
 
-.user-info-list span {
-	margin-left: 70px;
+.timeline-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    color: #000;
 }
 
-.mgb20 {
-	margin-bottom: 20px;
+.timeline-time,
+.timeline-desc {
+    font-size: 12px;
+    color: #787878;
 }
 
-.todo-item {
-	font-size: 14px;
+.rank-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.todo-item-del {
-	text-decoration: line-through;
-	color: #999;
+.rank-item-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f2f2f2;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 10px;
 }
 
-.schart {
-	width: 100%;
-	height: 300px;
+.rank-item-content {
+    flex: 1;
+}
+
+.rank-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #343434;
+    margin-bottom: 10px;
+}
+
+.rank-item-desc {
+    font-size: 14px;
+    color: #999;
+}
+.map-chart {
+    width: 100%;
+    height: 350px;
 }
 </style>

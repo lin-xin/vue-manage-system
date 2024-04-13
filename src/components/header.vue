@@ -1,23 +1,37 @@
 <template>
 	<div class="header">
 		<!-- 折叠按钮 -->
-		<div class="collapse-btn" @click="collapseChage">
-			<el-icon v-if="sidebar.collapse"><Expand /></el-icon>
-			<el-icon v-else><Fold /></el-icon>
+		<div class="header-left">
+			<img class="logo" src="../assets/img/logo.svg" alt="">
+			<div class="web-title">
+				后台管理系统
+			</div>
+			<div class="collapse-btn" @click="collapseChage">
+				<el-icon v-if="sidebar.collapse">
+					<Expand />
+				</el-icon>
+				<el-icon v-else>
+					<Fold />
+				</el-icon>
+			</div>
 		</div>
-		<div class="logo">后台管理系统</div>
 		<div class="header-right">
 			<div class="header-user-con">
-				<!-- 消息中心 -->
-				<div class="btn-bell" @click="router.push('/tabs')">
-					<el-tooltip
-						effect="dark"
-						:content="message ? `有${message}条未读消息` : `消息中心`"
-						placement="bottom"
-					>
+				<div class="btn-icon" @click="router.push('/theme')">
+					<el-tooltip effect="dark" content="设置主题" placement="bottom">
+						<i class="el-icon-lx-skin"></i>
+					</el-tooltip>
+				</div>
+				<div class="btn-icon" @click="router.push('/ucenter')">
+					<el-tooltip effect="dark" :content="message ? `有${message}条未读消息` : `消息中心`" placement="bottom">
 						<i class="el-icon-lx-notice"></i>
 					</el-tooltip>
 					<span class="btn-bell-badge" v-if="message"></span>
+				</div>
+				<div class="btn-icon" @click="setFullScreen">
+					<el-tooltip effect="dark" content="全屏" placement="bottom">
+						<i class="el-icon-lx-full"></i>
+					</el-tooltip>
 				</div>
 				<!-- 用户头像 -->
 				<el-avatar class="user-avator" :size="30" :src="imgurl" />
@@ -71,58 +85,92 @@ const handleCommand = (command: string) => {
 		localStorage.removeItem('ms_username');
 		router.push('/login');
 	} else if (command == 'user') {
-		router.push('/user');
+		router.push('/ucenter');
 	}
 };
+
+const setFullScreen = () => {
+	if (document.fullscreenElement) {
+		document.exitFullscreen();
+	} else {
+		document.body.requestFullscreen.call(document.body);
+	}
+}
 </script>
 <style scoped>
 .header {
-	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	box-sizing: border-box;
 	width: 100%;
 	height: 70px;
-	font-size: 22px;
-	color: #fff;
+	color: var(--header-text-color);
+	background-color: var(--header-bg-color);
+	border-bottom: 1px solid #ddd;
 }
+
+.header-left {
+	display: flex;
+	align-items: center;
+	padding-left: 20px;
+	height: 100%;
+}
+
+.logo {
+	width: 35px;
+}
+
+.web-title {
+	margin: 0 40px 0 10px;
+	font-size: 22px;
+}
+
 .collapse-btn {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-	float: left;
-	padding: 0 21px;
+	padding: 0 10px;
 	cursor: pointer;
+	opacity: 0.8;
+	font-size: 22px;
 }
-.header .logo {
-	float: left;
-	width: 250px;
-	line-height: 70px;
+
+.collapse-btn:hover {
+	opacity: 1;
 }
+
 .header-right {
 	float: right;
 	padding-right: 50px;
 }
+
 .header-user-con {
 	display: flex;
 	height: 70px;
 	align-items: center;
 }
+
 .btn-fullscreen {
 	transform: rotate(45deg);
 	margin-right: 5px;
 	font-size: 24px;
 }
-.btn-bell,
-.btn-fullscreen {
+
+.btn-icon {
 	position: relative;
 	width: 30px;
 	height: 30px;
 	text-align: center;
-	border-radius: 15px;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
+	color: var(--header-text-color);
+	margin: 0 5px;
+	font-size: 20px;
 }
+
 .btn-bell-badge {
 	position: absolute;
 	right: 4px;
@@ -131,23 +179,21 @@ const handleCommand = (command: string) => {
 	height: 8px;
 	border-radius: 4px;
 	background: #f56c6c;
-	color: #fff;
+	color: var(--header-text-color);
 }
-.btn-bell .el-icon-lx-notice {
-	color: #fff;
-}
-.user-name {
-	margin-left: 10px;
-}
+
+
 .user-avator {
-	margin-left: 20px;
+	margin: 0 10px 0 20px;
 }
+
 .el-dropdown-link {
-	color: #fff;
+	color: var(--header-text-color);
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 }
+
 .el-dropdown-menu__item {
 	text-align: center;
 }

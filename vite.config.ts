@@ -18,5 +18,14 @@ export default defineConfig({
 	],
 	optimizeDeps: {
 		include: ['schart.js']
-	}
+	},
+	resolve: {
+		alias: {
+			'@': '/src',
+			'~': '/src/assets'
+		}
+	},
+	define: {
+		__VUE_PROD_HYDRATION_MISMATCH_DETAILS__: "true",
+	},
 });

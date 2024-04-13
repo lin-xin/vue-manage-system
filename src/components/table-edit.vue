@@ -1,38 +1,36 @@
 <template>
-	<el-form ref="formRef" :model="form" :rules="rules" label-width="100px">
-		<el-form-item label="用户名" prop="name">
-			<el-input v-model="form.name"></el-input>
-		</el-form-item>
-		<el-form-item label="账户余额" prop="money">
-			<el-input v-model.number="form.money"></el-input>
-		</el-form-item>
-		<el-form-item label="地址" prop="address">
-			<el-input v-model="form.address"></el-input>
-		</el-form-item>
-		<el-form-item label="账户状态" prop="state">
-			<el-switch
-				v-model="form.state"
-				:active-value="1"
-				:inactive-value="0"
-				active-text="正常"
-				inactive-text="异常"
-			></el-switch>
-		</el-form-item>
-		<el-form-item label="注册日期" prop="date">
-			<el-date-picker type="date" v-model="form.date" value-format="YYYY-MM-DD"></el-date-picker>
-		</el-form-item>
-		<el-form-item label="上传头像" prop="thumb">
-			<el-upload
-				class="avatar-uploader"
-				action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-				:show-file-list="false"
-				:on-success="handleAvatarSuccess"
-				:before-upload="beforeAvatarUpload"
-			>
-				<img v-if="form.thumb" :src="form.thumb" class="avatar" />
-				<el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
-			</el-upload>
-		</el-form-item>
+	<el-form ref="formRef" :model="form" :rules="rules" :label-width="options.labelWidth">
+		<el-row>
+			<el-col :span="options.span" v-for="item in options.list">
+				<el-form-item :label="item.label" :prop="item.prop">
+					<!-- 文本框、数字框、下拉框、日期框、开关、上传 -->
+					<el-input v-if="item.type === 'input'" v-model="form[item.prop]" :disabled="item.disabled"
+						:placeholder="item.placeholder" clearable></el-input>
+					<el-input-number v-else-if="item.type === 'number'" v-model="form[item.prop]"
+						:disabled="item.disabled" controls-position="right"></el-input-number>
+					<el-select v-else-if="item.type === 'select'" v-model="form[item.prop]" :disabled="item.disabled"
+						:placeholder="item.placeholder" clearable>
+						<el-option v-for="opt in item.opts" :label="opt.label" :value="opt.value"></el-option>
+					</el-select>
+					<el-date-picker v-else-if="item.type === 'date'" type="date" v-model="form[item.prop]"
+						:value-format="item.format"></el-date-picker>
+					<el-switch v-else-if="item.type === 'switch'" v-model="form[item.prop]"
+						:active-value="item.activeValue" :inactive-value="item.inactiveValue"
+						:active-text="item.activeText" :inactive-text="item.inactiveText"></el-switch>
+					<el-upload v-else-if="item.type === 'upload'" class="avatar-uploader" action="#"
+						:show-file-list="false" :on-success="handleAvatarSuccess">
+						<img v-if="form[item.prop]" :src="form[item.prop]" class="avatar" />
+						<el-icon v-else class="avatar-uploader-icon">
+							<Plus />
+						</el-icon>
+					</el-upload>
+					<slot :name="item.prop" v-else>
+
+					</slot>
+				</el-form-item>
+			</el-col>
+		</el-row>
+
 		<el-form-item>
 			<el-button type="primary" @click="saveEdit(formRef)">保 存</el-button>
 		</el-form-item>
@@ -40,11 +38,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ElMessage, FormInstance, FormRules, UploadProps } from 'element-plus';
-import { ref } from 'vue';
+import { FormOption } from '@/types/form-option';
+import { FormInstance, FormRules, UploadProps } from 'element-plus';
+import { PropType, ref } from 'vue';
 
-const props = defineProps({
-	data: {
+const { options, formData, edit, update } = defineProps({
+	options: {
+		type: Object as PropType<FormOption>,
+		required: true
+	},
+	formData: {
 		type: Object,
 		required: true
 	},
@@ -58,28 +61,23 @@ const props = defineProps({
 	}
 });
 
-const defaultData = {
-	id: '',
-	name: '',
-	address: '',
-	thumb: '',
-	money: 0,
-	state: 0,
-	date: new Date()
-};
 
-const form = ref({ ...(props.edit ? props.data : defaultData) });
+const form = ref({ ...(edit ? formData : {}) });
 
-const rules: FormRules = {
-	name: [{ required: true, message: '用户名', trigger: 'blur' }]
-};
+const rules: FormRules = options.list.map(item => {
+	if (item.required) {
+		return { [item.prop]: [{ required: true, message: `${item.label}不能为空`, trigger: 'blur' }] };
+	}
+	return {};
+}).reduce((acc, cur) => ({ ...acc, ...cur }), {});
+
+
 const formRef = ref<FormInstance>();
 const saveEdit = (formEl: FormInstance | undefined) => {
 	if (!formEl) return;
 	formEl.validate(valid => {
 		if (!valid) return false;
-		props.update(form.value);
-		ElMessage.success('保存成功！');
+		update(form.value);
 	});
 };
 
@@ -87,16 +85,6 @@ const handleAvatarSuccess: UploadProps['onSuccess'] = (response, uploadFile) => 
 	form.value.thumb = URL.createObjectURL(uploadFile.raw!);
 };
 
-const beforeAvatarUpload: UploadProps['beforeUpload'] = rawFile => {
-	if (rawFile.type !== 'image/jpeg') {
-		ElMessage.error('Avatar picture must be JPG format!');
-		return false;
-	} else if (rawFile.size / 1024 / 1024 > 2) {
-		ElMessage.error('Avatar picture size can not exceed 2MB!');
-		return false;
-	}
-	return true;
-};
 </script>
 
 <style>
