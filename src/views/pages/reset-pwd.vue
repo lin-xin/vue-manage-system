@@ -13,7 +13,9 @@
                         </template>
                     </el-input>
                 </el-form-item>
-                <el-button class="login-btn" type="primary" size="large" @click="submitForm(register)">发送邮件</el-button>
+                <el-button class="login-btn" type="primary" size="large" @click="submitForm(register)"
+                    >发送邮件</el-button
+                >
                 <p class="login-text"><el-link type="primary" @click="$router.push('/login')">返回登录</el-link></p>
             </el-form>
         </div>
@@ -31,7 +33,11 @@ const param = ref({
 const rules: FormRules = {
     email: [
         { required: true, message: '请输入邮箱', trigger: 'blur' },
-        { pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: '请输入正确的邮箱格式', trigger: 'blur' }
+        {
+            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            message: '请输入正确的邮箱格式',
+            trigger: 'blur',
+        },
     ],
 };
 const register = ref<FormInstance>();
@@ -45,7 +51,6 @@ const submitForm = (formEl: FormInstance | undefined) => {
         }
     });
 };
-
 </script>
 
 <style scoped>
@@ -54,7 +59,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: url(../../assets/img/login-bg.jpg) center/cover no-repeat;
 }
 

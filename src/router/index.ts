@@ -19,7 +19,7 @@ const routes: RouteRecordRaw[] = [
                 name: 'dashboard',
                 meta: {
                     title: '系统首页',
-                    permiss: '0',
+                    noAuth: true,
                 },
                 component: () => import(/* webpackChunkName: "dashboard" */ '../views/dashboard.vue'),
             },
@@ -273,12 +273,12 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     NProgress.start();
-    const role = localStorage.getItem('ms_username');
+    const role = localStorage.getItem('vuems_name');
     const permiss = usePermissStore();
 
     if (!role && to.meta.noAuth !== true) {
         next('/login');
-    } else if (to.meta.permiss && !permiss.key.includes(to.meta.permiss)) {
+    } else if (typeof to.meta.permiss == 'string' && !permiss.key.includes(to.meta.permiss)) {
         // 如果没有权限，则进入403
         next('/403');
     } else {

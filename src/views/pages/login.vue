@@ -83,10 +83,9 @@ const submitForm = (formEl: FormInstance | undefined) => {
     formEl.validate((valid: boolean) => {
         if (valid) {
             ElMessage.success('登录成功');
-            localStorage.setItem('ms_username', param.username);
+            localStorage.setItem('vuems_name', param.username);
             const keys = permiss.defaultList[param.username == 'admin' ? 'admin' : 'user'];
             permiss.handleSet(keys);
-            localStorage.setItem('ms_keys', JSON.stringify(keys));
             router.push('/');
             if (checked.value) {
                 localStorage.setItem('login-param', JSON.stringify(param));
@@ -110,7 +109,7 @@ tabs.clearTabs();
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: url(../../assets/img/login-bg.jpg) center/cover no-repeat;
 }
 

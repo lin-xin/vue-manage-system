@@ -2,10 +2,8 @@
     <div class="login-bg">
         <div class="login-container">
             <div class="login-header">
-                <img class="logo mr10" src="../../assets/img/logo.svg" alt="">
-                <div class="login-title">
-                    后台管理系统
-                </div>
+                <img class="logo mr10" src="../../assets/img/logo.svg" alt="" />
+                <div class="login-title">后台管理系统</div>
             </div>
             <el-form :model="param" :rules="rules" ref="register" size="large">
                 <el-form-item prop="username">
@@ -27,8 +25,12 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                    <el-input type="password" placeholder="密码" v-model="param.password"
-                        @keyup.enter="submitForm(register)">
+                    <el-input
+                        type="password"
+                        placeholder="密码"
+                        v-model="param.password"
+                        @keyup.enter="submitForm(register)"
+                    >
                         <template #prepend>
                             <el-icon>
                                 <Lock />
@@ -37,7 +39,9 @@
                     </el-input>
                 </el-form-item>
                 <el-button class="login-btn" type="primary" size="large" @click="submitForm(register)">注册</el-button>
-                <p class="login-text">已有账号，<el-link type="primary" @click="$router.push('/login')">立即登录</el-link></p>
+                <p class="login-text">
+                    已有账号，<el-link type="primary" @click="$router.push('/login')">立即登录</el-link>
+                </p>
             </el-form>
         </div>
     </div>
@@ -79,7 +83,6 @@ const submitForm = (formEl: FormInstance | undefined) => {
         }
     });
 };
-
 </script>
 
 <style scoped>
@@ -88,7 +91,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: url(../../assets/img/login-bg.jpg) center/cover no-repeat;
 }
 
