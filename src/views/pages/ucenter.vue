@@ -104,7 +104,7 @@ import 'vue-cropper/dist/index.css';
 import avatar from '@/assets/img/img.jpg';
 import TabsComp from '../element/tabs.vue';
 
-const name = localStorage.getItem('ms_username');
+const name = localStorage.getItem('vuems_name');
 const form = reactive({
     new1: '',
     new: '',
