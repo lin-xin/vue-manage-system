@@ -7,11 +7,11 @@
     <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
   </a>
 
-基于 Vue3 + pinia + Element Plus 的后台管理系统解决方案。[线上演示](https://lin-xin.gitee.io/example/vue-manage-system/)
+基于 Vue3 + pinia + Element Plus 的后台管理系统解决方案。[线上演示](https://lin-xin.github.io/example/vue-manage-system/)
 
 > Vue2 版本请看 [tag-V4.2.0](https://github.com/lin-xin/vue-manage-system/tree/V4.2.0)，带后台功能请看 [tsrpc-manage-system](https://github.com/lin-xin/tsrpc-manage-system)
 
-[文档地址](https://lin-xin.gitee.io/example/vuems-doc/)
+[文档地址](https://lin-xin.github.io/example/vuems-doc/)
 [English document](https://github.com/lin-xin/manage-system/blob/master/README_EN.md)
 
 ## 赞助商
