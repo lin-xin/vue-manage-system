@@ -12,6 +12,7 @@
                     <Fold />
                 </el-icon>
             </div>
+            <div id="analysis-page" @click="handleAnalysisPage">订单分析页面</div>
         </div>
         <div class="header-right">
             <div class="header-user-con">
@@ -94,6 +95,10 @@ const handleCommand = (command: string) => {
     }
 };
 
+const handleAnalysisPage = () => {
+    router.push('/analysis');
+};
+
 const setFullScreen = () => {
     if (document.fullscreenElement) {
         document.exitFullscreen();
@@ -174,6 +179,15 @@ const setFullScreen = () => {
     color: var(--header-text-color);
     margin: 0 5px;
     font-size: 20px;
+}
+
+#analysis-page {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+#analysis-page:hover {
+    color: rgb(190, 190, 255);
 }
 
 .btn-bell-badge {
