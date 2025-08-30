@@ -88,7 +88,7 @@ const handleEdit = (row: User) => {
     isEdit.value = true;
     visible.value = true;
 };
-const updateData = () => {
+const updateData = (formData) => {
     closeDialog();
     getData();
 };
@@ -144,5 +144,6 @@ const handleDelete = (row: User) => {
     ElMessage.success('删除成功');
 }
 </script>
+
 
 <style scoped></style>
