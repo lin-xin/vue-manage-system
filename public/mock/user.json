@@ -17,7 +17,25 @@
             "phone": "12345678945",
             "date": "2024-01-01",
             "role": "普通用户"
+        },
+        {
+            "id": 3,
+            "name": "test1",
+            "password": "123",
+            "email": "test1@qq.com",
+            "phone": "12345678946",
+            "date": "2024-01-01",
+            "role": "管理员"
+        },
+        {
+            "id": 4,
+            "name": "test2",
+            "password": "123",
+            "email": "test2@qq.com",
+            "phone": "12345678947",
+            "date": "2024-01-01",
+            "role": "普通用户"
         }
     ],
-    "pageTotal": 2
+    "pageTotal": 4
 }
