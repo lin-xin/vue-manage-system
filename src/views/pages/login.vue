@@ -33,13 +33,19 @@
                     <el-checkbox class="pwd-checkbox" v-model="checked" label="记住密码" />
                     <el-link type="primary" @click="$router.push('/reset-pwd')">忘记密码</el-link>
                 </div>
-                <el-button class="login-btn" type="primary" size="large" @click="submitForm(login)">登录</el-button>
+                <el-button class="login-btn" type="primary" size="large" @click="showCaptcha">登录</el-button>
                 <p class="login-tips">Tips : 用户名和密码随便填。</p>
                 <p class="login-text">
                     没有账号？<el-link type="primary" @click="$router.push('/register')">立即注册</el-link>
                 </p>
             </el-form>
         </div>
+        
+        <!-- 滑动验证码组件 -->
+        <SliderCaptcha
+            v-model:visible="captchaVisible"
+            @confirm="handleCaptchaSuccess"
+        />
     </div>
 </template>
 
@@ -50,6 +56,7 @@ import { usePermissStore } from '@/store/permiss';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
+import SliderCaptcha from '@/components/SliderCaptcha.vue';
 
 interface LoginInfo {
     username: string;
@@ -97,6 +104,42 @@ const submitForm = (formEl: FormInstance | undefined) => {
             return false;
         }
     });
+};
+
+const captchaVisible = ref(false);
+const captchaPassed = ref(false);
+
+const showCaptcha = () => {
+    // 先验证表单
+    login.value?.validate((valid: boolean) => {
+        if (valid) {
+            // 表单验证通过，显示验证码
+            captchaVisible.value = true;
+        }
+    });
+};
+
+const handleCaptchaSuccess = () => {
+    // 验证码验证成功，执行登录
+    captchaPassed.value = true;
+    
+    // 保存登录信息
+    localStorage.setItem('vuems_name', param.username);
+    const keys = permiss.defaultList[param.username == 'admin' ? 'admin' : 'user'];
+    permiss.handleSet(keys);
+    router.push('/');
+    if (checked.value) {
+        localStorage.setItem('login-param', JSON.stringify(param));
+    } else {
+        localStorage.removeItem('login-param');
+    }
+    
+    ElMessage.success('登录成功');
+};
+
+const submitForm = (formEl: FormInstance | undefined) => {
+    // 兼容回车键登录
+    showCaptcha();
 };
 
 const tabs = useTabsStore();
