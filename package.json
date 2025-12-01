@@ -22,6 +22,7 @@
 		"vue": "^3.4.5",
 		"vue-cropper": "1.1.1",
 		"vue-echarts": "^6.6.9",
+		"vue-i18n": "^9.14.5",
 		"vue-router": "^4.2.5",
 		"vue-schart": "^2.0.0",
 		"xlsx": "^0.18.5"

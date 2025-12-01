@@ -1,0 +1,61 @@
+export default {
+  common: {
+    home: '首页',
+    dashboard: '仪表盘',
+    chart: '图表',
+    table: '表格',
+    form: '表单',
+    system: '系统管理',
+    user: '用户管理',
+    role: '角色管理',
+    menu: '菜单管理',
+    login: '登录',
+    logout: '退出登录',
+    save: '保存',
+    edit: '编辑',
+    delete: '删除',
+    search: '搜索',
+    add: '添加',
+    cancel: '取消',
+    confirm: '确认',
+    reset: '重置',
+    submit: '提交',
+    back: '返回',
+    view: '查看',
+    operation: '操作',
+    status: '状态',
+    name: '名称',
+    description: '描述',
+    createTime: '创建时间',
+    updateTime: '更新时间',
+    pleaseSelect: '请选择',
+    pleaseInput: '请输入',
+    success: '成功',
+    error: '错误',
+    warning: '警告',
+    info: '信息'
+  },
+  dashboard: {
+    welcome: '欢迎使用 Vue 管理系统',
+    totalUsers: '总用户数',
+    totalOrders: '总订单数',
+    totalRevenue: '总收入',
+    totalProducts: '总产品数'
+  },
+  header: {
+    theme: '主题',
+    language: '语言',
+    profile: '个人中心',
+    settings: '设置'
+  },
+  sidebar: {
+    dashboard: '仪表盘',
+    chart: '图表',
+    table: '表格',
+    form: '表单',
+    system: '系统管理',
+    user: '用户管理',
+    role: '角色管理',
+    menu: '菜单管理'
+  }
+};

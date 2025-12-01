@@ -15,36 +15,52 @@
         </div>
         <div class="header-right">
             <div class="header-user-con">
-                <div class="btn-icon" @click="router.push('/theme')">
-                    <el-tooltip effect="dark" content="设置主题" placement="bottom">
-                        <i class="el-icon-lx-skin"></i>
-                    </el-tooltip>
+                <div class="btn-icon">
+                    <el-dropdown trigger="click" @command="handleLanguageChange">
+                        <el-tooltip effect="dark" content="语言" placement="bottom">
+                            <el-icon><Language /></el-icon>
+                        </el-tooltip>
+                        <template #dropdown>
+                            <el-dropdown-menu>
+                                <el-dropdown-item command="zh-CN">中文</el-dropdown-item>
+                                <el-dropdown-item command="en-US">English</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </template>
+                    </el-dropdown>
                 </div>
-                <div class="btn-icon" @click="router.push('/ucenter')">
-                    <el-tooltip
-                        effect="dark"
-                        :content="message ? `有${message}条未读消息` : `消息中心`"
-                        placement="bottom"
-                    >
-                        <i class="el-icon-lx-notice"></i>
+                <div class="btn-icon">
+                    <el-dropdown trigger="click">
+                        <el-tooltip effect="dark" content="设置主题" placement="bottom">
+                            <el-icon><Sunny /></el-icon>
+                        </el-tooltip>
+                        <template #dropdown>
+                            <el-dropdown-menu>
+                                <el-dropdown-item command="light">浅色</el-dropdown-item>
+                                <el-dropdown-item command="dark">深色</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </template>
+                    </el-dropdown>
+                </div>
+                <div class="btn-icon">
+                    <el-tooltip effect="dark" :content="message ? `有${message}条未读消息` : `消息中心`" placement="bottom">
+                        <el-icon><Bell /></el-icon>
                     </el-tooltip>
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div>
                 <div class="btn-icon" @click="setFullScreen">
                     <el-tooltip effect="dark" content="全屏" placement="bottom">
-                        <i class="el-icon-lx-full"></i>
+                        <el-icon><FullScreen /></el-icon>
                     </el-tooltip>
                 </div>
-                <!-- 用户头像 -->
-                <el-avatar class="user-avator" :size="30" :src="imgurl" />
                 <!-- 用户名下拉菜单 -->
-                <el-dropdown class="user-name" trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link">
-                        {{ username }}
+                <el-dropdown @command="handleCommand">
+                    <div class="el-dropdown-link">
+                        <el-avatar class="user-avator" :size="30" :src="imgurl"></el-avatar>
+                        <span class="user-name-text">{{ username }}</span>
                         <el-icon class="el-icon--right">
                             <arrow-down />
                         </el-icon>
-                    </span>
+                    </div>
                     <template #dropdown>
                         <el-dropdown-menu>
                             <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
@@ -66,6 +82,7 @@
 import { onMounted } from 'vue';
 import { useSidebarStore } from '../store/sidebar';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import imgurl from '../assets/img/img.jpg';
 
 const username: string | null = localStorage.getItem('vuems_name');
@@ -85,6 +102,8 @@ onMounted(() => {
 
 // 用户名下拉菜单选择事件
 const router = useRouter();
+const { locale } = useI18n();
+
 const handleCommand = (command: string) => {
     if (command == 'loginout') {
         localStorage.removeItem('vuems_name');
@@ -92,6 +111,12 @@ const handleCommand = (command: string) => {
     } else if (command == 'user') {
         router.push('/ucenter');
     }
+};
+
+// 语言切换事件
+const handleLanguageChange = (command: string) => {
+    locale.value = command;
+    localStorage.setItem('locale', command);
 };
 
 const setFullScreen = () => {
@@ -189,6 +214,10 @@ const setFullScreen = () => {
 
 .user-avator {
     margin: 0 10px 0 20px;
+}
+
+.user-name-text {
+    margin-right: 5px;
 }
 
 .el-dropdown-link {

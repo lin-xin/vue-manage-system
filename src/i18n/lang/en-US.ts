@@ -1,0 +1,61 @@
+export default {
+  common: {
+    home: 'Home',
+    dashboard: 'Dashboard',
+    chart: 'Chart',
+    table: 'Table',
+    form: 'Form',
+    system: 'System Management',
+    user: 'User Management',
+    role: 'Role Management',
+    menu: 'Menu Management',
+    login: 'Login',
+    logout: 'Logout',
+    save: 'Save',
+    edit: 'Edit',
+    delete: 'Delete',
+    search: 'Search',
+    add: 'Add',
+    cancel: 'Cancel',
+    confirm: 'Confirm',
+    reset: 'Reset',
+    submit: 'Submit',
+    back: 'Back',
+    view: 'View',
+    operation: 'Operation',
+    status: 'Status',
+    name: 'Name',
+    description: 'Description',
+    createTime: 'Create Time',
+    updateTime: 'Update Time',
+    pleaseSelect: 'Please Select',
+    pleaseInput: 'Please Input',
+    success: 'Success',
+    error: 'Error',
+    warning: 'Warning',
+    info: 'Info'
+  },
+  dashboard: {
+    welcome: 'Welcome to Vue Management System',
+    totalUsers: 'Total Users',
+    totalOrders: 'Total Orders',
+    totalRevenue: 'Total Revenue',
+    totalProducts: 'Total Products'
+  },
+  header: {
+    theme: 'Theme',
+    language: 'Language',
+    profile: 'Profile',
+    settings: 'Settings'
+  },
+  sidebar: {
+    dashboard: 'Dashboard',
+    chart: 'Chart',
+    table: 'Table',
+    form: 'Form',
+    system: 'System Management',
+    user: 'User Management',
+    role: 'Role Management',
+    menu: 'Menu Management'
+  }
+};
