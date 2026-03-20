@@ -60,10 +60,20 @@ const lgStr = localStorage.getItem('login-param');
 const defParam = lgStr ? JSON.parse(lgStr) : null;
 const checked = ref(lgStr ? true : false);
 
+// 简单的Base64编解码，避免明文存储
+const encode = (str: string) => btoa(encodeURIComponent(str));
+const decode = (str: string) => {
+    try {
+        return decodeURIComponent(atob(str));
+    } catch {
+        return '';
+    }
+};
+
 const router = useRouter();
 const param = reactive<LoginInfo>({
     username: defParam ? defParam.username : '',
-    password: defParam ? defParam.password : '',
+    password: defParam ? decode(defParam.password) : '',
 });
 
 const rules: FormRules = {
@@ -88,7 +98,10 @@ const submitForm = (formEl: FormInstance | undefined) => {
             permiss.handleSet(keys);
             router.push('/');
             if (checked.value) {
-                localStorage.setItem('login-param', JSON.stringify(param));
+                localStorage.setItem('login-param', JSON.stringify({
+                    username: param.username,
+                    password: encode(param.password)
+                }));
             } else {
                 localStorage.removeItem('login-param');
             }
