@@ -43,7 +43,7 @@
                         <TabsComp />
                     </el-tab-pane>
                     <el-tab-pane name="label2" label="我的头像" class="user-tabpane">
-                        <div class="crop-wrap" v-if="activeName === 'label2'">
+                        <div class="crop-wrap" v-show="activeName === 'label2'">
                             <vueCropper
                                 ref="cropper"
                                 :img="imgSrc"
@@ -127,17 +127,26 @@ const setImage = (e: any) => {
     const reader = new FileReader();
     reader.onload = (event: any) => {
         imgSrc.value = event.target.result;
-        cropper.value && cropper.value.replace(event.target.result);
     };
     reader.readAsDataURL(file);
 };
 
 const cropImage = () => {
-    cropImg.value = cropper.value?.getCroppedCanvas().toDataURL();
+    return new Promise<string>((resolve) => {
+        if (cropper.value) {
+            cropper.value.getCropData((data: any) => {
+                cropImg.value = data.url;
+                resolve(data.url);
+            });
+        } else {
+            resolve('');
+        }
+    });
 };
 
-const saveAvatar = () => {
-    avatarImg.value = cropImg.value;
+const saveAvatar = async () => {
+    const croppedImg = await cropImage();
+    avatarImg.value = croppedImg || imgSrc.value;
 };
 </script>
 
