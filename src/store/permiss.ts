@@ -47,8 +47,13 @@ export const usePermissStore = defineStore('permiss', {
         };
         const username = localStorage.getItem('vuems_name');
         console.log(username);
+        // 未登录用户没有任何权限
+        let userKey: string[] = [];
+        if (username) {
+            userKey = username === 'admin' ? defaultList.admin : defaultList.user;
+        }
         return {
-            key: (username == 'admin' ? defaultList.admin : defaultList.user) as string[],
+            key: userKey,
             defaultList,
         };
     },

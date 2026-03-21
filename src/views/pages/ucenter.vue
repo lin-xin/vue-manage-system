@@ -133,11 +133,19 @@ const setImage = (e: any) => {
 };
 
 const cropImage = () => {
-    cropImg.value = cropper.value?.getCroppedCanvas().toDataURL();
+    if (cropper.value) {
+        cropper.value.getCropData((data: string) => {
+            cropImg.value = data;
+        });
+    }
 };
 
 const saveAvatar = () => {
-    avatarImg.value = cropImg.value;
+    if (cropper.value) {
+        cropper.value.getCropData((data: string) => {
+            avatarImg.value = data;
+        });
+    }
 };
 </script>
 
