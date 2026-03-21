@@ -56,6 +56,24 @@ interface LoginInfo {
     password: string;
 }
 
+// 简单的加密函数
+const encrypt = (text: string): string => {
+    return btoa(encodeURIComponent(text).split('').map((c) => {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+};
+
+// 简单的解密函数
+const decrypt = (text: string): string => {
+    try {
+        return decodeURIComponent(atob(text).split('').map((c) => {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    } catch (e) {
+        return '';
+    }
+};
+
 const lgStr = localStorage.getItem('login-param');
 const defParam = lgStr ? JSON.parse(lgStr) : null;
 const checked = ref(lgStr ? true : false);
@@ -63,7 +81,7 @@ const checked = ref(lgStr ? true : false);
 const router = useRouter();
 const param = reactive<LoginInfo>({
     username: defParam ? defParam.username : '',
-    password: defParam ? defParam.password : '',
+    password: defParam && defParam.password ? decrypt(defParam.password) : '',
 });
 
 const rules: FormRules = {
@@ -88,7 +106,10 @@ const submitForm = (formEl: FormInstance | undefined) => {
             permiss.handleSet(keys);
             router.push('/');
             if (checked.value) {
-                localStorage.setItem('login-param', JSON.stringify(param));
+                localStorage.setItem('login-param', JSON.stringify({
+                    username: param.username,
+                    password: encrypt(param.password)
+                }));
             } else {
                 localStorage.removeItem('login-param');
             }
