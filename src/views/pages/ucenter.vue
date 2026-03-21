@@ -103,6 +103,7 @@ import { VueCropper } from 'vue-cropper';
 import 'vue-cropper/dist/index.css';
 import avatar from '@/assets/img/img.jpg';
 import TabsComp from '../element/tabs.vue';
+import { ElMessage } from 'element-plus';
 
 const name = localStorage.getItem('vuems_name');
 const form = reactive({
@@ -133,11 +134,25 @@ const setImage = (e: any) => {
 };
 
 const cropImage = () => {
-    cropImg.value = cropper.value?.getCroppedCanvas().toDataURL();
+    if (!cropper.value) return;
+    cropper.value.getCropData((data: string) => {
+        cropImg.value = data;
+    });
 };
 
 const saveAvatar = () => {
-    avatarImg.value = cropImg.value;
+    if (!cropper.value) {
+        ElMessage.warning('请先选择图片');
+        return;
+    }
+    cropper.value.getCropData((data: string) => {
+        if (!data) {
+            ElMessage.warning('请先选择并裁剪图片');
+            return;
+        }
+        avatarImg.value = data;
+        ElMessage.success('头像保存成功');
+    });
 };
 </script>
 

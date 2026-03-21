@@ -145,7 +145,7 @@ const routes: RouteRecordRaw[] = [
                 name: 'theme',
                 meta: {
                     title: '主题设置',
-                    permiss: '7',
+                    noAuth: true,
                 },
                 component: () => import(/* webpackChunkName: "theme" */ '../views/pages/theme.vue'),
             },
