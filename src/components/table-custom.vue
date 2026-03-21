@@ -184,7 +184,9 @@ const handleDelete = (row) => {
 };
 
 const getIndex = (index: number) => {
-    return index + 1 + (currentPage.value - 1) * pageSize.value
+    const validPage = Math.max(1, currentPage.value || 1);
+    const validSize = Math.max(1, pageSize.value || 10);
+    return index + 1 + (validPage - 1) * validSize;
 }
 
 </script>

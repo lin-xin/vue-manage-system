@@ -50,6 +50,7 @@ import { usePermissStore } from '@/store/permiss';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
+import { encrypt, decrypt } from '@/utils';
 
 interface LoginInfo {
     username: string;
@@ -63,7 +64,7 @@ const checked = ref(lgStr ? true : false);
 const router = useRouter();
 const param = reactive<LoginInfo>({
     username: defParam ? defParam.username : '',
-    password: defParam ? defParam.password : '',
+    password: defParam ? decrypt(defParam.password) : '',
 });
 
 const rules: FormRules = {
@@ -88,7 +89,10 @@ const submitForm = (formEl: FormInstance | undefined) => {
             permiss.handleSet(keys);
             router.push('/');
             if (checked.value) {
-                localStorage.setItem('login-param', JSON.stringify(param));
+                localStorage.setItem('login-param', JSON.stringify({
+                    username: param.username,
+                    password: encrypt(param.password)
+                }));
             } else {
                 localStorage.removeItem('login-param');
             }

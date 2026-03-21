@@ -48,7 +48,7 @@ export const usePermissStore = defineStore('permiss', {
         const username = localStorage.getItem('vuems_name');
         console.log(username);
         return {
-            key: (username == 'admin' ? defaultList.admin : defaultList.user) as string[],
+            key: (username ? (username == 'admin' ? defaultList.admin : defaultList.user) : []) as string[],
             defaultList,
         };
     },
