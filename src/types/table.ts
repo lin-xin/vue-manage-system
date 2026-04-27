@@ -3,7 +3,7 @@ export interface TableItem {
     name: string;
     thumb: string;
     money: number;
-    state: string;
+    state: boolean;
     date: string;
     address: string;
 }
